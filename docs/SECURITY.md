@@ -6,6 +6,8 @@ Workflows run analytical and interaction checks, rebuild the site, and scan Pyth
 
 Export the GitHub-generated SBOM from **Insights → Dependency graph → Export SBOM**. Review vendored code and optional spatial tools too. NOTICE, font/service disclosures and data terms are separate from the first-party code license.
 
+The published release includes a [GitHub-generated SBOM](github-sbom.spdx.json) and a [dated verification record](RELEASE_CHECKS.md). Regenerate the inventory when dependencies change.
+
 Use an isolated Python environment for optional spatial processing. Install the pinned requirements from the official package registry. No paid AI scanning is required. Workflow permissions are restricted to their stated checking or public-deployment purposes.
 
 The local check searches a narrow set of recognizable credential patterns and personal machine paths; it is not a replacement for GitHub scanning or a security certification. Invalid sources, unexpected revisions and conflicting duplicate records fail with reports instead of silently producing partial results.

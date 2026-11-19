@@ -1,0 +1,1186 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "com.github.MahinTawrat/turnout-housing-policy-simulator",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/e98ff3a2-f382-4db1-b88c-80b4d6dc91d7",
+  "creationInfo": {
+    "creators": [
+      "Tool: protobom-v0.0.0-20261117223245-72f62ebd2215+dirty",
+      "Tool: GitHub.com-Dependency-Graph"
+    ],
+    "created": "2026-11-19T00:44:13Z"
+  },
+  "packages": [
+    {
+      "name": "iconv-lite",
+      "SPDXID": "SPDXRef-npm-iconv-lite-0.6.3-c77410",
+      "versionInfo": "0.6.3",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "copyrightText": "Copyright (c) 2011 Alexander Shtuchkin, Copyright (c) Microsoft Corporation",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/iconv-lite@0.6.3"
+        }
+      ]
+    },
+    {
+      "name": "d3-time",
+      "SPDXID": "SPDXRef-npm-d3-time-3.1.1-96419e",
+      "versionInfo": "3.1.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-time@3.1.1"
+        }
+      ]
+    },
+    {
+      "name": "internmap",
+      "SPDXID": "SPDXRef-npm-internmap-2.0.3-525d90",
+      "versionInfo": "2.0.3",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "copyrightText": "Copyright 2021 Mike Bostock",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/internmap@2.0.3"
+        }
+      ]
+    },
+    {
+      "name": "d3-time-format",
+      "SPDXID": "SPDXRef-npm-d3-time-format-4.1.1-1db740",
+      "versionInfo": "4.1.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-time-format@4.1.1"
+        }
+      ]
+    },
+    {
+      "name": "d3-chord",
+      "SPDXID": "SPDXRef-npm-d3-chord-3.0.2-eb5226",
+      "versionInfo": "3.0.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-chord@3.0.2"
+        }
+      ]
+    },
+    {
+      "name": "rw",
+      "SPDXID": "SPDXRef-npm-rw-1.3.3-5f49f5",
+      "versionInfo": "1.3.3",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "copyrightText": "Copyright (c) 2014-2016, Michael Bostock",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/rw@1.3.3"
+        }
+      ]
+    },
+    {
+      "name": "d3-dsv",
+      "SPDXID": "SPDXRef-npm-d3-dsv-3.0.2-bc8dbb",
+      "versionInfo": "3.0.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-dsv@3.0.2"
+        }
+      ]
+    },
+    {
+      "name": "robust-predicates",
+      "SPDXID": "SPDXRef-npm-robust-predicates-3.0.3-392a5e",
+      "versionInfo": "3.0.3",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "LicenseRef-scancode-public-domain AND Unlicense",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/robust-predicates@3.0.3"
+        }
+      ]
+    },
+    {
+      "name": "d3-array",
+      "SPDXID": "SPDXRef-npm-d3-array-3.2.5-29fd5b",
+      "versionInfo": "3.2.5",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-array@3.2.5"
+        }
+      ]
+    },
+    {
+      "name": "d3-hierarchy",
+      "SPDXID": "SPDXRef-npm-d3-hierarchy-3.1.3-e5baf1",
+      "versionInfo": "3.1.3",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-hierarchy@3.1.3"
+        }
+      ]
+    },
+    {
+      "name": "d3-scale",
+      "SPDXID": "SPDXRef-npm-d3-scale-4.0.3-4cbe4c",
+      "versionInfo": "4.0.3",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-scale@4.0.3"
+        }
+      ]
+    },
+    {
+      "name": "d3-interpolate",
+      "SPDXID": "SPDXRef-npm-d3-interpolate-3.0.2-fb1b35",
+      "versionInfo": "3.0.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-interpolate@3.0.2"
+        }
+      ]
+    },
+    {
+      "name": "d3-polygon",
+      "SPDXID": "SPDXRef-npm-d3-polygon-3.0.2-aa6b84",
+      "versionInfo": "3.0.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-polygon@3.0.2"
+        }
+      ]
+    },
+    {
+      "name": "d3",
+      "SPDXID": "SPDXRef-npm-d3-7.9.0-056489",
+      "versionInfo": "7.9.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "copyrightText": "Copyright 2010-2023 Mike Bostock, Copyright 2018 Vladimir Agafonkin",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3@7.9.0"
+        }
+      ]
+    },
+    {
+      "name": "d3-brush",
+      "SPDXID": "SPDXRef-npm-d3-brush-3.0.1-fa4939",
+      "versionInfo": "3.0.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-brush@3.0.1"
+        }
+      ]
+    },
+    {
+      "name": "delaunator",
+      "SPDXID": "SPDXRef-npm-delaunator-5.1.0-aabf4d",
+      "versionInfo": "5.1.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "copyrightText": "Copyright (c) 2026, Mapbox",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/delaunator@5.1.0"
+        }
+      ]
+    },
+    {
+      "name": "d3-timer",
+      "SPDXID": "SPDXRef-npm-d3-timer-3.0.2-937207",
+      "versionInfo": "3.0.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-timer@3.0.2"
+        }
+      ]
+    },
+    {
+      "name": "d3-delaunay",
+      "SPDXID": "SPDXRef-npm-d3-delaunay-6.0.6-9e16b5",
+      "versionInfo": "6.0.6",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-delaunay@6.0.6"
+        }
+      ]
+    },
+    {
+      "name": "d3-quadtree",
+      "SPDXID": "SPDXRef-npm-d3-quadtree-3.0.2-ea74e7",
+      "versionInfo": "3.0.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-quadtree@3.0.2"
+        }
+      ]
+    },
+    {
+      "name": "d3-zoom",
+      "SPDXID": "SPDXRef-npm-d3-zoom-3.0.1-e1ff58",
+      "versionInfo": "3.0.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-zoom@3.0.1"
+        }
+      ]
+    },
+    {
+      "name": "d3-axis",
+      "SPDXID": "SPDXRef-npm-d3-axis-3.0.1-37f4f0",
+      "versionInfo": "3.0.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-axis@3.0.1"
+        }
+      ]
+    },
+    {
+      "name": "d3-geo",
+      "SPDXID": "SPDXRef-npm-d3-geo-3.1.2-78959c",
+      "versionInfo": "3.1.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-geo@3.1.2"
+        }
+      ]
+    },
+    {
+      "name": "d3-selection",
+      "SPDXID": "SPDXRef-npm-d3-selection-3.0.1-058e9a",
+      "versionInfo": "3.0.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-selection@3.0.1"
+        }
+      ]
+    },
+    {
+      "name": "d3-force",
+      "SPDXID": "SPDXRef-npm-d3-force-3.0.1-e0a3e9",
+      "versionInfo": "3.0.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-force@3.0.1"
+        }
+      ]
+    },
+    {
+      "name": "d3-contour",
+      "SPDXID": "SPDXRef-npm-d3-contour-4.0.3-5e0bd0",
+      "versionInfo": "4.0.3",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-contour@4.0.3"
+        }
+      ]
+    },
+    {
+      "name": "d3-ease",
+      "SPDXID": "SPDXRef-npm-d3-ease-3.0.2-5f6afd",
+      "versionInfo": "3.0.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-ease@3.0.2"
+        }
+      ]
+    },
+    {
+      "name": "commander",
+      "SPDXID": "SPDXRef-npm-commander-7.2.0-00aa0d",
+      "versionInfo": "7.2.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "copyrightText": "Copyright (c) 2011 TJ Holowaychuk <tj@vision-media.ca>",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/commander@7.2.0"
+        }
+      ]
+    },
+    {
+      "name": "d3-path",
+      "SPDXID": "SPDXRef-npm-d3-path-3.1.1-c69f90",
+      "versionInfo": "3.1.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-path@3.1.1"
+        }
+      ]
+    },
+    {
+      "name": "d3-format",
+      "SPDXID": "SPDXRef-npm-d3-format-3.1.3-2dbde0",
+      "versionInfo": "3.1.3",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-format@3.1.3"
+        }
+      ]
+    },
+    {
+      "name": "d3-transition",
+      "SPDXID": "SPDXRef-npm-d3-transition-3.0.2-f6c93c",
+      "versionInfo": "3.0.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-transition@3.0.2"
+        }
+      ]
+    },
+    {
+      "name": "d3-color",
+      "SPDXID": "SPDXRef-npm-d3-color-3.1.1-d52c67",
+      "versionInfo": "3.1.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-color@3.1.1"
+        }
+      ]
+    },
+    {
+      "name": "d3-shape",
+      "SPDXID": "SPDXRef-npm-d3-shape-3.2.1-b5d8e3",
+      "versionInfo": "3.2.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-shape@3.2.1"
+        }
+      ]
+    },
+    {
+      "name": "d3-random",
+      "SPDXID": "SPDXRef-npm-d3-random-3.0.2-30e335",
+      "versionInfo": "3.0.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-random@3.0.2"
+        }
+      ]
+    },
+    {
+      "name": "d3-fetch",
+      "SPDXID": "SPDXRef-npm-d3-fetch-3.0.2-f83f54",
+      "versionInfo": "3.0.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-fetch@3.0.2"
+        }
+      ]
+    },
+    {
+      "name": "d3-drag",
+      "SPDXID": "SPDXRef-npm-d3-drag-3.0.1-084a40",
+      "versionInfo": "3.0.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-drag@3.0.1"
+        }
+      ]
+    },
+    {
+      "name": "safer-buffer",
+      "SPDXID": "SPDXRef-npm-safer-buffer-2.1.2-b72a15",
+      "versionInfo": "2.1.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "copyrightText": "Copyright (c) 2018 Nikita Skovoroda <chalkerx@gmail.com>",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/safer-buffer@2.1.2"
+        }
+      ]
+    },
+    {
+      "name": "d3-dispatch",
+      "SPDXID": "SPDXRef-npm-d3-dispatch-3.0.2-3f6a47",
+      "versionInfo": "3.0.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-dispatch@3.0.2"
+        }
+      ]
+    },
+    {
+      "name": "d3-scale-chromatic",
+      "SPDXID": "SPDXRef-npm-d3-scale-chromatic-3.1.1-56483a",
+      "versionInfo": "3.1.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "ISC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/d3-scale-chromatic@3.1.1"
+        }
+      ]
+    },
+    {
+      "name": "geographiclib",
+      "SPDXID": "SPDXRef-pypi-geographiclib-2.1-aaccc7",
+      "versionInfo": "2.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "copyrightText": "Copyright (c) 2012-2025, Charles Karney, Copyright (c) Charles Karney (2011-2022) <karney@alum.mit.edu>",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/geographiclib@2.1"
+        }
+      ]
+    },
+    {
+      "name": "pyclipper",
+      "SPDXID": "SPDXRef-pypi-pyclipper-1.4.0-f9469c",
+      "versionInfo": "1.4.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSL-1.0 AND MIT",
+      "copyrightText": "Copyright (c) 2015 Gregor Ratajc, Lukas Treyer, Maxime Chalton, Copyright Angus Johnson 2010-2017",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/pyclipper@1.4.0"
+        }
+      ]
+    },
+    {
+      "name": "pyshp",
+      "SPDXID": "SPDXRef-pypi-pyshp-2.3.1-e63729",
+      "versionInfo": "2.3.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "copyrightText": "Copyright (c) 2013 Joel Lawhead",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/pyshp@2.3.1"
+        }
+      ]
+    },
+    {
+      "name": "actions/checkout",
+      "SPDXID": "SPDXRef-githubactions-actions-checkout-3d3c42e5aac5ba805825da76410c181273ba90b1-a75f5c",
+      "versionInfo": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
+        }
+      ]
+    },
+    {
+      "name": "actions/setup-node",
+      "SPDXID": "SPDXRef-githubactions-actions-setup-node-949feb2413d6458794dcd2491c4babbbce0c15c1-3259db",
+      "versionInfo": "949feb2413d6458794dcd2491c4babbbce0c15c1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1"
+        }
+      ]
+    },
+    {
+      "name": "actions/setup-python",
+      "SPDXID": "SPDXRef-githubactions-actions-setup-python-6d4fd22b20465ccc0f7354476588e8df7c9ca0e0-42f512",
+      "versionInfo": "6d4fd22b20465ccc0f7354476588e8df7c9ca0e0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0"
+        }
+      ]
+    },
+    {
+      "name": "github/codeql-action/init",
+      "SPDXID": "SPDXRef-githubactions-githubcodeql-action-init-33d7b85da1a04171e211befe2c739303b9a4c066-cf59ac",
+      "versionInfo": "33d7b85da1a04171e211befe2c739303b9a4c066",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066"
+        }
+      ]
+    },
+    {
+      "name": "github/codeql-action/analyze",
+      "SPDXID": "SPDXRef-githubactions-githubcodeql-action-analyze-33d7b85da1a04171e211befe2c739303b9a4c066-7e037b",
+      "versionInfo": "33d7b85da1a04171e211befe2c739303b9a4c066",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066"
+        }
+      ]
+    },
+    {
+      "name": "actions/upload-pages-artifact",
+      "SPDXID": "SPDXRef-githubactions-actions-upload-pages-artifact-fc324d3547104276b827a68afc52ff2a11cc49c9-e9ba56",
+      "versionInfo": "fc324d3547104276b827a68afc52ff2a11cc49c9",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9"
+        }
+      ]
+    },
+    {
+      "name": "actions/deploy-pages",
+      "SPDXID": "SPDXRef-githubactions-actions-deploy-pages-368f82528645a54fb793d4d04e342629a3f51346-73882c",
+      "versionInfo": "368f82528645a54fb793d4d04e342629a3f51346",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346"
+        }
+      ]
+    },
+    {
+      "name": "com.github.MahinTawrat/turnout-housing-policy-simulator",
+      "SPDXID": "SPDXRef-github-MahinTawrat-turnout-housing-policy-simulator-main-fe68b8",
+      "versionInfo": "main",
+      "downloadLocation": "git+https://github.com/MahinTawrat/turnout-housing-policy-simulator",
+      "filesAnalyzed": false,
+      "licenseDeclared": "Apache-2.0",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:github/MahinTawrat/turnout-housing-policy-simulator@main"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-npm-iconv-lite-0.6.3-c77410",
+      "relatedSpdxElement": "SPDXRef-npm-safer-buffer-2.1.2-b72a15",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-time-3.1.1-96419e",
+      "relatedSpdxElement": "SPDXRef-npm-d3-array-3.2.5-29fd5b",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-time-format-4.1.1-1db740",
+      "relatedSpdxElement": "SPDXRef-npm-d3-time-3.1.1-96419e",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-chord-3.0.2-eb5226",
+      "relatedSpdxElement": "SPDXRef-npm-d3-path-3.1.1-c69f90",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-dsv-3.0.2-bc8dbb",
+      "relatedSpdxElement": "SPDXRef-npm-commander-7.2.0-00aa0d",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-dsv-3.0.2-bc8dbb",
+      "relatedSpdxElement": "SPDXRef-npm-iconv-lite-0.6.3-c77410",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-dsv-3.0.2-bc8dbb",
+      "relatedSpdxElement": "SPDXRef-npm-rw-1.3.3-5f49f5",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-array-3.2.5-29fd5b",
+      "relatedSpdxElement": "SPDXRef-npm-internmap-2.0.3-525d90",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-scale-4.0.3-4cbe4c",
+      "relatedSpdxElement": "SPDXRef-npm-d3-format-3.1.3-2dbde0",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-scale-4.0.3-4cbe4c",
+      "relatedSpdxElement": "SPDXRef-npm-d3-interpolate-3.0.2-fb1b35",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-scale-4.0.3-4cbe4c",
+      "relatedSpdxElement": "SPDXRef-npm-d3-array-3.2.5-29fd5b",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-scale-4.0.3-4cbe4c",
+      "relatedSpdxElement": "SPDXRef-npm-d3-time-format-4.1.1-1db740",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-scale-4.0.3-4cbe4c",
+      "relatedSpdxElement": "SPDXRef-npm-d3-time-3.1.1-96419e",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-interpolate-3.0.2-fb1b35",
+      "relatedSpdxElement": "SPDXRef-npm-d3-color-3.1.1-d52c67",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-format-3.1.3-2dbde0",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-dsv-3.0.2-bc8dbb",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-contour-4.0.3-5e0bd0",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-drag-3.0.1-084a40",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-interpolate-3.0.2-fb1b35",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-ease-3.0.2-5f6afd",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-array-3.2.5-29fd5b",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-geo-3.1.2-78959c",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-transition-3.0.2-f6c93c",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-dispatch-3.0.2-3f6a47",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-scale-chromatic-3.1.1-56483a",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-hierarchy-3.1.3-e5baf1",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-polygon-3.0.2-aa6b84",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-timer-3.0.2-937207",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-scale-4.0.3-4cbe4c",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-delaunay-6.0.6-9e16b5",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-time-format-4.1.1-1db740",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-quadtree-3.0.2-ea74e7",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-chord-3.0.2-eb5226",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-selection-3.0.1-058e9a",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-color-3.1.1-d52c67",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-time-3.1.1-96419e",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-zoom-3.0.1-e1ff58",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-shape-3.2.1-b5d8e3",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-random-3.0.2-30e335",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-axis-3.0.1-37f4f0",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-force-3.0.1-e0a3e9",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-fetch-3.0.2-f83f54",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-path-3.1.1-c69f90",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-7.9.0-056489",
+      "relatedSpdxElement": "SPDXRef-npm-d3-brush-3.0.1-fa4939",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-brush-3.0.1-fa4939",
+      "relatedSpdxElement": "SPDXRef-npm-d3-drag-3.0.1-084a40",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-brush-3.0.1-fa4939",
+      "relatedSpdxElement": "SPDXRef-npm-d3-interpolate-3.0.2-fb1b35",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-brush-3.0.1-fa4939",
+      "relatedSpdxElement": "SPDXRef-npm-d3-transition-3.0.2-f6c93c",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-brush-3.0.1-fa4939",
+      "relatedSpdxElement": "SPDXRef-npm-d3-dispatch-3.0.2-3f6a47",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-brush-3.0.1-fa4939",
+      "relatedSpdxElement": "SPDXRef-npm-d3-selection-3.0.1-058e9a",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-delaunator-5.1.0-aabf4d",
+      "relatedSpdxElement": "SPDXRef-npm-robust-predicates-3.0.3-392a5e",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-delaunay-6.0.6-9e16b5",
+      "relatedSpdxElement": "SPDXRef-npm-delaunator-5.1.0-aabf4d",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-zoom-3.0.1-e1ff58",
+      "relatedSpdxElement": "SPDXRef-npm-d3-drag-3.0.1-084a40",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-zoom-3.0.1-e1ff58",
+      "relatedSpdxElement": "SPDXRef-npm-d3-interpolate-3.0.2-fb1b35",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-zoom-3.0.1-e1ff58",
+      "relatedSpdxElement": "SPDXRef-npm-d3-transition-3.0.2-f6c93c",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-zoom-3.0.1-e1ff58",
+      "relatedSpdxElement": "SPDXRef-npm-d3-dispatch-3.0.2-3f6a47",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-zoom-3.0.1-e1ff58",
+      "relatedSpdxElement": "SPDXRef-npm-d3-selection-3.0.1-058e9a",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-geo-3.1.2-78959c",
+      "relatedSpdxElement": "SPDXRef-npm-d3-array-3.2.5-29fd5b",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-force-3.0.1-e0a3e9",
+      "relatedSpdxElement": "SPDXRef-npm-d3-dispatch-3.0.2-3f6a47",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-force-3.0.1-e0a3e9",
+      "relatedSpdxElement": "SPDXRef-npm-d3-timer-3.0.2-937207",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-force-3.0.1-e0a3e9",
+      "relatedSpdxElement": "SPDXRef-npm-d3-quadtree-3.0.2-ea74e7",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-contour-4.0.3-5e0bd0",
+      "relatedSpdxElement": "SPDXRef-npm-d3-array-3.2.5-29fd5b",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-transition-3.0.2-f6c93c",
+      "relatedSpdxElement": "SPDXRef-npm-d3-interpolate-3.0.2-fb1b35",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-transition-3.0.2-f6c93c",
+      "relatedSpdxElement": "SPDXRef-npm-d3-ease-3.0.2-5f6afd",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-transition-3.0.2-f6c93c",
+      "relatedSpdxElement": "SPDXRef-npm-d3-dispatch-3.0.2-3f6a47",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-transition-3.0.2-f6c93c",
+      "relatedSpdxElement": "SPDXRef-npm-d3-timer-3.0.2-937207",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-transition-3.0.2-f6c93c",
+      "relatedSpdxElement": "SPDXRef-npm-d3-selection-3.0.1-058e9a",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-transition-3.0.2-f6c93c",
+      "relatedSpdxElement": "SPDXRef-npm-d3-color-3.1.1-d52c67",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-shape-3.2.1-b5d8e3",
+      "relatedSpdxElement": "SPDXRef-npm-d3-path-3.1.1-c69f90",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-fetch-3.0.2-f83f54",
+      "relatedSpdxElement": "SPDXRef-npm-d3-dsv-3.0.2-bc8dbb",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-drag-3.0.1-084a40",
+      "relatedSpdxElement": "SPDXRef-npm-d3-dispatch-3.0.2-3f6a47",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-drag-3.0.1-084a40",
+      "relatedSpdxElement": "SPDXRef-npm-d3-selection-3.0.1-058e9a",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-scale-chromatic-3.1.1-56483a",
+      "relatedSpdxElement": "SPDXRef-npm-d3-interpolate-3.0.2-fb1b35",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-scale-chromatic-3.1.1-56483a",
+      "relatedSpdxElement": "SPDXRef-npm-d3-scale-4.0.3-4cbe4c",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-d3-scale-chromatic-3.1.1-56483a",
+      "relatedSpdxElement": "SPDXRef-npm-d3-color-3.1.1-d52c67",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-MahinTawrat-turnout-housing-policy-simulator-main-fe68b8",
+      "relatedSpdxElement": "SPDXRef-npm-d3-7.9.0-056489",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-MahinTawrat-turnout-housing-policy-simulator-main-fe68b8",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-3d3c42e5aac5ba805825da76410c181273ba90b1-a75f5c",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-MahinTawrat-turnout-housing-policy-simulator-main-fe68b8",
+      "relatedSpdxElement": "SPDXRef-githubactions-githubcodeql-action-init-33d7b85da1a04171e211befe2c739303b9a4c066-cf59ac",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-MahinTawrat-turnout-housing-policy-simulator-main-fe68b8",
+      "relatedSpdxElement": "SPDXRef-githubactions-githubcodeql-action-analyze-33d7b85da1a04171e211befe2c739303b9a4c066-7e037b",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-MahinTawrat-turnout-housing-policy-simulator-main-fe68b8",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-upload-pages-artifact-fc324d3547104276b827a68afc52ff2a11cc49c9-e9ba56",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-MahinTawrat-turnout-housing-policy-simulator-main-fe68b8",
+      "relatedSpdxElement": "SPDXRef-pypi-geographiclib-2.1-aaccc7",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-MahinTawrat-turnout-housing-policy-simulator-main-fe68b8",
+      "relatedSpdxElement": "SPDXRef-pypi-pyclipper-1.4.0-f9469c",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-MahinTawrat-turnout-housing-policy-simulator-main-fe68b8",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-node-949feb2413d6458794dcd2491c4babbbce0c15c1-3259db",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-MahinTawrat-turnout-housing-policy-simulator-main-fe68b8",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-python-6d4fd22b20465ccc0f7354476588e8df7c9ca0e0-42f512",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-MahinTawrat-turnout-housing-policy-simulator-main-fe68b8",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-deploy-pages-368f82528645a54fb793d4d04e342629a3f51346-73882c",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-MahinTawrat-turnout-housing-policy-simulator-main-fe68b8",
+      "relatedSpdxElement": "SPDXRef-pypi-pyshp-2.3.1-e63729",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relatedSpdxElement": "SPDXRef-github-MahinTawrat-turnout-housing-policy-simulator-main-fe68b8",
+      "relationshipType": "DESCRIBES"
+    }
+  ]
+}
