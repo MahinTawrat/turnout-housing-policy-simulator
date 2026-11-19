@@ -23,7 +23,7 @@ function node(tag='div',attrs={}){
     addEventListener(type,fn){if(!handlers.has(type))handlers.set(type,[]);handlers.get(type).push(fn);},
     dispatch(type,event={}){for(const fn of handlers.get(type)||[])fn({target:this,preventDefault(){},...event});},
     click(){this.dispatch('click');},focus(){document.activeElement=this;},
-    closest(s){return (s==='[data-compare-policy]'&&this.dataset.comparePolicy)||(s==='[data-challenge-compare-policy]'&&this.dataset.challengeComparePolicy)?this:null;},
+    closest(s){return (s==='[data-compare-policy]'&&this.dataset.comparePolicy)||(s==='[data-challenge-compare-policy]'&&this.dataset.challengeComparePolicy)||(s==='[data-open-view]'&&this.dataset.openView)?this:null;},
     showModal(){this.open=true;},close(){this.open=false;}
   };
   Object.defineProperty(n,'textContent',{get(){return content+this.children.map(x=>typeof x==='string'?x:x.textContent).join('');},set(v){content=String(v);this.children=[];}});
@@ -36,21 +36,21 @@ function node(tag='div',attrs={}){
   return n;
 }
 for(const m of index.matchAll(/<([a-z][\w-]*)\b([^>]*\bid="[^"]+"[^>]*)>/g)){const a=attributes(m[2]);nodes.set(a.id,node(m[1],a));}
-const buttons=Array.from(index.matchAll(/<button\b([^>]*)>([\s\S]*?)<\/button>/g),m=>{const a=attributes(m[1]),n=node('button',a);n.textContent=strip(m[2]);if(a.id)nodes.set(a.id,n);return n;});
+const buttons=Array.from(index.matchAll(/<button\b([^>]*)>([\s\S]*?)<\/button>/g),m=>{const a=attributes(m[1]),n=node('button',a);n.textContent=strip(m[2]).replace(/&amp;/g,'&');if(a.id)nodes.set(a.id,n);return n;});
 const tabs=buttons.filter(b=>b.dataset.tab),panes=Array.from(nodes.values()).filter(n=>n.dataset.pane);
 const document={activeElement:null,getElementById(id){return nodes.get(id)||null;},
   addEventListener(type,fn){if(!listeners.has(type))listeners.set(type,[]);listeners.get(type).push(fn);},
   dispatchEvent(e){for(const fn of listeners.get(e.type)||[])fn(e);},
   createElement(tag){return node(tag);},createElementNS(_ns,tag){return node(tag);},
   querySelectorAll(sel){if(sel==='.tab')return tabs;if(sel==='.tab-pane')return panes;if(sel==='[data-policy]')return buttons.filter(b=>b.dataset.policy);if(sel==='[data-level]')return buttons.filter(b=>b.dataset.level);return [];},
-  querySelector(sel){const m=sel.match(/^\[(data-(?:challenge-)?compare-policy)="([^"]+)"\]$/);if(m){const html=nodes.get('methodologyPane').innerHTML;for(const b of html.matchAll(/<button\b([^>]*)>/g)){const a=attributes(b[1]);if(a[m[1]]===m[2])return node('button',a);}}return null;}
+  querySelector(sel){const target=sel.match(/^\[data-(tab|pane)="([^"]+)"\]$/);if(target)return (target[1]==='tab'?tabs:panes).find(n=>n.dataset[target[1]]===target[2])||null;const m=sel.match(/^\[(data-(?:challenge-)?compare-policy)="([^"]+)"\]$/);if(m){const html=nodes.get('methodologyPane').innerHTML;for(const b of html.matchAll(/<button\b([^>]*)>/g)){const a=attributes(b[1]);if(a[m[1]]===m[2])return node('button',a);}}return null;}
 };
 document.head=node('head');document.head.append=function(script){this.children.push(script);if(script.src){const file=path.join(web,script.src.split('?')[0]);if(fs.existsSync(file)){vm.runInContext(fs.readFileSync(file,'utf8'),context,{filename:file});script.onload?.();}else script.onerror?.();}};
 document.head.appendChild=x=>{document.head.append(x);return x;};
 const history={replaceState(_a,_b,url){this.lastURL=url;}};
 context={window:{},document,console,URLSearchParams,history,location:{pathname:'/',search:'',hash:''},CustomEvent:function(type,opts){this.type=type;this.detail=opts.detail;}};
 vm.createContext(context);
-const modules=['core-data','housing-needs','housing-types','structure-evidence','chas-affordability','decision-data','decision-model','evidence-guide','decision-card','production-forecast','policy-scenarios','forecast-evidence','history/AGGREGATES'];
+const modules=['core-data','housing-needs','housing-types','structure-evidence','chas-affordability','decision-data','decision-model','evidence-guide','decision-card','production-forecast','policy-scenarios','forecast-evidence','history/AGGREGATES','how-it-works'];
 for(const name of modules)vm.runInContext(fs.readFileSync(path.join(assets,name+'.js'),'utf8'),context,{filename:name+'.js'});
 for(const name of fs.readdirSync(assets).filter(name=>/simplified.*card.*\.js$/i.test(name)))vm.runInContext(fs.readFileSync(path.join(assets,name),'utf8'),context,{filename:name});
 for(const name of fs.readdirSync(path.join(assets,'counties/data')))if(name.endsWith('.js'))vm.runInContext(fs.readFileSync(path.join(assets,'counties/data',name),'utf8'),context,{filename:'county/'+name});
@@ -59,7 +59,7 @@ let app=fs.readFileSync(path.join(assets,'app.js'),'utf8');
 const init="document.addEventListener('DOMContentLoaded',init);";assert.strictEqual(app.split(init).length,2);
 app=app.replace(init,`window.__challengeTest={
  set(s,c,p,l){stateAbbr=s;countyFips=c;tractGeoid=null;policyKey=p;level=l;},
- metric,finalResultView,resultHtml,finalCalculationHtml,combinedMethodologyHtml,combinedSourcesHtml,
+ metric,finalResultView,resultHtml,finalCalculationHtml,combinedMethodologyHtml,combinedSourcesHtml,explanationContext,
  renderPanel,renderTabs,initEvents,initFinalEvents,policyMathHtml,
  selectedPolicyForecast,selectedTab(){return currentTab;},selectedPolicy(){return policyKey;},selectedLevel(){return level;},
  selectedPlace(){return {state:stateAbbr,county:countyFips};},
@@ -81,7 +81,8 @@ function resultMeanings(html,pf,policy,level){
  assert(/2026|2030|five.year|five years/i.test(plain),'Result keeps its time period');
  if(b!==null)assert(/permission.*build|permit.*permission/i.test(strip(html)),'Permit meaning stays accessible');
  assert(/assum|we test|we choose|chosen/i.test(strip(html)),'Chosen assumptions stay distinct from observed data');
- assert(/<details\b/.test(html)&&/<summary\b/.test(html),'More local evidence remains expandable');
+ assert(/data-open-view="calculation"/.test(html)&&/data-open-view="methodology"/.test(html),'Results links to its explanation and supporting facts');
+ assert(!/class="dc-calculation"/.test(html),'Worked equations belong in How It Works');
  assert(!/stock potential|permit-equivalent|take-up|elasticity|HAMFI/i.test(plain),'Main Result uses everyday vocabulary');
  if(b===null||b===0)assert(!/\b(?:NaN|Infinity)\b/.test(html),'No invalid denominator output');
  report.resultMeaningChecks++;
@@ -121,9 +122,30 @@ try{
  const referenceAnswers={adu:81,missing_middle:41,tod:0,parking:7,fee:28};
  for(const [policy,extra] of Object.entries(referenceAnswers)){ui.set('GA','13195',policy,'default');const m=ui.metric();assert.strictEqual(m.baseline,650,'Reference Madison County starting point');assert.strictEqual(m.added,extra,'Reference Madison County '+policy);assert.strictEqual(m.total,650+extra,'Reference Madison County sum '+policy);}
  report.referenceCounty='Madison County, Georgia';report.referenceDefaultAnswers=referenceAnswers;
- const expectedTabs=['result','methodology','calculation','graph','data'];assert.deepStrictEqual(tabs.map(t=>t.dataset.tab),expectedTabs,'Preserve five-tab order');
+ const expectedTabs=['result','calculation','methodology','graph','data'];assert.deepStrictEqual(tabs.map(t=>t.dataset.tab),expectedTabs,'Explanation then supporting details');
+ assert.deepStrictEqual(tabs.map(t=>t.textContent),['Results','How It Works','More Details','Impact Comparison','Data &amp; Sources'].map(s=>s.replace('&amp;','&')),'Plain navigation labels');
  ui.initEvents();ui.initFinalEvents();for(const t of tabs){t.click();assert.strictEqual(ui.selectedTab(),t.dataset.tab);for(const x of tabs){assert.strictEqual(x.attrs['aria-selected'],String(x===t));assert.strictEqual(x.attrs.tabindex,x===t?'0':'-1');}for(const p of panes){assert.strictEqual(p.classList.contains('active'),p.dataset.pane===t.dataset.tab);assert.strictEqual(p.attrs['aria-hidden'],String(p.dataset.pane!==t.dataset.tab));}report.tabClicks++;}
  for(const [key,expected] of [['Home','result'],['ArrowLeft','data'],['ArrowRight','result'],['End','data']]){tabs.find(t=>t.dataset.tab===ui.selectedTab()).dispatch('keydown',{key});assert.strictEqual(ui.selectedTab(),expected);assert.strictEqual(document.activeElement.dataset.tab,expected);report.tabKeys++;}
+ for(const target of ['calculation','methodology']){const action=node('button',{'data-open-view':target});document.dispatchEvent({type:'click',target:action});assert.strictEqual(ui.selectedTab(),target,'Results action opens the relevant view');assert.strictEqual(document.activeElement.dataset.tab,target,'Results action places keyboard focus on the active tab');}
+ const cassAnswers={adu:[46,56,460],missing_middle:[23,33,230],fee:[2,12,20],tod:[0,10,0],parking:[1,11,10]};
+ for(const [policy,[extra,total,increase]] of Object.entries(cassAnswers)){
+  ui.set('IL','17017',policy,'default');const m=ui.metric(),html=ui.finalCalculationHtml(),rows=w.TurnoutHowItWorks.contextRows(ui.explanationContext());
+  assert.deepStrictEqual([m.baseline,m.added,m.total,m.pct],[10,extra,total,increase],'Cass County independent reference '+policy);
+  assert(html.includes('Cass County')&&html.includes('2 housing units permitted in 2025 × 5 years = 10'),'Cass baseline and selected place');
+  assert(rows.find(r=>r.id==='existing-homes').value==='5,676','Existing stock remains distinct');
+  assert(rows.find(r=>r.id==='rent-burden').value==='28.6%','Observed renter-burden denominator');
+  assert(rows.find(r=>r.id==='household-outlook').value==='133–208 fewer households','Separate demographic outlook');
+  if(policy==='adu')assert(rows.find(r=>r.id==='small-households').value==='60.7%');
+  if(policy==='missing_middle'){assert(rows.find(r=>r.id==='small-buildings').value==='202');assert(rows.find(r=>r.id==='large-renter-households').value==='643');assert(rows.find(r=>r.id==='crowded-renters').value==='64 ± 53','Survey margin remains visible');assert(/22.77/.test(html));}
+  if(policy==='tod'){assert(rows.find(r=>r.id==='large-buildings').value==='293');assert(/measured exposure of zero/i.test(html));assert(/B25024/.test(html)&&/including water/.test(html),'Actual mapped source and geographic method');}
+  if(policy==='fee')assert(/142.86%/.test(html)&&/1.5 → <strong>\+2/.test(html),'Fee cap and ties-to-even example');
+  if(policy==='parking')assert(/68.57%/.test(html)&&/0.75 → <strong>\+1/.test(html),'Parking saving, cap and rounding example');
+ }
+ report.cassPolicyFixtures=5;
+ ui.set('AL','01011','adu','default');assert.strictEqual(ui.metric().baseline,0);assert.strictEqual(ui.metric().added,20);assert(/starting point is zero/.test(ui.finalCalculationHtml()),'Zero baseline cannot create a percentage');
+ ui.set('AK','02066','adu','default');assert.strictEqual(ui.metric().baseline,null);assert.strictEqual(ui.metric().added,20);assert(/stock-based extra-home result can still be shown/.test(ui.finalCalculationHtml()),'Missing permits do not erase stock additions');
+ ui.set('AK','02066','tod','default');assert(!/14 New York|14 withheld/.test(ui.finalCalculationHtml()),'Missing permits do not inherit the New York exposure notice');
+ ui.set('NM',null,'parking','default');assert(/1.55095095/.test(ui.finalCalculationHtml()),'State cost response displays its actual permit-coverage factor');
  const restore=ui.beginClickTest();try{for(const [s,c] of [['US',null],['CA',null],['TX','48485'],['GA','13007'],['GA','13125']]){ui.set(s,c,'adu','high');tabs.find(t=>t.dataset.tab==='methodology').click();ui.renderPanel();for(const p of policies){nodes.get('challengePolicyComparison').open=true;const button=document.querySelector(`[data-challenge-compare-policy="${p}"]`);assert(button);document.dispatchEvent({type:'click',target:button});assert.strictEqual(ui.selectedPolicy(),p);assert.strictEqual(ui.selectedLevel(),'high');assert.strictEqual(ui.selectedTab(),'methodology');assert.deepStrictEqual(JSON.parse(JSON.stringify(ui.selectedPlace())),{state:s,county:c});assert.strictEqual(nodes.get('policySelect').value,p);assert.strictEqual(document.activeElement.dataset.challengeComparePolicy,p);assert(nodes.get('challengePolicyComparison').open);report.comparisonClicks++;}}}finally{restore();}
  const all=[['US',null,overlay.national],...states.map(s=>[s.state_abbr,null,overlay.states[s.state_abbr]]),...counties.map(c=>[c.state,c.fips,overlay.counties[c.fips]])];
  for(const [s,c,pf] of all)for(const p of policies)for(const l of levels){testCase=[s,c,p,l,'metric'].join('/');ui.set(s,c,p,l);const actual=ui.metric(),b=pf.bases.central,a=pf.scenarios.central[p][l];assert.strictEqual(actual.baseline,b);assert.strictEqual(actual.added,a);assert.strictEqual(actual.total,b===null||a===null?null:b+a);assert.strictEqual(actual.pct,b>0&&a!==null?100*a/b:null);report.engineMetricComparisons++;report.metricCases++;}
@@ -135,8 +157,9 @@ try{
   const result=nodes.get('resultPane').innerHTML,method=nodes.get('methodologyPane').innerHTML,calc=nodes.get('calculationPane').innerHTML,sources=nodes.get('dataPane').innerHTML;
   for(const [label,html] of [['Result',result],['Methodology',method],['How calculated',calc],['Sources',sources]])sane(html,label);
   resultMeanings(result,pf,p,l);
-  assert(calc.indexOf('Where the baseline comes from')>=0&&calc.indexOf('Where the baseline comes from')<calc.indexOf('simple-policy-chain'),'Baseline first');
-  let last=-1;for(const step of ['source','purpose','assumption','math','answer']){const pos=calc.indexOf('data-simple-step="'+step+'"');assert(pos>last,'Ordered calculation chain '+step);last=pos;}report.plainCalculationChains++;
+  assert(calc.indexOf('Where the baseline comes from')>=0,'Permit baseline explained');
+  let last=-1;for(const [i,title] of ['What the policy changes','What information we start with','What assumptions we make','How we calculate the effect','What this result cannot tell us'].entries()){const pos=calc.indexOf('data-hiw-step="'+(i+1)+'"');assert(pos>last,'Five-step reading order '+title);assert(calc.indexOf(title,pos)>pos,'Step heading '+title);last=pos;}
+  assert.strictEqual((calc.match(/data-hiw-step=/g)||[]).length,5,'Only one selected-policy explanation');assert(!/<details\b/.test(calc),'All five core steps and their calculations are open');assert(/Census survey estimate|Census permit record/.test(calc),'Sources classified visibly');assert(/Model assumption/.test(calc),'Chosen inputs clearly classified');report.plainCalculationChains++;
   assert(/12.0%|12\.0/.test(method),'Baseline held-out error accessible');assert(/latest.year|latest year|held.flat|flat/i.test(method),'Selected flat method');assert(/600/.test(method)&&/three stories/.test(method)&&/voluntarily/.test(method),'Complete policy benchmarks');assert(/(?:Available|coverage|available) data|Data coverage/.test(method),'Data availability stays accessible');assert(!/Policies are ranked/.test(method));assert(!/Evidence &amp; reproducibility|Evidence & reproducibility/.test(result));
   comparison(method,pf);
   if(s==='US'&&p==='adu'&&l==='default')catalog(sources);

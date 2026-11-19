@@ -930,6 +930,16 @@ function initFinalEvents(){
   const dialog=$('assumptionDialog');
   $('assumptionHelp').addEventListener('click',()=>{$('assumptionDialogContent').innerHTML=assumptionTableHtml();dialog.showModal();});
   $('closeAssumptions').addEventListener('click',()=>dialog.close());
+  document.addEventListener('click',event=>{
+    const button=event.target.closest?.('[data-open-view]');
+    if(!button)return;
+    const target=button.dataset.openView;
+    if(!['result','calculation','methodology','graph','data'].includes(target))return;
+    currentTab=target;renderTabs();
+    const pane=document.querySelector(`[data-pane="${target}"]`);
+    if(pane)pane.scrollTop=0;
+    document.querySelector(`[data-tab="${target}"]`)?.focus();
+  });
 }
 
 function renderTabs(){document.querySelectorAll('.tab').forEach(b=>{const a=b.dataset.tab===currentTab;b.classList.toggle('active',a);b.setAttribute('aria-selected',a?'true':'false');});document.querySelectorAll('.tab-pane').forEach(p=>p.classList.toggle('active',p.dataset.pane===currentTab));}
@@ -1269,10 +1279,6 @@ finalResultView=function(){
   const originals=[...(v.observations||[]),...(v.evidenceCards||[])];
   v.moreFacts=originals.map(simplifiedResultFact);
   v.observations=(policyKey==='fee'?[v.observations[0],v.evidenceCards[0]]:v.observations).filter(Boolean).map(simplifiedResultFact);
-  if(policyKey==='missing_middle')for(const fact of v.observations)if(fact.label==='Renter homes with crowding'){
-    fact.value=String(fact.value).split(' ±')[0];
-    fact.note='Survey estimate; more than one person per room.';
-  }
   v.evidenceCards=[];
   const settings={
     adu:{focusTitle:'Check space and owner interest',mechanism:'Let an owner add one small home to an existing property.',forms:'A small home beside an existing house, such as a backyard cottage.',check:'Is there space? Check water, sewers, building costs and owner interest.'},
@@ -1283,7 +1289,7 @@ finalResultView=function(){
   };
   const chosen=settings[policyKey];Object.assign(v,chosen);
   v.baselineLabel='Five-year starting point';
-  v.totalLabel='Starting point + extra';
+  v.totalLabel='Starting point + possible extra';
   const annual=countyFips?n(countyRec()?.baseline_annual_units):n(selectedProductionForecast()?.annual?.[0]?.total);
   v.baselineHelp=m.baseline===null?'The starting point is unavailable here. Missing data does not mean zero.':`${fmt(annual)} homes permitted in 2025 × 5 years = ${fmt(m.baseline)}. A permit is permission to build.`;
   v.percentExplanation=m.pct===null?(m.baseline===null?'The starting point is missing, so no percentage can be shown.':m.baseline===0?'The starting point is zero, so no percentage can be shown.':'The extra-home estimate is unavailable, so no percentage can be shown.'):`${pct(m.pct)} more than the five-year starting point${m.pct>100?'; a small starting point can make this percentage large':''}.`;
@@ -1419,10 +1425,15 @@ function simplePolicyAnswer(){
   const kind=['adu','missing_middle'].includes(policyKey)?'<p>The extra number describes homes added on existing properties. The starting point counts new-building permits, so their sum is a comparison, not a forecast of total completed or existing homes.</p>':'<p>The extra number describes possible permit authorizations if the assumptions hold. It does not prove the homes will be completed or that rents will fall.</p>';
   return `<p>The model gives <b>${fmt(m.added)} possible extra homes over five years</b> under this example.</p>${reference}${ratio}${kind}`;
 }
-finalCalculationHtml=function(){
-  const e=POLICY_EVIDENCE[policyKey];
-  return `<section class="final-explain simple-calculation">${baselineExplanationHtml()}<div class="simple-policy-chain"><h3>How we get the extra homes</h3><p>${uiEscape(placeName())} · ${uiEscape(FINAL_NAMES[policyKey])} · ${capital(level)} example</p><section data-simple-step="source"><h4>1. The data we use</h4>${simplePolicyInputs()}</section><section data-simple-step="purpose"><h4>2. Why we use it</h4><p>${uiEscape(simplePolicyPurpose())}</p></section><section data-simple-step="assumption"><h4>3. What we assume</h4><p>${uiEscape(assumptionMeaning())}</p><p>We choose this response to test an idea. Census did not measure this future response.</p></section><section data-simple-step="math"><h4>4. The calculation</h4>${simplePolicyCalculation()}</section><section data-simple-step="answer"><h4>5. What the answer means</h4>${simplePolicyAnswer()}</section><details class="simple-details"><summary>See Low, Default and High inputs</summary>${assumptionTableHtml()}</details><details class="simple-details"><summary>See source details and the full calculation</summary><p><b>Exact input sources:</b> ${uiEscape(e.source)}</p>${simpleDetailedPolicyMath()}<p><b>Why these response choices:</b> ${uiEscape(e.assumption_basis)}</p><p><b>What research supports:</b> ${uiEscape(e.evidence)}</p><p><b>What still needs checking:</b> ${uiEscape(e.eligibility)}</p></details><details class="simple-details"><summary>See how the starting point and policy response can change separately</summary>${simpleDetailedSensitivity()}</details></div></section>`;
-};
+function explanationContext(){
+  return {policy:policyKey,policyName:FINAL_NAMES[policyKey],level,place:placeName(),
+    scope:countyFips?'county':stateAbbr==='US'?'national':'state',
+    metric:metric(),assessment:decisionAssessment(),record:decisionRecord(),policyRecord:policyRecord(),
+    forecast:selectedPolicyForecast(),production:selectedProductionForecast(),assumptions:ASSUMPTIONS,
+    stateName:stateRec()?.state_name,stateCode:stateAbbr,stateForecasts:FORECAST_POLICY.states,
+    result:finalResultView(),dataRelease:window.DATA_RELEASE};
+}
+finalCalculationHtml=function(){return window.TurnoutHowItWorks.render(explanationContext());};
 challengePolicyComparisonHtml=function(){
   return simpleDetailedPolicyComparison()
     .replace('Compare all five policies and assumptions','Compare the five what-if examples')
@@ -1437,6 +1448,17 @@ combinedMethodologyHtml=function(){
   return `<section class="final-explain simple-methodology"><h3>How the tool works</h3><p>We ask: if one housing rule changes, how many extra homes might be possible over five years?</p><section class="simple-method-step"><h4>1. Start with real numbers</h4><p>Census counts building permits and estimates existing homes and households. A permit means permission to build, not a finished home.</p></section><section class="simple-method-step"><h4>2. Choose a what-if example</h4><p>${uiEscape(simpleRuleText())} Low, Default and High test smaller or larger responses. They change our assumptions, while the Census observations stay fixed.</p><p><b>Your choice:</b> ${uiEscape(assumptionMeaning())}</p></section><section class="simple-method-step"><h4>3. Do the math</h4><p>We combine the real numbers with the chosen assumptions. <b>How calculated</b> shows each step for ${uiEscape(placeName())}.</p></section><section class="simple-method-step"><h4>4. Decide what to check locally</h4><p>Check the actual rules, suitable land, willing owners, construction costs and infrastructure. More possible homes do not automatically mean affordable homes.</p><p>These are examples for comparing choices, not promises. Several policies may affect the same project; their answers must not be added.</p></section>${challengePolicyComparisonHtml()}<details class="simple-details"><summary>Understand the five policy definitions</summary>${definitions}</details><details class="simple-details"><summary>Why we use the 2025 building pace</summary><p>We compared four methods using state permit history from 2000–2025. Repeating the latest year did best under our selected state-by-state test. We use that same pace in every future year, which produces a flat line.</p><p>In the reserved 2021–2025 test, the average state error was <b>${pct(FORECAST_VALIDATION.final_test.mean_state_APE)}</b>. That test checks the starting point. It does not show that the assumed policy responses will happen.</p>${countyFips?'<p>The county gets a share of its state’s result from its 2025 permit share. That county forecast has not been tested separately.</p>':''}<details class="simple-details"><summary>See all historical tests and technical limits</summary>${simpleDetailedBaselineMethod()}</details></details>${challengeCoverageHtml().replace('Data coverage for','Available data for')}<details class="simple-details"><summary>Understand the uncertainty and housing needs</summary><p>Low, Default and High are what-if choices, not probabilities. The actual extra housing could be zero. The starting point also has a range based on past errors. The first range covered 35 of 51 states in the reserved test; the updated displayed range has not had a separate test and is not a confidence interval.</p><p>Household, rent and crowding numbers describe people’s existing housing conditions. The 2030 household examples continue past population changes while holding household size and the group-quarters share fixed. They do not count how many new buildings or bedrooms must be built.</p><p>ADU and Missing middle count possible additions to existing properties, while the starting point counts new-building permits. Their sum is a comparison, not a forecast of completed homes or future total housing stock.</p><p>State results add to the U.S. result. ADU and Missing middle add rounded county results. Transit is calculated directly for states. Parking and Fees adjust county sums for state permit coverage. Missing data stays missing; a measured zero stays zero.</p><p>${uiEscape(POLICY_EVIDENCE[policyKey].eligibility)}</p></details></section>`;
 };
 
+
+/* Supporting material follows the open, five-step explanation. */
+const preservedTechnicalMethodology=combinedMethodologyHtml;
+combinedMethodologyHtml=function(){
+  const context=explanationContext(),v=context.result,e=POLICY_EVIDENCE[policyKey];
+  const facts=window.TurnoutHowItWorks.contextRows(context);
+  const rows=facts.map(row=>`<tr><th scope="row">${uiEscape(row.label)}<strong>${uiEscape(row.value)}</strong><small>${uiEscape(row.classification)}</small></th><td><b>${uiEscape(row.source)}</b><p>${uiEscape(row.derivation)}</p><p>${uiEscape(row.meaning)}</p></td></tr>`).join('');
+  const extra=(v.moreFacts||[]).map(fact=>`<div class="detail-fact"><dt>${uiEscape(fact.label)}</dt><dd><strong>${uiEscape(fact.value)}</strong><span>${uiEscape(fact.numberType)} · ${uiEscape(fact.note)}</span></dd></div>`).join('');
+  const technical=preservedTechnicalMethodology().replace('<h3>How the tool works</h3>','<h3>Methodology and historical checks</h3>').replaceAll('How calculated','How It Works');
+  return `<section class="final-explain supporting-details"><header><h3>More details</h3><p>${uiEscape(placeName())} · ${uiEscape(FINAL_NAMES[policyKey])} · ${capital(level)} assumptions</p><p>Extra housing facts, the full assumptions and checks behind this view. <button type="button" class="text-view-link" data-open-view="calculation">Read the five-step explanation →</button></p></header><section><h4>Local housing facts and the 2030 outlook</h4><p>These describe existing conditions and separate demographic scenarios. They are not added to the policy estimate or counted as homes that must be built.</p><div class="hiw-table-wrap"><table class="detail-context-table"><thead><tr><th>Local fact</th><th>Source, calculation and meaning</th></tr></thead><tbody>${rows}</tbody></table></div></section><details class="simple-details"><summary>Other numbers behind this view</summary>${v.currentHomes?`<p><b>Existing housing units:</b> ${uiEscape(v.currentHomes)} · Census ACS 2020–2024 B25024. Includes occupied and vacant units.</p>`:''}<dl class="detail-facts">${extra}</dl><p>${uiEscape(v.detailedNeed)}</p><p>${uiEscape(v.comparisonMeaning)}</p></details><section class="detail-assumption-section"><h4>Compare Low, Default and High</h4>${assumptionTableHtml()}</section><details class="simple-details"><summary>Full calculation, rounding and sensitivity</summary><p><b>Input sources:</b> ${uiEscape(e.source)}</p>${simpleDetailedPolicyMath()}<p><b>Why these assumptions:</b> ${uiEscape(e.assumption_basis)}</p><p><b>Research and limits:</b> ${uiEscape(e.evidence)}</p>${simpleDetailedSensitivity()}</details>${technical}<p class="detail-reference-links"><a href="docs/METHODOLOGY.html" target="_blank" rel="noopener noreferrer">Full model documentation ↗</a><a href="docs/VALIDATION_REPORT.html" target="_blank" rel="noopener noreferrer">Validation report ↗</a></p></section>`;
+};
 
 /* Keep every source and download; explain their jobs in everyday words. */
 function challengeSourceLinks(row){

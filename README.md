@@ -4,6 +4,8 @@ The Turnout helps communities compare five housing reforms, understand the assum
 
 [Open the interactive tool](https://mahintawrat.github.io/turnout-housing-policy-simulator/)
 
+Start with **Results** for the possible change and local priorities. **How It Works** follows five open steps through the selected policy, sources, assumptions, calculation and limits. **More Details** keeps supporting housing facts, sensitivity comparisons and historical tests. **Impact Comparison** and **Data & Sources** retain the charts and downloads.
+
 Results are **conditional possible additions**, not promised construction, a shortage estimate or a ranking of the best policy. Reforms can affect the same projects and must not be added together. A permit is permission to build, not a completed home.
 
 ## Run the verified release
