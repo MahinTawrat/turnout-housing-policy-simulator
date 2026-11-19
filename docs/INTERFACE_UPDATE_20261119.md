@@ -1,10 +1,12 @@
-# Plain-language explanations
+# Option A presentation integrated with the GitHub model
 
-The interface now follows this order: **Results → How It Works → More Details → Impact Comparison → Data & Sources**.
+GitHub remains the authoritative application. This update imports the Results and How It Works presentation from the selected Option A Hostinger preview, while keeping the repository’s numerical pipeline, data, maps, four-panel comparison, historical charts, source downloads and documentation.
 
-Results shows the possible increment, five-year comparison, two policy-relevant facts and a local action. Worked equations move to How It Works; buttons connect the result to its explanation and supporting facts.
+The four tabs are **Results → How It Works → Impact Comparison → Data & Sources**.
 
-How It Works displays one selected policy in five open steps:
+Results uses Option A’s policy introduction, compact impact comparison, burgundy mechanism panel, local interpretation and housing context. Its bounded desktop fit accounts for the available content height. Short or narrow screens can scroll rather than clip information. The layout adapts to phone widths.
+
+How It Works retains five open steps for the selected policy:
 
 1. What the policy changes.
 2. What information we start with.
@@ -12,13 +14,15 @@ How It Works displays one selected policy in five open steps:
 4. How we calculate the effect.
 5. What this result cannot tell us.
 
-Calculation inputs and local housing context are identified separately. Each value has its source, derivation and interpretation. State and national views explain aggregation rather than substituting one average cost. Source names reflect the actual reconstruction: transit housing weights use ACS B25024, and intersections use full tract area, including water.
+The presentation uses Option A’s numbered headings, baseline banner, source tables, burgundy assumptions and calculation panel. The content retains the more complete GitHub-derived numerical lineage, actual state coverage factors, geographic aggregation, survey margins and missing-data explanations. Low, Default and High inputs remain visible alongside the selected assumptions.
 
-More Details preserves the full assumptions, sensitivity tables, historical baseline checks, survey uncertainty, coverage, additional housing facts and demographic scenarios. Original source links and downloads remain in Data & Sources.
+Additional methodology and validation follow the five steps in a supporting disclosure. They preserve policy comparisons, complete benchmark definitions, assumption rationale, technical equations, historical tests, sensitivity and coverage. Data & Sources retains the original catalog and downloads without an extra duplicate Results card.
 
-## Validation
+The preview’s inaccurate transit reference is corrected to the actual **ACS B25024** housing weights. Geographic intersections use full tract area, including water. Display changes do not change the exposure calculation.
 
-The existing 77 Python tests passed. JavaScript regression checks cover 47,940 central-baseline metric cases, 1,725 representative result/explanation/comparison views, tab keyboard controls, Results actions and five independent Cass County fixtures. The explanation renderer was also exercised across all 47,940 geography/policy/response combinations.
+## Regression coverage
+
+The existing 77 Python tests passed. The JavaScript harness covers 47,940 central-baseline metric cases, 1,725 representative result/explanation/comparison views, four-tab keyboard navigation, focusable scrolling panels, Results links and five independent Cass County fixtures. The explanation renderer was also exercised across all 47,940 geography/policy/response combinations; Option A’s Results renderer was checked across 885 state and representative county cases.
 
 | Cass County, Illinois · Default | Extra homes | Five-year starting point | Comparison total | Relative increase |
 |---|---:|---:|---:|---:|
@@ -28,11 +32,11 @@ The existing 77 Python tests passed. JavaScript regression checks cover 47,940 c
 | Transit | 0 | 10 | 10 | 0% |
 | Parking | 1 | 10 | 11 | 10% |
 
-Cases include a zero permit baseline, missing permits with a calculable stock-based increment, a genuine transit zero, withheld New York transit observations, and New Mexico’s state permit-coverage adjustment. Missing data remains unavailable. Rounded published policy answers are used in the explanation; the interface does not replace the model’s ties-to-even rounding.
+Cases include a zero permit baseline, missing permits with a calculable stock-based increment, a genuine transit zero, withheld New York transit observations and New Mexico’s state permit-coverage adjustment. Missing data remains unavailable. Published model answers and the model’s existing rounding are preserved.
 
 ## Unchanged numerical outputs
 
-Canonical JSON SHA-256 fingerprints before and after the interface update are identical. Canonicalization uses sorted keys, compact separators, UTF-8 and no non-finite numbers.
+Canonical JSON SHA-256 fingerprints before and after the interface update are identical to the authoritative release. Canonicalization uses sorted keys, compact separators, UTF-8 and no non-finite numbers.
 
 | Model output | Unchanged SHA-256 |
 |---|---|
@@ -40,4 +44,4 @@ Canonical JSON SHA-256 fingerprints before and after the interface update are id
 | Production baseline | `13479a6b3b1c82f0ebe07d19291372d41d01ac7b543c79e3c57cdef7526a3609` |
 | Housing and demographic evidence | `577cf54fc0bbe8c6cf146bad0330ce63ca5adb72765d3324fa8d132f79aa30f2` |
 
-This update changes presentation and navigation. The numerical inputs, policy equations, rounding, aggregation, maps, forecast series and historical test results are unchanged.
+The numerical inputs, policy equations, rounding, aggregation, maps, forecast series and historical test results are unchanged.

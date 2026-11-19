@@ -52,7 +52,7 @@
         'This counts existing households, not new homes required.'));
       const crowded=number(e.crowding?.renter),margin=number(e.crowding?.renterMOE);
       rows.push(row('crowded-renters','Renter homes with crowding',format(crowded)+(crowded!==null&&margin!==null?' ± '+format(margin):''),'Census survey estimate',source.crowding,
-        'Add renter households with more than one person per room (cells 11–13). The ± margin combines the component survey margins by root-sum-of-squares, without covariance.',
+        'Add renter households with more than one person per room (cells 11–13). To combine the published survey error margins, square each one, add the squares, then take the square root. This approximation cannot account for how the categories vary together.',
         'The ± figure is an approximate 90% margin of error: survey uncertainty around the estimate, not extra households to add.'));
     }
     if(c.policy==='tod')rows.push(row('large-buildings','Homes in buildings with 5 or more homes',format(stock.fivePlus),'Census survey estimate',source.stock,
@@ -73,15 +73,15 @@
     return rows;
   }
   function factTable(rows,caption){
-    return '<div class="hiw-table-wrap"><table class="hiw-table"><caption>'+escape(caption)+'</caption><thead><tr><th scope="col">Value and source</th><th scope="col">How to read it</th></tr></thead><tbody>'+rows.map(item=>
-      '<tr data-hiw-fact="'+escape(item.id)+'"><th scope="row"><span class="hiw-value">'+escape(item.value)+'</span><span class="hiw-label">'+escape(item.label)+'</span><small class="hiw-classification">'+escape(item.classification)+'</small><small class="hiw-source">'+escape(item.source)+'</small></th><td><p>'+escape(item.derivation)+'</p><p class="hiw-meaning">'+escape(item.meaning)+'</p></td></tr>').join('')+'</tbody></table></div>';
+    return '<div class="hiw-table-wrap pv-table-scroll"><table class="pv-data-table"><caption>'+escape(caption)+'</caption><thead><tr><th scope="col">Value</th><th scope="col">Source and calculation</th><th scope="col">What it means</th></tr></thead><tbody>'+rows.map(item=>
+      '<tr data-hiw-fact="'+escape(item.id)+'"><th scope="row"><span class="hiw-value">'+escape(item.value)+'</span><span class="hiw-label">'+escape(item.label)+'</span><small class="hiw-classification">'+escape(item.classification)+'</small></th><td data-label="Source and calculation"><b>'+escape(item.source)+'</b><p>'+escape(item.derivation)+'</p></td><td data-label="What it means">'+escape(item.meaning)+'</td></tr>').join('')+'</tbody></table></div>';
   }
   function policyDescription(c){
     return {
       adu:'Allow one smaller separate home on a property with an existing single-family house, such as a backyard cottage. The benchmark permits a detached or semi-detached ADU of at least 600 square feet without additional required parking. The main home stays.',
       missing_middle:'Allow two to six homes, up to three stories, on sites formerly limited to one home. Examples include duplexes, triplexes, townhouses and small apartment buildings. Count net additional homes: replacing one house with three adds two homes.',
       fee:'Reduce total planning, environmental review, building and impact fees. The standardized example cuts an assumed $50,000 fee per home by half. This is an example to compare places; it is not a measured local fee schedule.',
-      tod:'Allow more homes or taller residential buildings near qualifying major fixed-guideway transit stops. The model screens areas within half a mile (804.672 metres), rather than every bus stop or all transportation service.',
+      tod:'Allow more homes or taller residential buildings near qualifying transit, including trains, trams and other listed services that follow a fixed guideway. The model screens areas within half a mile (804.672 metres). The selected transit types do not include every bus stop or all transportation service.',
       parking:'Reduce or remove minimum parking requirements for new housing. Builders could provide fewer spaces when rules previously required more than they would choose. Builders may still provide parking voluntarily.'
     }[c.policy];
   }
@@ -95,8 +95,9 @@
     else if(annual!==null&&Math.abs(annual*5-Number(m.baseline))<1e-8)formula=format(annual)+' housing units permitted in 2025 × 5 years = '+format(m.baseline)+' five-year starting units.';
     else if(county)formula='The county’s 2025 permit share × '+format(p.fiveYear)+' state starting units = '+format(m.baseline)+' county starting units after rounding.';
     else formula='Add the state and DC five-year starting points = '+format(m.baseline)+' reference units.';
-    return '<div class="hiw-baseline"><h5>Where the baseline comes from</h5><p>A <b>baseline</b> is the starting point for comparison. We continue the 2025 permit pace for five years, 2026–2030.</p><p class="hiw-equation">'+escape(formula)+'</p><p class="hiw-source">Census permit record · '+escape(source.permits)+'</p><p>A building permit gives permission to build; it does not show that the home was finished. This starting point is separate from existing homes.</p>'+
-      (county?'<p>The county receives a share of its state’s starting point using its 2025 permits. This county continuation has not been independently tested.</p>':'<p>Four methods were compared using state permit history from 2000–2025. Repeating the latest year was selected; the flat future line reflects that choice. More Details keeps the historical tests.</p>')+'</div>';
+    const banner=number(m.baseline)===null?'Not available':annual!==null&&Math.abs(annual*5-Number(m.baseline))<1e-8?format(annual)+' × 5 = '+format(m.baseline):county?'State share → '+format(m.baseline):'State/DC sum: '+format(m.baseline);
+    return '<div class="hiw-baseline"><h5>Where the baseline comes from</h5><p>A <b>baseline</b> is the starting point for comparison. We continue the 2025 permit pace for five years, 2026–2030.</p><div class="pv-baseline-banner"><strong>'+escape(banner)+'</strong><small>'+escape(formula)+'</small></div><p class="hiw-source pv-small">Census permit record · '+escape(source.permits)+'</p><p>A building permit gives permission to build; it does not show that the home was finished. This starting point is separate from existing homes.</p>'+
+      (county?'<p>The county receives a share of its state’s starting point using its 2025 permits. This county continuation has not been independently tested.</p>':'<p>Four methods were compared using state permit history from 2000–2025. Repeating the latest year was selected; the flat future line reflects that choice. The supporting methods below retain the historical tests.</p>')+'</div>';
   }
   function inputRows(c){
     const m=c.metric||{},facts=c.assessment?.facts||{},raw=c.policyRecord||{},e=c.record?.evidence||{};
@@ -107,14 +108,14 @@
     if(c.policy==='adu'||c.policy==='missing_middle')rows.push(row('detached-input','Stand-alone houses used as the starting pool',format(number(facts.detached)??number(raw.sf_detached_units)??number(e.stock?.detached)),'Census survey estimate',source.stock+' · one-unit detached (cell 2)',
       'Use the survey estimate of existing homes that are not joined to another home.',c.policy==='adu'?'This is a pool of possible ADU opportunities, not a count of lots confirmed to qualify.':'This is a pool of possible redevelopment opportunities; the model has not verified single-family-only zoning or suitable sites.'));
     if(c.policy==='tod')rows.push(row('transit-input','Housing near qualifying transit',share(facts.transit,3),'Mapped estimate','BTS National Transit Map; Census TIGER/Line 2024; ACS B25024 tract totals',
-      'Union the half-mile stop areas. For each tract, multiply its housing count by the share of its full area inside those areas; add the weighted housing, then divide by housing in all included tracts.',
+      'Combine overlapping half-mile stop areas so overlaps count once. A tract is a small Census area. Multiply each tract’s housing count by the share of its full area inside the stop areas; add those housing estimates, then divide by housing in all included tracts.',
       'Housing is assumed to be spread evenly across each tract, including water geometry. This screens exposure, not walking access or buildable parcels. A missing housing count remains unavailable; it is not zero.'));
     if(c.policy==='fee'||c.policy==='parking'){
       if(c.scope==='county'||c.scope==='tract'){
         const cost=number(raw.scenario_cost_base),local=number(raw.avg_permit_value_per_unit);
         const valuation=number(raw.permit_valuation_total),annual=number(raw.baseline_annual_units);
         rows.push(row('cost-input','Permit-reported building value per home',money(cost),'Calculated comparison input',source.permits,
-          local!==null&&local>0&&valuation!==null&&annual>0?money(valuation)+' reported building value ÷ '+format(annual)+' permitted housing units.':local!==null&&local>0?'The local reported building value divided by permitted units.':'The local value is unavailable; the model uses its documented state fallback, based on matched county valuation and permit totals.',
+          local!==null&&local>0&&valuation!==null&&annual>0?money(valuation)+' reported building value ÷ '+format(annual)+' permitted housing units.':local!==null&&local>0?'The local reported building value divided by permitted units.':'The local value is unavailable. The model uses a state comparison: add building values for counties with both usable values and permit counts, then divide by their permitted units.',
           'Permit valuation is a comparison value. It is not a full development budget, selling price, market value or the actual cost to build a home.'));
       }else rows.push(row('county-costs','Building-value comparisons','One value for each county','Calculated comparison input',source.permits,
         'Each county uses reported permit valuation divided by authorized housing units, with the documented state fallback where required.',
@@ -154,7 +155,8 @@
     return result;
   }
   function assumptionsHtml(c){
-    return '<div class="hiw-assumptions"><p class="hiw-assumption-heading"><b>'+selected(c)+' response selected</b> · Model assumptions</p><table class="hiw-table"><caption>Selected what-if assumptions</caption><thead><tr><th scope="col">What we assume</th><th scope="col">Selected value and meaning</th></tr></thead><tbody>'+assumptionsRows(c).map(item=>'<tr><th scope="row">'+escape(item.label)+'</th><td><strong>'+escape(item.value)+'</strong><p>'+escape(item.note)+'</p></td></tr>').join('')+'</tbody></table><p>Low, Default and High test different responses. They are not probabilities, confidence intervals or guaranteed limits. Census observations stay fixed; the actual extra housing could be zero.</p></div>';
+    const selectedRows=assumptionsRows(c),levels=['low','default','high'],alternatives=levels.map(level=>assumptionsRows({...c,level}));
+    return '<div class="hiw-assumptions pv-assumptions"><p class="hiw-assumption-heading"><b>'+selected(c)+' response selected</b> · Model assumptions</p><div class="pv-table-scroll"><table class="pv-selected-table"><caption>Selected what-if assumptions</caption><thead><tr><th scope="col">Assumption</th><th scope="col">Selected value</th><th scope="col">Meaning</th></tr></thead><tbody>'+selectedRows.map(item=>'<tr><th scope="row">'+escape(item.label)+'</th><td data-label="Selected value">'+escape(item.value)+'</td><td data-label="Meaning">'+escape(item.note)+'</td></tr>').join('')+'</tbody></table></div><p>Low, Default and High test different responses. They are not probabilities, confidence intervals or guaranteed limits. Census observations stay fixed; the actual extra housing could be zero.</p></div><h5>Compare Low, Default and High inputs</h5><div class="pv-table-scroll"><table class="pv-alternative-table"><thead><tr><th scope="col">What changes</th>'+levels.map(level=>'<th scope="col">'+(level==='low'?'Low':level==='high'?'High':'Default')+'</th>').join('')+'</tr></thead><tbody>'+selectedRows.map((row,index)=>'<tr><th scope="row">'+escape(row.label)+'</th>'+alternatives.map((rows,i)=>'<td'+(levels[i]===(c.level||'default')?' class="pv-selected-assumption"':'')+'>'+escape(rows[index].value)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';
   }
   function stateTrace(c){
     const forecasts=c.stateForecasts||{},level=c.level||'default';
@@ -173,9 +175,9 @@
       const why=number(m.baseline)===null?'A required permit input is unavailable, so the five-year starting point is missing.':
         c.policy==='tod'&&number(facts.transit)===null?(nySuppression&&c.dataRelease?.transitMissingReason?c.dataRelease.transitMissingReason:'A required transit-exposure input is unavailable.'):
         'A required housing or building-value input is unavailable.';
-      return '<div class="hiw-calculation"><p>'+escape(why)+'</p><p>We cannot finish this calculation. Missing data stays <b>Not available</b>; it is not replaced with zero.</p>'+(number(m.baseline)!==null?'<p>The known five-year starting point is still <b>'+format(m.baseline)+'</b>.</p>':'')+'</div>';
+      return '<div class="hiw-calculation pv-math-panel"><p>'+escape(why)+'</p><p>We cannot finish this calculation. Missing data stays <b>Not available</b>; it is not replaced with zero.</p>'+(number(m.baseline)!==null?'<p>The known five-year starting point is still <b>'+format(m.baseline)+'</b>.</p>':'')+'</div>';
     }
-    if(c.scope==='tract')return '<div class="hiw-calculation"><p>The model first calculates county/state policy results. It then assigns a tract share using the released allocation weights; it does not run the county formula against observed tract permits.</p><p>'+escape(c.tractDescription||'The selected policy determines the spatial allocation weights.')+'</p>'+answerHtml(c)+'</div>';
+    if(c.scope==='tract')return '<div class="hiw-calculation pv-math-panel"><p>The model first calculates county/state policy results. It then assigns a tract share using the released allocation weights; it does not run the county formula against observed tract permits.</p><p>'+escape(c.tractDescription||'The selected policy determines the spatial allocation weights.')+'</p>'+answerHtml(c)+'</div>';
     let html='';
     if(c.policy==='adu'||c.policy==='missing_middle'){
       const rate=a(c.policy==='adu'?'ADU 5-year take-up':'Missing-middle 5-year redevelopment share'),net=c.policy==='adu'?1:a('Missing-middle net additional units per redevelopment');
@@ -183,19 +185,19 @@
       if(county)html='<p>Multiply the starting pool by the selected five-year response'+(c.policy==='missing_middle'?' and the net gain at each site':'')+'.</p><p class="hiw-equation">'+format(detached)+' × '+format(rate,6)+(c.policy==='missing_middle'?' × '+format(net):'')+' = '+format(times(detached,rate,net),4)+' → <strong>+'+format(m.added)+'</strong></p>';
       else{
         const roundedSum=number(p.countySums?.central?.[c.policy]?.[c.level||'default']);
-        html='<ol class="hiw-math"><li>For each county: stand-alone houses × '+share(rate,2)+(c.policy==='missing_middle'?' redeveloped × '+format(net)+' net extra homes':' adding one ADU')+'.</li><li>Round each county’s answer to whole homes.</li><li>Add the rounded county answers'+(national?' within each state, then add the states and DC':'')+': <b>'+format(roundedSum)+' possible extra homes</b>.</li></ol><p>Multiplying the combined housing stock once could give a different answer because rounding happens separately in every county.</p>';
+        html='<ol class="hiw-math pv-calc-list"><li>For each county: stand-alone houses × '+share(rate,2)+(c.policy==='missing_middle'?' redeveloped × '+format(net)+' net extra homes':' adding one ADU')+'.</li><li>Round each county’s answer to whole homes.</li><li>Add the rounded county answers'+(national?' within each state, then add the states and DC':'')+': <b>'+format(roundedSum)+' possible extra homes</b>.</li></ol><p>Multiplying the combined housing stock once could give a different answer because rounding happens separately in every county.</p>';
       }
       if(c.policy==='missing_middle')html+='<p>For example, three homes replacing one existing home gives <b>two net extra homes</b>.</p>';
     }else if(c.policy==='tod'){
       const uplift=a('TOD production uplift in exposed areas'),exposure=number(facts.transit);
-      if(national)html='<ol class="hiw-math"><li>For each state/DC: its five-year starting point × its own mapped housing share × '+share(uplift,0)+' assumed uplift.</li><li>Round each state/DC answer, then add all state results.</li></ol>';
+      if(national)html='<ol class="hiw-math pv-calc-list"><li>For each state/DC: its five-year starting point × its own mapped housing share × '+share(uplift,0)+' assumed uplift.</li><li>Round each state/DC answer, then add all state results.</li></ol>';
       else html='<p>Apply the uplift only to the mapped exposed share.</p><p class="hiw-equation">'+format(m.baseline)+' × '+format(exposure,8)+' × '+format(uplift,4)+' = '+format(times(m.baseline,exposure,uplift),4)+' → <strong>+'+format(m.added)+'</strong></p><p>Mapped exposure: '+share(exposure,3)+'. The calculation retains its full stored precision.</p>';
       if(!county&&!national)html+='<p>The state uses its own exposure directly. Its result can differ from the sum of rounded supporting county transit results.</p>';
       if(exposure===0)html+='<p>A measured exposure of zero gives zero in this scenario. It does not prove that the area has no transit or that reform is useless.</p>';
     }else{
       const parking=c.policy==='parking',spaces=parking?a('Parking spaces avoided per affected unit'):null,costPer=parking?a('Parking construction cost per avoided space'):null;
       const saving=parking?times(spaces,costPer):a('Development fee savings per unit'),affected=parking?a('Parking reform share of baseline development affected'):1,response=a(parking?'Parking cost-to-supply elasticity':'Development fee cost-to-supply elasticity');
-      html='<ol class="hiw-math"><li><b>Find the assumed saving.</b><p class="hiw-equation">'+(parking?format(spaces,1)+' avoided spaces × '+money(costPer)+' per space':'$50,000 benchmark fee × '+share(divide(saving,50000),0)+' cut')+' = '+money(saving)+' saved per '+(parking?'affected ':'')+'home.</p></li>';
+      html='<ol class="hiw-math pv-calc-list"><li><b>Find the assumed saving.</b><p class="hiw-equation">'+(parking?format(spaces,1)+' avoided spaces × '+money(costPer)+' per space':'$50,000 benchmark fee × '+share(divide(saving,50000),0)+' cut')+' = '+money(saving)+' saved per '+(parking?'affected ':'')+'home.</p></li>';
       if(county){
         const cost=number(raw.scenario_cost_base),ratio=divide(saving,cost),used=ratio===null?null:Math.min(.30,ratio),unrounded=times(m.baseline,affected,used,response);
         html+='<li><b>Compare the saving with the building-value input.</b><p class="hiw-equation">'+money(saving)+' ÷ '+money(cost)+' × 100 = '+percent(ratio===null?null:ratio*100,2)+'.</p><p>'+(ratio!==null&&ratio>.30?'This exceeds the model’s 30% cap, so use 30%. The cap limits the calculation; it does not prove a real 30% drop in full project costs.':'This is below or equal to the model’s 30% cap, so the ratio is used without further reduction.')+'</p></li><li><b>Apply the selected response.</b><p class="hiw-equation">'+format(m.baseline)+(parking?' × '+format(affected,4):'')+' × '+format(used,8)+' × '+format(response,2)+' = '+format(unrounded,4)+' → <strong>+'+format(m.added)+'</strong></p><p>The factors are the starting permits'+(parking?', affected share':'')+', capped saving share and housing response.</p></li>';
@@ -211,12 +213,12 @@
     }
     if(national)html+=stateTrace(c);
     html+='<p class="hiw-rounding">Model counts are rounded to whole homes. An exact half rounds to the nearest even whole number; displayed intermediate decimals are shortened for reading.</p>';
-    return '<div class="hiw-calculation">'+html+answerHtml(c)+'</div>';
+    return '<div class="hiw-calculation pv-math-panel">'+html+answerHtml(c)+'</div>';
   }
   function answerHtml(c){
     const m=c.metric||{},extra=number(m.added),base=number(m.baseline);
     if(extra===null)return '';
-    let html='<div class="hiw-answer"><span>Possible additional homes · 2026–2030</span><strong>+'+format(extra)+'</strong><small>Calculated model result · '+selected(c)+' response</small></div>';
+    let html='<div class="hiw-answer pv-calculation-answer"><span>Possible additional homes · 2026–2030</span><strong>+'+format(extra)+'</strong><small>Calculated model result · '+selected(c)+' response</small></div>';
     if(base!==null)html+='<p class="hiw-equation">'+format(base)+' starting point + '+format(extra)+' possible extra = '+format(m.total)+' in the scenario comparison.</p>';
     if(base===null)html+='<p>The permit starting point is missing, so its total and percentage comparison are unavailable. The stock-based extra-home result can still be shown.</p>';
     else if(base===0)html+='<p>The starting point is zero, so a percentage cannot be calculated. This does not turn missing data into zero.</p>';
@@ -238,12 +240,12 @@
     if(!Object.prototype.hasOwnProperty.call(titles,c.policy))throw new Error('Unsupported policy for How It Works');
     const steps=[
       ['What the policy changes','<p>'+escape(policyDescription(c))+'</p>'],
-      ['What information we start with',baselineHtml(c)+'<h5>Data used to calculate the policy result</h5>'+factTable(inputRows(c),'Inputs to the selected policy calculation')+'<h5>Local facts and household outlook</h5><p>Includes the local indicators behind Results and supporting context; none enters the extra-home formula.</p>'+factTable(contextRows(c),'Separate housing and household context')],
+      ['What information we start with',baselineHtml(c)+'<h5>Data used to calculate the policy result</h5>'+factTable(inputRows(c),'Inputs to the selected policy calculation')+'<h5>Local facts and household outlook</h5><p>Includes the local indicators behind Results and supporting context; none enters the extra-home formula. Census survey figures are estimates from a sample of households, rather than an exact list of every property.</p>'+factTable(contextRows(c),'Separate housing and household context')],
       ['What assumptions we make',assumptionsHtml(c)],
       ['How we calculate the effect',calculationHtml(c)],
       ['What this result cannot tell us',limits(c)]
     ];
-    return '<article class="how-it-works"><header class="hiw-header"><h3>How we estimate the impact</h3><p>Follow five simple steps to see where the numbers come from and what they mean.</p><p class="hiw-selection"><b>'+escape(c.policyName||titles[c.policy])+'</b> · '+escape(c.place||'Selected place')+' · 2026–2030 · '+selected(c)+' response</p></header>'+steps.map(([title,body],index)=>'<section class="hiw-step" data-hiw-step="'+(index+1)+'"><h4><span class="hiw-step-number" aria-hidden="true">'+(index+1)+'</span> '+escape(title)+'</h4>'+body+'</section>').join('')+'<footer class="hiw-footer">More Details keeps sensitivity comparisons, historical checks and extended methods. Data &amp; Sources provides the official links and downloads.</footer></article>';
+    return '<article class="how-it-works pv-how"><header class="hiw-header pv-how-header"><p class="pv-overline">'+escape(c.place||'Selected place')+' · '+escape(c.policyName||titles[c.policy])+' · 2026–2030 · '+selected(c)+' response</p><h3>How we estimate the impact</h3><p>Follow five simple steps to see where the numbers come from and what they mean.</p></header>'+steps.map(([title,body],index)=>'<section class="hiw-step pv-how-step" data-hiw-step="'+(index+1)+'"><div class="pv-stephead"><span class="dc-step-number" aria-hidden="true">'+(index+1)+'</span><h4>'+escape(title)+'</h4></div>'+body+'</section>').join('')+'<footer class="hiw-footer">Additional methodology and validation follow below. Data &amp; Sources provides official links and downloads.</footer></article>';
   }
   return {render,contextRows,inputRows,assumptionsRows};
 });

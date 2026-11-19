@@ -919,11 +919,13 @@ function original_finalSourcesHtml(){
 }
 function renderPolicyRail(){document.querySelectorAll('[data-policy]').forEach(button=>{const active=button.dataset.policy===policyKey;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});}
 function renderPanel(){
+  const previousMethods=$('supportingMethods');
+  if(previousMethods)supportingMethodsExpanded=previousMethods.open;
   if(tractRec()){ $('placeBadge').textContent='Tract scenario allocation';$('detailTitle').textContent=placeName();$('detailSub').textContent=FINAL_NAMES[policyKey]+' · '+capital(level)+' response';$('resultPane').innerHTML=tractResultHtml();$('methodologyPane').innerHTML=tractMethodHtml();$('calculationPane').innerHTML=tractCalculationHtml();$('dataPane').innerHTML=combinedSourcesHtml();return;}
   $('placeBadge').textContent=countyFips?'County supporting estimate':stateAbbr==='US'?'States + DC':'State model result';
   $('detailTitle').textContent=placeName();$('detailSub').textContent=FINAL_NAMES[policyKey]+' · '+capital(level)+' response';
   $('mapSubtitle').textContent=FINAL_NAMES[policyKey]+' · '+capital(level)+' response';
-  $('resultPane').innerHTML=resultHtml();$('methodologyPane').innerHTML=combinedMethodologyHtml();$('calculationPane').innerHTML=finalCalculationHtml();$('dataPane').innerHTML=combinedSourcesHtml();
+  $('resultPane').innerHTML=resultHtml();$('methodologyPane').innerHTML='';$('calculationPane').innerHTML=finalCalculationHtml();$('dataPane').innerHTML=combinedSourcesHtml();
 }
 function initFinalEvents(){
   document.querySelectorAll('[data-policy]').forEach(button=>button.addEventListener('click',()=>{policyKey=button.dataset.policy;$('policySelect').value=policyKey;syncHash();renderAll();}));
@@ -933,7 +935,7 @@ function initFinalEvents(){
   document.addEventListener('click',event=>{
     const button=event.target.closest?.('[data-open-view]');
     if(!button)return;
-    const target=button.dataset.openView;
+    const target=button.dataset.openView==='methodology'?'calculation':button.dataset.openView;
     if(!['result','calculation','methodology','graph','data'].includes(target))return;
     currentTab=target;renderTabs();
     const pane=document.querySelector(`[data-pane="${target}"]`);
@@ -1201,7 +1203,12 @@ const challengeOriginalRenderTabs=renderTabs;
 renderTabs=function(){
   challengeOriginalRenderTabs();
   document.querySelectorAll('.tab').forEach(tab=>tab.setAttribute('tabindex',tab.dataset.tab===currentTab?'0':'-1'));
-  document.querySelectorAll('.tab-pane').forEach(pane=>pane.setAttribute('aria-hidden',String(pane.dataset.pane!==currentTab)));
+  document.querySelectorAll('.tab-pane').forEach(pane=>{
+    const active=pane.dataset.pane===currentTab;
+    pane.setAttribute('aria-hidden',String(!active));
+    pane.setAttribute('tabindex',active?'0':'-1');
+  });
+  if(currentTab==='result')scheduleOptionAFit();
 };
 document.querySelectorAll('.tab').forEach((tab,index,all)=>tab.addEventListener('keydown',event=>{
   let next;
@@ -1433,7 +1440,8 @@ function explanationContext(){
     stateName:stateRec()?.state_name,stateCode:stateAbbr,stateForecasts:FORECAST_POLICY.states,
     result:finalResultView(),dataRelease:window.DATA_RELEASE};
 }
-finalCalculationHtml=function(){return window.TurnoutHowItWorks.render(explanationContext());};
+resultHtml=function(){return window.TurnoutOptionA.render(explanationContext());};
+finalCalculationHtml=function(){return window.TurnoutHowItWorks.render(explanationContext())+supportingMethodsHtml();};
 challengePolicyComparisonHtml=function(){
   return simpleDetailedPolicyComparison()
     .replace('Compare all five policies and assumptions','Compare the five what-if examples')
@@ -1449,16 +1457,15 @@ combinedMethodologyHtml=function(){
 };
 
 
-/* Supporting material follows the open, five-step explanation. */
-const preservedTechnicalMethodology=combinedMethodologyHtml;
-combinedMethodologyHtml=function(){
-  const context=explanationContext(),v=context.result,e=POLICY_EVIDENCE[policyKey];
-  const facts=window.TurnoutHowItWorks.contextRows(context);
-  const rows=facts.map(row=>`<tr><th scope="row">${uiEscape(row.label)}<strong>${uiEscape(row.value)}</strong><small>${uiEscape(row.classification)}</small></th><td><b>${uiEscape(row.source)}</b><p>${uiEscape(row.derivation)}</p><p>${uiEscape(row.meaning)}</p></td></tr>`).join('');
-  const extra=(v.moreFacts||[]).map(fact=>`<div class="detail-fact"><dt>${uiEscape(fact.label)}</dt><dd><strong>${uiEscape(fact.value)}</strong><span>${uiEscape(fact.numberType)} · ${uiEscape(fact.note)}</span></dd></div>`).join('');
-  const technical=preservedTechnicalMethodology().replace('<h3>How the tool works</h3>','<h3>Methodology and historical checks</h3>').replaceAll('How calculated','How It Works');
-  return `<section class="final-explain supporting-details"><header><h3>More details</h3><p>${uiEscape(placeName())} · ${uiEscape(FINAL_NAMES[policyKey])} · ${capital(level)} assumptions</p><p>Extra housing facts, the full assumptions and checks behind this view. <button type="button" class="text-view-link" data-open-view="calculation">Read the five-step explanation →</button></p></header><section><h4>Local housing facts and the 2030 outlook</h4><p>These describe existing conditions and separate demographic scenarios. They are not added to the policy estimate or counted as homes that must be built.</p><div class="hiw-table-wrap"><table class="detail-context-table"><thead><tr><th>Local fact</th><th>Source, calculation and meaning</th></tr></thead><tbody>${rows}</tbody></table></div></section><details class="simple-details"><summary>Other numbers behind this view</summary>${v.currentHomes?`<p><b>Existing housing units:</b> ${uiEscape(v.currentHomes)} · Census ACS 2020–2024 B25024. Includes occupied and vacant units.</p>`:''}<dl class="detail-facts">${extra}</dl><p>${uiEscape(v.detailedNeed)}</p><p>${uiEscape(v.comparisonMeaning)}</p></details><section class="detail-assumption-section"><h4>Compare Low, Default and High</h4>${assumptionTableHtml()}</section><details class="simple-details"><summary>Full calculation, rounding and sensitivity</summary><p><b>Input sources:</b> ${uiEscape(e.source)}</p>${simpleDetailedPolicyMath()}<p><b>Why these assumptions:</b> ${uiEscape(e.assumption_basis)}</p><p><b>Research and limits:</b> ${uiEscape(e.evidence)}</p>${simpleDetailedSensitivity()}</details>${technical}<p class="detail-reference-links"><a href="docs/METHODOLOGY.html" target="_blank" rel="noopener noreferrer">Full model documentation ↗</a><a href="docs/VALIDATION_REPORT.html" target="_blank" rel="noopener noreferrer">Validation report ↗</a></p></section>`;
-};
+/* Supporting methods follow the five open steps without repeating Results. */
+let supportingMethodsExpanded=false;
+function supportingMethodsHtml(){
+  const e=POLICY_EVIDENCE[policyKey];
+  const definitions=POLICY_KEYS.map(key=>`<details class="simple-details simple-benchmark"><summary>${uiEscape(POLICIES[key].name)}</summary><p><b>Full policy definition:</b> ${uiEscape(CHALLENGE_BENCHMARKS[key])}</p><p><b>What the model counts:</b> ${uiEscape(POLICY_EVIDENCE[key].formula)}</p><p><b>Why these assumptions:</b> ${uiEscape(POLICY_EVIDENCE[key].assumption_basis)}</p><p><b>What remains unverified:</b> ${uiEscape(POLICY_EVIDENCE[key].eligibility)}</p></details>`).join('');
+  return `<section class="extended-methods" aria-label="Additional methodology and validation"><details class="simple-details" id="supportingMethods"${supportingMethodsExpanded?' open':''}><summary>More methodology, assumptions and validation</summary><p>The five open steps explain the selected result. These supporting references preserve the full comparisons, tests and technical evidence.</p><h4>Compare policies and assumptions</h4>${challengePolicyComparisonHtml()}<h4>All Low, Default and High inputs</h4>${assumptionTableHtml()}<details class="simple-details"><summary>Technical equations and rounding</summary>${simpleDetailedPolicyMath()}<p><b>Input sources:</b> ${uiEscape(e.source)}</p><p><b>Evidence status:</b> ${uiEscape(e.status)}</p><p><b>Data and purpose:</b> ${uiEscape(e.why)}</p><p><b>Research and its limits:</b> ${uiEscape(e.evidence)}</p><p><b>Outcome limits:</b> ${uiEscape(e.outcome_limit)}</p></details><details class="simple-details"><summary>Historical baseline methods and validation</summary>${simpleDetailedBaselineMethod()}</details>${challengeCoverageHtml().replace('Data coverage for','Available data for')}<details class="simple-details"><summary>Baseline uncertainty and policy response</summary>${simpleDetailedSensitivity()}<p>Low, Default and High are response assumptions. They are not probabilities or confidence intervals, and actual additional production could be zero. The original baseline range covered 35 of 51 states in the reserved test; the displayed updated range has not had an independent coverage test.</p></details><details class="simple-details"><summary>Complete policy definitions and assumption rationale</summary>${definitions}</details><details class="simple-details"><summary>Housing needs, survey uncertainty and geographic limits</summary><p>ACS housing and household counts are survey estimates. Combined survey margins are approximate because the relationships between the source categories are not provided. HUD housing-problem counts have a different reference period and are approximate sums of rounded county values.</p><p>Population and household scenarios continue historical demographic changes; they do not count required new buildings or bedrooms. Changes in vacancy reserves, usable vacant homes, completions, losses, conversions and independent suppressed household formation are not fully established.</p><p>County production references are allocations of state baselines and have no separate county forecast validation. ADU and Missing middle sum rounded county additions; Transit uses direct state exposure. Fees and Parking reconcile county responses with state permit coverage. National outputs sum states and DC. Missing observations remain unavailable.</p><p>${uiEscape(e.eligibility)}</p></details><p class="detail-reference-links"><a href="docs/METHODOLOGY.html" target="_blank" rel="noopener noreferrer">Full model documentation ↗</a><a href="docs/VALIDATION_REPORT.html" target="_blank" rel="noopener noreferrer">Validation report ↗</a></p></details></section>`;
+}
+combinedMethodologyHtml=supportingMethodsHtml;
+
 
 /* Keep every source and download; explain their jobs in everyday words. */
 function challengeSourceLinks(row){
@@ -1512,6 +1519,35 @@ updateGeographyLegend=function(tractMode){
   simpleOriginalGeographyLegend(tractMode);
   if(!tractMode){const title=document.querySelector('.legend-title');if(title)title.innerHTML='EXTRA HOMES (%) <span>compared with the five-year starting point</span>';}
 };
+
+
+/* Option A's bounded desktop fit affects presentation only. */
+let optionAFitTicket=0;
+function fitOptionAResults(){
+  const pane=$('resultPane'),card=pane?.querySelector?.('.tv-compact');
+  if(!pane||!card||currentTab!=='result'||pane.clientHeight<=0)return;
+  card.style.zoom='1';card.style.minHeight='0';card.style.alignContent='start';pane.style.setProperty('overflow-y','auto','important');
+  if(window.innerWidth<1180)return;
+  const paneStyle=getComputedStyle(pane);
+  const available=pane.clientHeight-parseFloat(paneStyle.paddingTop)-parseFloat(paneStyle.paddingBottom)-2;
+  let best=1;
+  for(let size=1.02;size>=.78;size-=.01){
+    const rounded=Math.round(size*100)/100;
+    card.style.zoom=String(rounded);
+    if(card.getBoundingClientRect().height<=available){best=rounded;break;}
+  }
+  card.style.zoom=String(best);
+  if(card.getBoundingClientRect().height<=available){
+    pane.style.setProperty('overflow-y','hidden','important');
+  }else{card.style.zoom='1';card.style.minHeight='0';card.style.alignContent='start';pane.style.setProperty('overflow-y','auto','important');}
+}
+function scheduleOptionAFit(){
+  if(typeof requestAnimationFrame!=='function')return;
+  if(typeof cancelAnimationFrame==='function')cancelAnimationFrame(optionAFitTicket);
+  optionAFitTicket=requestAnimationFrame(fitOptionAResults);
+}
+if(typeof window.addEventListener==='function')window.addEventListener('resize',scheduleOptionAFit);
+document.fonts?.ready?.then(scheduleOptionAFit);
 
 
 document.addEventListener('DOMContentLoaded',init);
