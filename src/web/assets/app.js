@@ -1538,6 +1538,11 @@ function fitOptionAResults(){
   }
   card.style.zoom=String(best);
   if(card.getBoundingClientRect().height<=available){
+    card.style.minHeight=Math.max(0,available/best-2)+'px';
+    card.style.alignContent='space-between';
+    const excess=card.getBoundingClientRect().height-available;
+    if(excess>0)card.style.minHeight=Math.max(0,parseFloat(card.style.minHeight)-(excess+2)/best)+'px';
+    if(card.getBoundingClientRect().height>available){card.style.minHeight='0';card.style.alignContent='start';}
     pane.style.setProperty('overflow-y','hidden','important');
   }else{card.style.zoom='1';card.style.minHeight='0';card.style.alignContent='start';pane.style.setProperty('overflow-y','auto','important');}
 }

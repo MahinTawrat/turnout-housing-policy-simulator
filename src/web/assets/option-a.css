@@ -313,7 +313,7 @@ body.decision-card .tv-compact .pv-bottom-note{font-size:10.2px;padding-top:4px;
 }
 /* Missing-middle has five evidence items; keep them in one row to preserve
    reading size without doubling the height of the context section. */
-@media(min-width:1350px){
+@media(min-width:1180px){
  body.decision-card .tv-compact .pv-context-grid:has(> .pv-local-fact:nth-child(5)){
    grid-template-columns:repeat(5,minmax(0,1fr));gap:0 8px;
  }
