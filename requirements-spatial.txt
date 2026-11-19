@@ -1,0 +1,4 @@
+# Optional official-geometry/transit reconstruction; core build is standard-library only.
+pyshp==2.3.1
+geographiclib==2.1
+pyclipper==1.4.0

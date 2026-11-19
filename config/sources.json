@@ -1,0 +1,458 @@
+{
+  "version": "turnout.sources.2026-11-18.v1",
+  "description": "Explicit official sources. Frozen hashes reproduce the approved analytical snapshot; refresh allows upstream revisions and records every changed hash. GIS inputs are a newly versioned reconstruction, not recovered original spatial inputs.",
+  "states": {
+    "01": "AL",
+    "02": "AK",
+    "04": "AZ",
+    "05": "AR",
+    "06": "CA",
+    "08": "CO",
+    "09": "CT",
+    "10": "DE",
+    "11": "DC",
+    "12": "FL",
+    "13": "GA",
+    "15": "HI",
+    "16": "ID",
+    "17": "IL",
+    "18": "IN",
+    "19": "IA",
+    "20": "KS",
+    "21": "KY",
+    "22": "LA",
+    "23": "ME",
+    "24": "MD",
+    "25": "MA",
+    "26": "MI",
+    "27": "MN",
+    "28": "MS",
+    "29": "MO",
+    "30": "MT",
+    "31": "NE",
+    "32": "NV",
+    "33": "NH",
+    "34": "NJ",
+    "35": "NM",
+    "36": "NY",
+    "37": "NC",
+    "38": "ND",
+    "39": "OH",
+    "40": "OK",
+    "41": "OR",
+    "42": "PA",
+    "44": "RI",
+    "45": "SC",
+    "46": "SD",
+    "47": "TN",
+    "48": "TX",
+    "49": "UT",
+    "50": "VT",
+    "51": "VA",
+    "53": "WA",
+    "54": "WV",
+    "55": "WI",
+    "56": "WY"
+  },
+  "sources": [
+    {
+      "id": "acs_b01001",
+      "filename": "acsdt5y2024-b01001.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b01001.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B01001.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "1637b18a96881b81e050df1cd3d5ac38a33208b9b69b40e1dbeb3c4e13718f0e"
+    },
+    {
+      "id": "acs_b01002",
+      "filename": "acsdt5y2024-b01002.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b01002.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B01002.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "04784637609550868d9da7321e7a947b34e0a10b654dbf6d344599f97f8de7f8"
+    },
+    {
+      "id": "acs_b11016",
+      "filename": "acsdt5y2024-b11016.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b11016.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B11016.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "448229fa89d3190ba18f42d59a27da692898ac95f2b21fc7f27161b11f2fb501"
+    },
+    {
+      "id": "acs_b19013",
+      "filename": "acsdt5y2024-b19013.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b19013.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B19013.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "b25a176b0e6c339b6f3a2a0d3d8446bf06f5f080b4395993ec9a8313efb1c229"
+    },
+    {
+      "id": "acs_b25002",
+      "filename": "acsdt5y2024-b25002.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25002.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B25002.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "eb98debfe8e8533e9a8e647a8c5dca5dbe11401c4de4e4449b4a2ba7dc75620f"
+    },
+    {
+      "id": "acs_b25003",
+      "filename": "acsdt5y2024-b25003.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25003.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B25003.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "68e963e1ed60fcf6b0658579cefc6498b7a9eb780b9f3e87fd1b9775c4d4ac6c"
+    },
+    {
+      "id": "acs_b25004",
+      "filename": "acsdt5y2024-b25004.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25004.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B25004.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "cbc82f087ece808cf269ce8e9eb1c3227c28d82206726339a9a34dda8398ec49"
+    },
+    {
+      "id": "acs_b25007",
+      "filename": "acsdt5y2024-b25007.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25007.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B25007.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "aa51069a919dcc472c02cddd327e43c0927333f8fe3c7378ece08e421d343b1f"
+    },
+    {
+      "id": "acs_b25010",
+      "filename": "acsdt5y2024-b25010.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25010.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B25010.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "69482d4f74b6d1dfe00a12b100d0d3c74a3b734f5f5cf1070ac4ec22096d67ff"
+    },
+    {
+      "id": "acs_b25014",
+      "filename": "acsdt5y2024-b25014.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25014.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B25014.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "020e9e669d5a49ce9f59dfff724ef1b13c5b64adc8c0959833cd32b111dcdf49"
+    },
+    {
+      "id": "acs_b25024",
+      "filename": "acsdt5y2024-b25024.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25024.dat",
+      "format": "acs",
+      "groups": [
+        "core",
+        "spatial"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B25024.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "26ff26c645d1abc55c3b47998931cea45af40600a6e8d36228d3ed7493add2ef"
+    },
+    {
+      "id": "acs_b25031",
+      "filename": "acsdt5y2024-b25031.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25031.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B25031.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "9c4f73195ae2da185c5a2b66de1e905ccb831772337d19c3eaabee63a1a43d63"
+    },
+    {
+      "id": "acs_b25034",
+      "filename": "acsdt5y2024-b25034.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25034.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B25034.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "806d6cb18e8e6c0855e065eca99164b07334cc32f521899aa45a4415ef7d380e"
+    },
+    {
+      "id": "acs_b25042",
+      "filename": "acsdt5y2024-b25042.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25042.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B25042.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "e7ff42fb9a610819d39223d0f7d5770c10ee808556d231691e354a29f5018dce"
+    },
+    {
+      "id": "acs_b25064",
+      "filename": "acsdt5y2024-b25064.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25064.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B25064.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "b36e6dc1fcef36b8b307d31b37517b64c80d8b9c70d48c9b1894242860f42eb0"
+    },
+    {
+      "id": "acs_b25070",
+      "filename": "acsdt5y2024-b25070.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25070.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B25070.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "862ccc17d913305d11e6f802ce4518d76b30585ea0b05b251cd8cf21f8661386"
+    },
+    {
+      "id": "acs_b25077",
+      "filename": "acsdt5y2024-b25077.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25077.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B25077.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "89eb2153764a2330b23959d8bbc29b3a8f3016f087b990f2a8ea0d5096d9a816"
+    },
+    {
+      "id": "acs_b25124",
+      "filename": "acsdt5y2024-b25124.dat",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25124.dat",
+      "format": "acs",
+      "groups": [
+        "core"
+      ],
+      "vintage": "ACS 2020–2024 five-year",
+      "source_page": "https://api.census.gov/data/2024/acs/acs5/groups/B25124.html",
+      "license": "Public U.S. Census Bureau statistics; attribution retained",
+      "snapshot_sha256": "c25be7b123f03e44097d9fc42d9a6d2a63803ccb016f6622ee2aaf95043e74db"
+    },
+    {
+      "id": "population_2025",
+      "filename": "co-est2025-alldata.csv",
+      "url": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/counties/totals/co-est2025-alldata.csv",
+      "format": "population",
+      "groups": [
+        "core"
+      ],
+      "vintage": "Census Population Estimates Vintage 2025",
+      "source_page": "https://www.census.gov/programs-surveys/popest.html",
+      "license": "Official public statistics; source attribution and original terms retained",
+      "snapshot_sha256": "4f5a499d851e2cb48fd7a5405e5a9235453a8a66933657aacd10df0e264f35d5"
+    },
+    {
+      "id": "hud_chas",
+      "filename": "2018thru2022-050-csv.zip",
+      "url": "https://www.huduser.gov/portal/datasets/cp/2018thru2022-050-csv.zip",
+      "format": "chas_zip",
+      "groups": [
+        "core"
+      ],
+      "vintage": "HUD CHAS 2018–2022 county tables",
+      "source_page": "https://www.huduser.gov/portal/datasets/cp.html",
+      "license": "Official public statistics; source attribution and original terms retained",
+      "snapshot_sha256": "9e8fd7f7613083bf0350f7e637715367f98fd62d5068c465e730abf296dca439"
+    },
+    {
+      "id": "bps_state_2025",
+      "filename": "st2025a.txt",
+      "url": "https://www2.census.gov/econ/bps/State/st2025a.txt",
+      "format": "bps",
+      "groups": [
+        "core"
+      ],
+      "vintage": "Census BPS final annual 2025",
+      "source_page": "https://www.census.gov/construction/bps/",
+      "license": "Official public statistics; source attribution and original terms retained"
+    },
+    {
+      "id": "bps_county_2025",
+      "filename": "co2025a.txt",
+      "url": "https://www2.census.gov/econ/bps/County/co2025a.txt",
+      "format": "bps",
+      "groups": [
+        "core"
+      ],
+      "vintage": "Census BPS final annual 2025",
+      "source_page": "https://www.census.gov/construction/bps/",
+      "license": "Official public statistics; source attribution and original terms retained"
+    },
+    {
+      "id": "bps_state_history",
+      "filename": "state_history.xlsx",
+      "url": "https://www.census.gov/construction/bps/xls/state_history.xlsx",
+      "format": "xlsx",
+      "groups": [
+        "core"
+      ],
+      "vintage": "Census revised state history through 2025",
+      "source_page": "https://www.census.gov/construction/bps/",
+      "license": "Official public statistics; source attribution and original terms retained",
+      "snapshot_sha256": "726be6cb35bea348c36cc99097216c6a8dfa228b6cfd769ee55da02ed97bacdc"
+    },
+    {
+      "id": "ca_population_benchmark",
+      "filename": "ca_projection.xlsx",
+      "url": "https://dof.ca.gov/media/docs/forecasting/Demographics/projections/P2A_County_Total.xlsx",
+      "format": "xlsx",
+      "groups": [
+        "core"
+      ],
+      "vintage": "California DOF P2A, 2026 edition",
+      "source_page": "https://dof.ca.gov/Forecasting/Demographics/Projections/",
+      "license": "Official public statistics; source attribution and original terms retained"
+    },
+    {
+      "id": "nc_population_benchmark",
+      "filename": "nc_projection_summary.html",
+      "url": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/countystate-population-projections/population-summary",
+      "format": "html",
+      "groups": [
+        "core"
+      ],
+      "vintage": "North Carolina OSBM 2025B summary",
+      "source_page": "https://www.osbm.nc.gov/facts-figures/population-demographics",
+      "license": "Official public statistics; source attribution and original terms retained"
+    },
+    {
+      "id": "display_state_2024",
+      "filename": "spatial/boundaries/cb_2024_us_state_500k.zip",
+      "url": "https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_state_500k.zip",
+      "format": "shapefile_zip",
+      "groups": [
+        "spatial"
+      ],
+      "vintage": "Census 2024 cartographic boundaries, 1:500,000",
+      "source_page": "https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html",
+      "license": "Public U.S. Census Bureau geography; attribution retained"
+    },
+    {
+      "id": "display_county_2024",
+      "filename": "spatial/boundaries/cb_2024_us_county_500k.zip",
+      "url": "https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_county_500k.zip",
+      "format": "shapefile_zip",
+      "groups": [
+        "spatial"
+      ],
+      "vintage": "Census 2024 cartographic boundaries, 1:500,000",
+      "source_page": "https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html",
+      "license": "Public U.S. Census Bureau geography; attribution retained"
+    },
+    {
+      "id": "acs_errata_148",
+      "filename": "spatial/Errata148_Suppressed_Geographies_for_Wyandanch.xlsx",
+      "url": "https://www.census.gov/content/dam/Census/programs-surveys/acs/tech-doc/errata/Errata148_Suppressed_Geographies_for_Wyandanch.xlsx",
+      "format": "xlsx",
+      "groups": [
+        "spatial"
+      ],
+      "vintage": "ACS Errata148; November25,2024; webpage revisedJanuary6,2026",
+      "source_page": "https://www.census.gov/programs-surveys/acs/technical-documentation/errata/148.html",
+      "license": "Public U.S. Census Bureau documentation; attribution retained"
+    },
+    {
+      "id": "display_state_2024_20m",
+      "filename": "spatial/boundaries/cb_2024_us_state_20m.zip",
+      "url": "https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_state_20m.zip",
+      "format": "shapefile_zip",
+      "groups": [
+        "spatial"
+      ],
+      "vintage": "Census 2024 cartographic boundaries, 1:20,000,000",
+      "source_page": "https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html",
+      "license": "Public U.S. Census Bureau geography; attribution retained"
+    },
+    {
+      "id": "display_county_2024_20m",
+      "filename": "spatial/boundaries/cb_2024_us_county_20m.zip",
+      "url": "https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_county_20m.zip",
+      "format": "shapefile_zip",
+      "groups": [
+        "spatial"
+      ],
+      "vintage": "Census 2024 cartographic boundaries, 1:20,000,000",
+      "source_page": "https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html",
+      "license": "Public U.S. Census Bureau geography; attribution retained"
+    }
+  ],
+  "transit": {
+    "item_id": "959b4adc3ff94bc6a46f2c1d515d09aa",
+    "service_url": "https://services.arcgis.com/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_National_Transit_Map_Stops/FeatureServer",
+    "source_page": "https://www.bts.gov/national-transit-map",
+    "reviewed_compilation": "September 23, 2026",
+    "mode_codes": [
+      "0",
+      "1",
+      "2",
+      "5",
+      "6",
+      "7",
+      "12"
+    ],
+    "license": "CC BY 3.0 US per official BTS item metadata; attribution retained",
+    "interpretation": "Fixed-guideway GTFS modes only; no bus-frequency eligibility screen or legal parcel eligibility is inferred. Ferry and trolleybus are excluded."
+  }
+}

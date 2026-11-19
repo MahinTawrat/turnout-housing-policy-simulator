@@ -1,0 +1,80 @@
+THE TURNOUT 2 | CONDITIONAL COUNTY HOUSING OUTLOOK 2026–2050
+Date: 2026-11-12
+
+1. GEOGRAPHIC COVERAGE
+- 3,144 current county/equivalent records from the existing housing-needs and CHAS layers.
+- 3,024 have a matching 2025 county BPS permit record; 120 have context only.
+- Permit history in website data: 107,424 current-FIPS county-year observations for 1990–2025; original source CSV has 108,774 historical records because boundaries/codes changed.
+- Do NOT combine the 3,170 national 2025 unallocated/county-code 000 permits with individual county counts without an allocation rule.
+
+2. COUNTY BUILDING-PERMIT ANCHORS
+- Main mode: candidate selected on historical development folds (prior to 2021): one-unit = 2025 pace; two/3–4 = state-adjusted 5-year pace; five-plus = 10-year county average. Results come from prior comparative model output, not new estimation in this package.
+- 2026 central permit pace uses that county-category anchor. In subsequent years the category anchors are multiplied by a capped population-linked supply growth factor.
+- Alternate modes: constant-2025 county BPS categories; 50/50 recent year/5-year average scenario.
+- When the earlier candidate is unavailable (16 current counties/equivalents), fall back to observed 2025 permit pace and mark historical comparison unavailable.
+- Historical comparison for candidate: 2021–2025 total county-level WAPE ~20.17%, compared to ~24.79% for original selected method. This is retrospective, not newly untouched or independent.
+
+3. SUPPLY GROWTH, 2026–2050
+- Annual population trend, g = clip((P2025/P2020)^(1/5)-1, -.02,.03).
+- County housing-unit supply growth g_s = clip(0.60*g, -.012, .015).
+- 2026 central category pace equals its model anchor. From 2027 onward multiply by product(1+g_s*taper(k)), where taper=1 for years 1–10, decreasing to 0.4 by year 25.
+- Constant-2025 alternative keeps the anchor flat except sensitivity adjustments.
+- Production Low = central baseline x 0.82 x 0.996^(year-2026); High = central baseline x 1.18 x 1.004^(year-2026). These are chosen planning sensitivities, NOT statistical bounds.
+
+4. HOUSEHOLDS/POPULATION
+- P2020 and P2025 from existing Census PEP county layer; g as above.
+- Future population P(t) = P(t-1) * (1 + clip(g*taper(k) + delta,-.03,.035)); delta=-.004 / 0 / +.004 for slow/trend/fast population scenarios.
+- HH2025 = 2024 ACS occupied households * (PEP population 2025 / ACS reference population), where available.
+- HH(t) = HH2025 * (P(t)/P2025) * 1.0005^(t-2025). The 0.05% annual household-size shift is an explicit assumption, NOT a measured county-specific headship forecast.
+- Age group breakdown is context only; age/cohort migration survival has NOT been modeled in this release.
+
+5. INDICATIVE COMPLETIONS AND STOCK REQUIREMENT
+- Illustrative completed homes (not observed) in year t = 85% of year t-1 permitted housing units; the first forward year uses 2025 observed permits.
+- Cumulative incremental housing stock requirement(t) = (HH(t)-HH2025)/(1-.05) + (2024 existing housing stock*0.0015*years).
+- The 5% planning vacancy reserve and 0.15% annual replacement assumptions are illustrative and not localized. This calculation excludes existing shortage, demolitions observed, secondary residences, turnover, tenure and affordability mismatches.
+- Indicative planning balance = cumulative illustrative completions minus incremental requirement. It is NOT a verified housing surplus/shortage.
+
+6. BEDROOM COMPOSITION
+- Existing owner/renter bedroom distributions come from 2024 ACS B25042 inherited project data. Data are observed occupied housing STOCK, not new construction.
+- Proxy of bedroom mix for new one-unit homes = current occupied owner distribution.
+- New two-unit = 50% current renter distribution plus 50% illustrative template [0.04,0.30,0.40,0.20,0.06].
+- New three/four-unit = 70% current renter distribution plus 30% template [0.09,0.40,0.35,0.13,0.03].
+- New five-plus = 40% current renter distribution plus 60% template [0.12,0.44,0.31,0.10,0.03].
+- Categories: studio/0 beds, 1 bed, 2 beds, 3 beds, 4+ beds. For current ACS distribution, 4+ combines four-bed and five-plus-bed counts.
+- Illustrative household bedroom preference: 1-person households [0.20,0.65,0.15,0,0]; 2-person [0,0.20,0.65,0.15,0]; 3+ persons [0,0,0.18,0.53,0.29]. This is a synthetic distribution and NOT a verified required bedroom count.
+
+7. INDEPENDENT POLICY SCENARIOS
+- ADU: annual increment = detached single-family ACS stock * 1% take-up / 5 years * exp(-.038*(year-2026)), with a minimum decay factor of .25.
+- Missing middle: detached stock * .25% redevelopment / 5 years * 2 net units per redevelopment * the same decay.
+- Transit: baseline supply * (.25 x county TOD exposure proxy).
+- Parking: baseline supply * min(.30, .5 * (.5 affected share * .4 spaces avoided * $30k/space) / county unit cost proxy).
+- Fees: baseline supply * min(.30, .5 * $25k fee savings / county unit cost proxy).
+- Policy output is additional permit-equivalent units and has NO validated building-type assignment; it is not silently assigned to five-plus or one-unit categories.
+- The reform effect is additionally scaled by production sensitivity (0.82/1/1.18).
+- Policies are mutually exclusive in this UI; do not sum separate effects due to overlap or behavioral uncertainty.
+- These are conditional uptake/elasticity assumptions. Changes in permits are not established causal reform effects.
+- This new extrapolation is separate from the pre-existing 5-year national/state policy simulator. Their scenario totals may differ and should not be combined as though they were one validated model.
+
+8. AFFORDABILITY
+- HUD CHAS low-income rental household problems and ACS rents are observed context.
+- The optional constant-incidence thought experiment scales the baseline affected household count with modeled households. It does not forecast actual housing problems or the prices/affordability of new units.
+- No future rental price series or income-specific affordability forecast is claimed.
+
+9. RELIABILITY AND STATUS
+- Model input: 2025 permit BPS and 1990–2025 historical raw county series; current 2024 ACS, CHAS 2018–2022 and Census PEP 2025 layered from project assets.
+- The 2021–2025 candidate 20.17% county-level 5-year WAPE was computed during retrospective comparison and therefore is not an untouched test anymore.
+- The 2036–2050 outlook now changes annually under tapered growth assumptions rather than repeating a fixed 2035 value, though near-flat series are possible for slow-growing counties.
+- Uncertainty is scenario sensitivity, not calibrated statistical prediction intervals.
+- Historical county FIPS/geographic changes (especially Connecticut planning regions) are not back-harmonized. Missing permits are never converted to zero production.
+
+10. REPRODUCIBILITY
+- The default central annual CSV is generated with build_2050_data.py using supplied county history, precomputed method candidates, and embedded county context. The website separately applies the same equations client-side for user-selectable controls.
+- Source and QA document checksums are distributed with the build script in the developer package, not required to host.
+- Every model formula and assumption should be reviewed before policy decisions.
+
+OFFICIAL SOURCES
+Census BPS: https://www.census.gov/construction/bps/
+Census BPS methodology: https://www.census.gov/construction/bps/methodology.html
+2024 ACS five-year: https://data.census.gov/table/ACSDT5Y2024.B25042
+Census 2020-2025 population: https://www.census.gov/data/datasets/time-series/demo/popest/2020s-counties-total.html
+HUD CHAS: https://www.huduser.gov/portal/datasets/cp.html

@@ -1,0 +1,26 @@
+THE TURNOUT — GRAPH PANEL STYLE AND SIZE CORRECTION
+Date: November 17, 2026
+
+Requested by user
+- Match the Graph tab fonts, color, typography and spacing to the existing Result tab.
+- Prevent the Graph tab from resizing or extending the map/right-hand panel.
+- Continue to show Policy impact, Compare reforms, Permit history and Building types together in the same Graph tab.
+
+Implemented
+1. Removed legacy rules in assets/outlook-integrated.css that changed the workspace column proportions when Graph became active (including the tablet breakpoint and narrow-screen display override).
+2. Corrected the Graph pane's layout constraints so it stretches within, rather than enlarges, the existing right-hand grid row. Its parent panel now clips content only while Graph is active.
+3. Changed graph headings, numbers, labels, captions and explanatory notes to the website's own typography variables (--serif and --sans) and existing burgundy/cream/text palette.
+4. Compact 2x2 dashboard remains visible together; no separate graph selectors, independent forecasting controls or 2050 interface were added.
+5. The original policy model, Result/Methodology/How calculated/Sources tabs, U.S./state/county map and five-year totals are unchanged.
+6. Versioned the challenge-graph stylesheet URL to avoid old browser caches.
+
+Verification
+- National, county, policy and response numerical synchronization: PASS (the existing dashboard test).
+- Graph-specific workspace-width change selectors in the shipped CSS: 0.
+- CSS block delimiter balance: PASS.
+- Site index still references all required local resources: PASS.
+- ZIP integrity: PASS.
+- A real Chromium screenshot could not be captured because the container's headless browser timed out even on a minimal local HTML page. Final visual/layout verification in the user's browser is therefore still required.
+
+Deployment
+Back up Hostinger public_html. Extract ZIP contents directly into public_html, replacing the previous version. Press Ctrl+Shift+R to avoid stale CSS.

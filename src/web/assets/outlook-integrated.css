@@ -1,0 +1,194 @@
+.integrated-outlook{--bg:#f6f2ec;--paper:#fffdfa;--ink:#292023;--muted:#6e6664;--edge:#dfd7ce;--accent:#734300;--plum:#572b46;--plum-soft:#f0e8ed;--olive:#6b7a5a;--gold:#aa7442;--shade:#eee4d6;--good:#466b59}
+.integrated-outlook *{box-sizing:border-box}
+.integrated-outlook button, .integrated-outlook select{font:inherit}
+.integrated-outlook a{color:#774419}
+.integrated-outlook .kicker{font-size:10px;text-transform:uppercase;letter-spacing:1.7px;font-weight:800;color:#d4b393}
+.integrated-outlook .kicker.dark{color:#8e663b}
+.integrated-outlook button:focus-visible, .integrated-outlook a:focus-visible{outline:2px solid #9d697e;outline-offset:2px}
+.integrated-outlook .selection-note{background:#f5efe5;color:#705643;padding:8px 12px;border-radius:7px;font-size:12px;margin-top:12px}
+.integrated-outlook .metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px;margin:14px 0}
+.integrated-outlook .metrics article{background:var(--paper);border:1px solid var(--edge);border-radius:10px;padding:14px}
+.integrated-outlook .metrics span, .integrated-outlook .small-metrics span{color:#645957;font-size:12px;font-weight:650;display:block}
+.integrated-outlook .metrics strong{display:block;font:normal clamp(21px,2.15vw,31px)/1.25 Georgia,serif;font-variant-numeric:tabular-nums;margin:7px 0}
+.integrated-outlook .metrics small{color:#8a7b78;font-size:11px}
+.integrated-outlook .metrics strong.good{color:#476b58}
+.integrated-outlook .metrics strong.bad{color:#9a5d3e}
+.integrated-outlook .major-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.integrated-outlook .card{border:1px solid var(--edge);border-radius:11px;background:var(--paper);padding:20px;min-width:0}
+.integrated-outlook .full-card{grid-column:1/-1}
+.integrated-outlook .head{display:flex;justify-content:space-between;align-items:start;gap:20px}
+.integrated-outlook .card h2, .integrated-outlook .sources h2{font:normal 24px/1.2 Georgia,serif;margin:5px 0 8px}
+.integrated-outlook .card h3{font:bold 14px/1.3 system-ui,sans-serif;margin:5px 0}
+.integrated-outlook .card p{color:#675c5b;margin:5px 0 15px;font-size:13px}
+.integrated-outlook .legend{display:flex;align-items:center;flex-wrap:wrap;gap:15px;font-size:12px;color:#665b58}
+.integrated-outlook .legend span{display:inline-flex;gap:6px;align-items:center}
+.integrated-outlook .legend i{width:24px;border-top:3px solid #9a6a3f}
+.integrated-outlook .legend .future{border-color:#532d4b}
+.integrated-outlook .legend .range{border-color:#d2bec8}
+.integrated-outlook svg#annualChart{width:100%;height:auto;display:block;min-height:210px}
+.integrated-outlook .axis-label{fill:#887b77;font-size:11px;font-family:system-ui,Arial,sans-serif}
+.integrated-outlook .grid-line{stroke:#e8e1db;stroke-width:1}
+.integrated-outlook .chart-history{stroke:#987044;stroke-width:2.5;fill:none}
+.integrated-outlook .chart-forecast{stroke:#542a46;stroke-width:3;fill:none}
+.integrated-outlook .chart-range{fill:#d7c6d0;opacity:.45}
+.integrated-outlook .chart-rule{stroke:#aa9c94;stroke-dasharray:3 5}
+.integrated-outlook .caption{font-size:11px!important;color:#877c76!important;margin-top:11px!important}
+.integrated-outlook .bars{display:grid;gap:12px;margin-top:22px}
+.integrated-outlook .bar-row{display:grid;grid-template-columns:130px 1fr 90px;align-items:center;gap:10px;font-size:12px}
+.integrated-outlook .bar-track{background:#ede8e2;border-radius:3px;height:13px;overflow:hidden}
+.integrated-outlook .bar-fill{display:block;background:#7a586e;height:100%;min-width:1px}
+.integrated-outlook .bar-row:nth-child(1) .bar-fill{background:#826043}
+.integrated-outlook .bar-row:nth-child(2) .bar-fill{background:#a68875}
+.integrated-outlook .bar-row:nth-child(3) .bar-fill{background:#8d708b}
+.integrated-outlook .bar-row:nth-child(4) .bar-fill{background:#63374b}
+.integrated-outlook .bar-row strong{font-variant-numeric:tabular-nums;text-align:right}
+.integrated-outlook .split-stat{display:flex;justify-content:space-between;margin-top:24px;border-top:1px solid var(--edge);padding-top:12px;gap:10px;font-size:13px}
+.integrated-outlook .split-stat strong{font-variant-numeric:tabular-nums}
+.integrated-outlook .compare-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.integrated-outlook .compare-row div{background:#f5eee8;padding:12px;border-radius:8px}
+.integrated-outlook .compare-row span{font-size:11px;color:#6a5b59;display:block}
+.integrated-outlook .compare-row strong{font:normal 25px Georgia,serif;margin-top:6px;display:block}
+.integrated-outlook .balance-track{height:38px;position:relative;display:grid;grid-template-rows:14px 14px;gap:8px;margin:15px 0}
+.integrated-outlook .balance-track span{background:var(--gold);border-radius:2px;height:100%;width:0}
+.integrated-outlook .balance-track span:last-child{background:var(--good)}
+.integrated-outlook .kv{display:grid;grid-template-columns: minmax(135px,1fr) 1.35fr;gap:8px 14px;font-size:12px;margin:17px 0 5px}
+.integrated-outlook .kv dt{color:#736965}
+.integrated-outlook .kv dd{margin:0;font-weight:600;text-align:right;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.integrated-outlook .bed-bars{display:grid;grid-template-columns:100px 1fr 1fr;gap:9px 12px;margin:15px 0}
+.integrated-outlook .bed-bars .th{font-size:11px;font-weight:800;color:#6c6261}
+.integrated-outlook .bed-bars .bed-label{font-size:12px}
+.integrated-outlook .bed-group{display:flex;align-items:center;gap:7px}
+.integrated-outlook .bed-group i{display:block;height:11px;background:#845777;min-width:1px}
+.integrated-outlook .bed-group.need i{background:#a68758}
+.integrated-outlook .bed-group small{font-size:11px;color:#554d4a;min-width:47px;text-align:right}
+.integrated-outlook .small-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.integrated-outlook .small-metrics div{background:#f6f0ea;padding:11px;border-radius:7px}
+.integrated-outlook .small-metrics strong{font:normal 22px Georgia,serif;display:block;margin-top:4px}
+.integrated-outlook .afford-note{font-size:11px;color:#80675d;background:#f6f1e9;padding:11px;border-radius:6px}
+.integrated-outlook .bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:13px 0}
+.integrated-outlook .downloads{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.integrated-outlook .downloads button, .integrated-outlook .downloads a{display:flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #d7c8bb;border-radius:7px;background:#f9f5ef;color:#704721;padding:11px;font-size:12px;cursor:pointer;text-align:center}
+.integrated-outlook .downloads button{background:#532f49;color:white;border-color:#532f49}
+.integrated-outlook .methodology .method-cols{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 25px}
+.integrated-outlook .methodology .method-cols div{border-top:1px solid var(--edge);padding-top:9px}
+.integrated-outlook .methodology h3{margin-top:8px}
+.integrated-outlook .methodology p{margin:5px 0 15px}
+.integrated-outlook .sources{padding:16px 4px 0}
+.integrated-outlook .sources h2{font-size:19px}
+.integrated-outlook .sources p{font-size:12px;line-height:1.7;color:#746866}
+@media (max-width:1040px){.integrated-outlook .metrics{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:720px){.integrated-outlook .major-grid, .integrated-outlook .bottom-grid, .integrated-outlook .methodology .method-cols{grid-template-columns:1fr}
+.integrated-outlook .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+.integrated-outlook .head{display:block}
+.integrated-outlook .legend{margin:10px 0}
+.integrated-outlook .card{padding:14px}
+.integrated-outlook .bar-row{grid-template-columns:105px 1fr 66px;gap:5px}
+.integrated-outlook .downloads{grid-template-columns:1fr}}
+@media (max-width:420px){.integrated-outlook .metrics article{padding:12px}
+.integrated-outlook .metrics strong{font-size:24px}
+.integrated-outlook .bed-bars{grid-template-columns:75px 1fr 1fr;gap:7px}
+.integrated-outlook .bed-group{gap:2px}
+.integrated-outlook .bed-group small{min-width:35px;font-size:10px}}
+/* Integrated forecast: shares map, geography, policy and response controls. */
+.integrated-outlook { --bg:#f6f2ec; --paper:#fffdfa; --ink:#292023; --muted:#6e6664; --edge:#dfd7ce; --accent:#734300; --plum:#572b46; --gold:#aa7442; --good:#466b59; max-width:1440px; margin:24px auto 40px; padding:0; color:#382c28; font:14px/1.5 "Source Sans 3",sans-serif; scroll-margin-top:16px; }
+.integrated-outlook * {box-sizing:border-box}
+.integrated-outlook .outlook-topbar {display:flex;align-items:start;justify-content:space-between;gap:18px;padding:18px 21px 15px;background:#f8f1e9;border:1px solid #e1cbbc;border-radius:12px 12px 0 0;border-bottom:0;}
+.integrated-outlook .outlook-topbar h2{font:normal clamp(21px,2.3vw,30px)/1.2 "Libre Caslon Display",Georgia,serif; margin:5px 0 7px;color:#3a2720}
+.integrated-outlook .outlook-topbar p{margin:0;color:#6b5549;font-size:13px;line-height:1.4;max-width:900px}
+.integrated-outlook .outlook-eyebrow {font-size:10px;letter-spacing:1.3px;font-weight:800;color:#875e46}
+.integrated-outlook .outlook-link-status {font-size:11px;border:1px solid #dbb9a5;background:#fffbf6;border-radius:8px;padding:7px 9px;white-space:nowrap;color:#77563d}
+.integrated-outlook .outlook-control-grid {display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;padding:15px 21px 8px;background:#f8f1e9;border-left:1px solid #e1cbbc;border-right:1px solid #e1cbbc;}
+.integrated-outlook .outlook-control-grid label{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:750;color:#604e45}
+.integrated-outlook .outlook-control-grid select{min-width:0;width:100%;background:#fffdf9;color:#4f4036;border:1px solid #d7c4b8;padding:8px 9px;font-size:12px;border-radius:7px}
+.integrated-outlook .outlook-selection {background:#f8f1e9;color:#79594b;padding:9px 21px 14px;font-size:12px;border:1px solid #e1cbbc;border-top:0;border-radius:0 0 12px 12px;margin-bottom:15px}
+.integrated-outlook .metrics{margin:8px 0 13px}
+.integrated-outlook .metrics article{background:#fffdf9;box-shadow:0 2px 5px rgba(49,34,25,.025)}
+.integrated-outlook .card{box-shadow:none;background:#fffdfa;color:#3d312a}
+.integrated-outlook .card h2{color:#3e2b25}
+.integrated-outlook .outlook-bottom-details, .integrated-outlook details.methodology{margin-top:13px;background:#fffdfa;border:1px solid #dfd7ce;border-radius:10px;padding:0;}
+.integrated-outlook .outlook-bottom-details>summary,.integrated-outlook details.methodology>summary {font-weight:700;font-size:13px;color:#5b3a30;cursor:pointer;padding:13px 17px;list-style:revert}
+.integrated-outlook .outlook-bottom-details>.bottom-grid {padding:0 13px 13px}
+.integrated-outlook details.methodology .kicker,.integrated-outlook details.methodology h2,.integrated-outlook details.methodology .method-cols,.integrated-outlook details.methodology>p {margin-left:17px;margin-right:17px}
+.integrated-outlook details.methodology h2 {margin-top:5px}
+.integrated-outlook details.methodology .method-cols{padding-top:12px}
+
+.integrated-outlook button:hover{filter:brightness(.98)}
+.integrated-outlook select:focus-visible{outline:2px solid #854442;outline-offset:2px}
+@media(max-width:980px){.integrated-outlook .outlook-control-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.integrated-outlook .outlook-topbar{display:block}.integrated-outlook .outlook-link-status{display:inline-block;margin-top:12px}}
+@media(max-width:650px){.integrated-outlook{margin:15px 0 28px}.integrated-outlook .outlook-control-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px}.integrated-outlook .outlook-topbar{padding:14px}.integrated-outlook .outlook-selection{padding:8px 12px;font-size:11px}.integrated-outlook .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:440px){.integrated-outlook .outlook-control-grid{grid-template-columns:1fr 1fr;gap:7px}.integrated-outlook .outlook-topbar h2{font-size:23px}}
+/* The original simulator used a viewport-height two-row main grid. With the
+   forecast integrated as a third section, allow the page to grow normally. */
+body.decision-card main#workspace{height:auto!important;min-height:calc(100dvh - 48px);display:block!important;overflow:visible!important;max-width:1580px}
+body.decision-card #workspace>.controls{margin-bottom:10px}
+body.decision-card #workspace>.workspace-grid{height:clamp(560px,calc(100dvh - 145px),780px)!important;min-height:560px!important}
+body.decision-card #workspace>.integrated-outlook{margin-top:22px}
+@media(max-width:760px){
+ body.decision-card #workspace>.workspace-grid{height:auto!important;min-height:0!important;display:flex;flex-direction:column}
+ body.decision-card #workspace>.workspace-grid .evidence{height:auto!important}
+ body.decision-card #workspace>.workspace-grid .map-card{min-height:410px;height:410px}
+ body.decision-card #workspace>.workspace-grid .map-stage{min-height:245px}
+ body.decision-card #workspace>.workspace-grid .detail{height:auto!important;min-height:0;display:block}
+}
+@media(max-width:760px){
+ body.decision-card header.brand{height:auto!important;min-height:50px;display:flex;flex-wrap:wrap;align-items:center;gap:5px;justify-content:space-between;padding:9px 10px}
+ body.decision-card header.brand .header-actions{flex-wrap:wrap;min-width:0;max-width:100%;gap:4px}
+ body.decision-card header.brand .header-actions>*{white-space:normal;font-size:11px}
+ body.decision-card .wordmark{font-size:21px;min-width:0;overflow-wrap:break-word}
+ body.decision-card main#workspace{max-width:100%;padding-left:8px;padding-right:8px}
+ body.decision-card .integrated-outlook .major-grid>.card{min-width:0}
+}
+@media(max-width:400px){
+ body.decision-card header.brand .header-actions button{font-size:10px;padding:6px 8px}
+ .integrated-outlook .kv{grid-template-columns:1fr 1fr;gap:6px}
+}
+/* Unified graph: lives in the primary evidence tabs alongside the interactive map. */
+body.decision-card .detail .tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;align-items:stretch}
+body.decision-card .detail .tabs .tab{min-width:0;min-height:36px;white-space:normal;font-size:11px;line-height:1.18;padding:7px 3px}
+body.decision-card .detail .tab-pane.graph-pane{padding:11px 12px 13px;min-width:0;overflow:auto;min-height:0}
+body.decision-card .detail .tab-pane.graph-pane.active{display:block}
+/* Graph tab keeps the SAME workspace columns as the Result tab. */
+.graph-pane .graph-heading h3{font-size:20px;line-height:1.17;letter-spacing:-.015em;margin:4px 0 5px;color:#332b27}
+.graph-pane .graph-heading p{font-size:12px;line-height:1.4;color:#6b6059;margin:0 0 9px}
+.graph-kicker{font-size:9px;font-weight:800;letter-spacing:.075em;color:#915355}
+.graph-toolbar{display:flex;gap:8px;align-items:flex-end;justify-content:space-between;margin-bottom:8px}
+.graph-toolbar label{font-size:11px;font-weight:700;color:#664d46;display:grid;gap:3px;flex:1;min-width:0}
+.graph-toolbar select{background:#fffdfa;border:1px solid #d4c8bd;border-radius:7px;padding:7px 8px;font:inherit;color:#3b2f2c;width:100%;font-weight:500}
+.graph-toolbar button,.outlook-graph-shortcut button{background:#542b46;color:#fff;border:0;border-radius:7px;padding:9px 12px;font:700 11px/1.2 system-ui,sans-serif;cursor:pointer;white-space:nowrap}
+.graph-series{display:flex;flex-wrap:wrap;gap:4px 6px;margin:7px 0 8px;max-height:103px;overflow:auto}
+.graph-chip{display:inline-flex;align-items:center;gap:4px;border:1px solid #e8ddd4;border-radius:5px;background:#fbf8f5;padding:4px 6px;font-size:10.5px;line-height:1.15;color:#544845;cursor:pointer;min-width:0}
+.graph-chip input{accent-color:#602b4d;inline-size:13px;block-size:13px;margin:0}
+.graph-chip i,.graph-value i{width:9px;height:9px;flex:0 0 9px;border-radius:50%;display:inline-block}
+.graph-plot{border:1px solid #eadfd5;border-radius:8px;background:#fffefa;padding:4px;overflow:hidden}
+#unifiedGraphSvg{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:960/360;min-height:185px;font-family:system-ui,sans-serif}
+.graph-axis{font-size:12px;fill:#7a6c67;font-weight:450}
+.graph-slider-row{display:flex;gap:10px;align-items:center;margin:8px 0 6px}
+.graph-slider-row label{font-size:11px;color:#65554d;min-width:105px}
+.graph-slider-row input{width:100%;min-width:0;accent-color:#8c4f6d}
+.graph-readout{padding:7px 9px;border:1px solid #ede5dc;border-radius:7px;background:#f9f5f0;max-height:116px;overflow:auto;display:flex;flex-wrap:wrap;gap:5px 10px;align-items:center}
+.graph-readout>strong{font-size:11px;width:100%;color:#503d35}
+.graph-value{display:inline-flex;gap:5px;align-items:center;font-size:10px;color:#63544d;max-width:100%}
+.graph-value b{font-size:10px;color:#312820;font-variant-numeric:tabular-nums;white-space:nowrap}
+.graph-caveat{font-size:10px;line-height:1.45;color:#7a6a63;margin:7px 0 0}
+.integrated-outlook .outlook-graph-shortcut{display:flex;gap:16px;align-items:center;justify-content:space-between;background:#f9f5f0;padding:15px 18px}
+.integrated-outlook .outlook-graph-shortcut h2{font-size:20px}
+.integrated-outlook .outlook-graph-shortcut p{font-size:12px;margin:4px 0 0;max-width:760px}
+@media(max-width:1180px){body.decision-card .detail .tab-pane.graph-pane{max-height:none}}
+@media(max-width:760px){body.decision-card .detail .tabs .tab{font-size:10px;padding:7px 2px;flex:auto;min-width:0}body.decision-card .detail .tab-pane.graph-pane{padding:10px 8px}.graph-series{max-height:none}.graph-plot svg{min-height:142px}.integrated-outlook .outlook-graph-shortcut{align-items:flex-start;flex-direction:column;gap:7px}.graph-readout{max-height:180px}.graph-chip{font-size:10px}.graph-toolbar button{padding:9px 8px}}
+
+.graph-series-header{display:flex;align-items:center;gap:8px;margin:4px 0 2px;font-size:10px;color:#76645b}
+.graph-series-header span{font-weight:700;margin-right:auto}
+.graph-series-header button{border:0;background:transparent;text-decoration:underline;text-underline-offset:2px;color:#744550;padding:1px 2px;cursor:pointer;font-weight:700;font-size:10px}
+
+/* Sample C methodology and source layout retained within unified tabs. */
+.forecast-extension{margin-top:15px}.forecast-extension>.method-policy-body{padding:12px}.forecast-extension .final-explain{padding:0}.sample-c-note{border-top:1px solid #e4d7ca;padding-top:9px;margin-top:14px}.sample-c-note p{font-size:12px;line-height:1.5}.source-detail{margin-top:15px}.source-detail>.source-table-inner{padding-top:6px}.source-detail .forecast-sources{border:0;margin:0;padding:0}.source-detail .forecast-sources h3{font-size:17px}.source-detail .forecast-download-list{margin-top:10px}
+/* Challenge-only release: all ancillary outlook evidence is in Graph, not a second page. */
+.graph-internal[hidden]{display:none!important}
+.graph-forecast-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:7px 0;padding:9px 10px;border:1px solid #e6d8cb;background:#fbf7f2;border-radius:7px}
+.graph-forecast-controls label{display:flex;flex-direction:column;gap:3px;min-width:0;font-size:10px;font-weight:700;color:#65514a}
+.graph-forecast-controls label:last-child{grid-column:1/-1}
+.graph-forecast-controls select{min-width:0;width:100%;border:1px solid #dac6b5;background:#fff;color:#4f3e37;padding:5px 7px;font-size:11px;border-radius:4px}
+.graph-selection-note{font-size:10px;line-height:1.45;color:#6f5951;padding:7px 2px 8px;max-width:100%;overflow-wrap:anywhere}
+body.decision-card .detail .tab-pane.graph-pane{max-height:670px;overflow-y:auto}
+body.decision-card .detail .tab-pane.graph-pane .graph-plot svg{display:block;max-width:100%}
+@media(max-width:720px){.graph-forecast-controls{grid-template-columns:repeat(2,minmax(0,1fr));padding:8px}.graph-forecast-controls select{font-size:10px}}

@@ -1,0 +1,36 @@
+THE TURNOUT — COUNTY/STATE CHALLENGE GRAPH FINAL RELEASE QA
+Date: 2026-11-17
+
+User-requested changes
+- No tract selection, tract maps, or tract-only downloadable data.
+- Map and right-hand panel keep the existing two-column dimensions.
+- Graph tab shows all four sections simultaneously in a compact 2-by-2 layout:
+  Policy impact, Compare reforms, Permit history, Building types.
+- No click-through graph sub-tabs, no competing forecast baseline settings,
+  no unrelated population, households, bedrooms or completions charts.
+- Consistent existing burgundy/cream colors and serif titles.
+- All displayed policy scenario results are passed from the main simulator.
+- On desktop the graph pane uses a fixed two-row grid without an internal
+  scrollbar; at narrow mobile sizes a single-column layout is used.
+
+Direct tests
+- JavaScript syntax for modified assets: PASS.
+- Four panels rendered together with a DOM test harness: PASS.
+- U.S. baseline 7,158,080, ADU added 880,759, total 8,038,839: PASS.
+- County selection updates the same four panels: PASS.
+- Policy change and sensitivity change: PASS.
+- Local JS/CSS and static assets referenced in index.html: verified at packaging.
+- ZIP archive test and SHA256 manifest: verified at packaging.
+
+What was not independently verified
+- A complete end-to-end browser interaction pass on the user's deployed
+  Hostinger server has not occurred. Headless Chromium screenshot navigation
+  stalled in this container; isolated graph logic was validated without it.
+- No underlying housing policy formulas or forecast values were changed.
+
+Model interpretation
+- 2026–2030 policy effects are conditional permit-authorizations scenarios.
+- They are not observed construction, completed homes or causal estimates.
+- 1990–2025 historical graph is supporting Census permit evidence, not a
+  separate forecast, and it may differ from published state totals because
+  of historical county coverage.

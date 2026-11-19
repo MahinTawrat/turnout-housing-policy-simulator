@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "description": "Explicit five-year sensitivity assumptions, not estimated causal effects.",
+  "cost_ratio_cap": 0.3,
+  "parameters": {
+    "ADU 5-year take-up": {
+      "parameter": "ADU 5-year take-up",
+      "low": 0.003,
+      "default": 0.01,
+      "high": 0.025,
+      "unit": "share of detached SF stock over 5 years",
+      "interpretation": "Conditional take-up assumption; not a forecast."
+    },
+    "Missing-middle 5-year redevelopment share": {
+      "parameter": "Missing-middle 5-year redevelopment share",
+      "low": 0.0005,
+      "default": 0.0025,
+      "high": 0.0075,
+      "unit": "share of detached SF stock over 5 years",
+      "interpretation": "Conditional redevelopment assumption; not a forecast."
+    },
+    "Missing-middle net additional units per redevelopment": {
+      "parameter": "Missing-middle net additional units per redevelopment",
+      "low": 1,
+      "default": 2,
+      "high": 3,
+      "unit": "net units",
+      "interpretation": "2-unit reform implies at least +1 net unit; higher cases allow stronger utilization of 2-6 unit entitlement."
+    },
+    "TOD production uplift in exposed areas": {
+      "parameter": "TOD production uplift in exposed areas",
+      "low": 0.1,
+      "default": 0.25,
+      "high": 0.5,
+      "unit": "percent increase in baseline production in TOD exposure area",
+      "interpretation": "Applied only to the share of housing stock represented as within 1/2 mile of major transit."
+    },
+    "Parking reform share of baseline development affected": {
+      "parameter": "Parking reform share of baseline development affected",
+      "low": 0.25,
+      "default": 0.5,
+      "high": 0.75,
+      "unit": "share",
+      "interpretation": "Not every new development is constrained by a parking minimum."
+    },
+    "Parking spaces avoided per affected unit": {
+      "parameter": "Parking spaces avoided per affected unit",
+      "low": 0.2,
+      "default": 0.4,
+      "high": 0.6,
+      "unit": "spaces per housing unit",
+      "interpretation": "Default is approximately consistent with Seattle evidence showing about 40% less parking after reform."
+    },
+    "Parking construction cost per avoided space": {
+      "parameter": "Parking construction cost per avoided space",
+      "low": 20000,
+      "default": 30000,
+      "high": 45000,
+      "unit": "2026 dollars",
+      "interpretation": "Default approximately matches Seattle implied savings per avoided parking space."
+    },
+    "Parking cost-to-supply elasticity": {
+      "parameter": "Parking cost-to-supply elasticity",
+      "low": 0.2,
+      "default": 0.5,
+      "high": 0.8,
+      "unit": "elasticity assumption",
+      "interpretation": "Converts project cost reduction into a conditional housing-production response."
+    },
+    "Development fee savings per unit": {
+      "parameter": "Development fee savings per unit",
+      "low": 25000,
+      "default": 25000,
+      "high": 25000,
+      "unit": "dollars per housing unit",
+      "interpretation": "Challenge benchmark: $50,000 fees reduced 50%, giving $25,000 savings."
+    },
+    "Development fee cost-to-supply elasticity": {
+      "parameter": "Development fee cost-to-supply elasticity",
+      "low": 0.2,
+      "default": 0.5,
+      "high": 0.8,
+      "unit": "elasticity assumption",
+      "interpretation": "Converts fee savings relative to project-value proxy into a conditional supply response."
+    }
+  },
+  "benchmark_definitions": {
+    "adu": "One detached or semi-detached ADU of at least 600 square feet on an existing single-family parcel; no additional parking required.",
+    "missing_middle": "Allow 2–6 homes on single-family-only parcels, up to three stories; setbacks and lot coverage may be nonbinding.",
+    "tod": "Increase allowed density within half a mile (804.672 metres) of qualifying major fixed-guideway transit stops. Original exposure provenance remains incomplete in frozen mode.",
+    "parking": "Reduce or remove mandatory parking; developers may still voluntarily provide parking. Only the assumed avoided spaces on the affected development share generate savings.",
+    "fee": "Reduce all major development fee categories by 50% from the standardized $50,000-per-home benchmark, saving $25,000."
+  }
+}

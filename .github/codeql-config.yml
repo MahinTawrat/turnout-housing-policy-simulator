@@ -1,0 +1,10 @@
+name: Application and analytical logic
+paths:
+  - src/turnout
+  - src/web/assets
+  - scripts
+paths-ignore:
+  - '**/d3.min.js'
+  - '**/counties/geo/**'
+  - '**/state-geo.js'
+  - '**/national-county-overview.js'

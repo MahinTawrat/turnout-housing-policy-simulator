@@ -1,0 +1,363 @@
+{
+  "datasets": [
+    {
+      "id": "bps_history",
+      "title": "Census state building permits · 2000–2025",
+      "what": "Homes given permission to be built each year, by state and building size.",
+      "used": "Choose and test the five-year starting point.",
+      "source_url": "https://www.census.gov/construction/bps/",
+      "download_url": "https://www.census.gov/construction/bps/xls/state_history.xlsx",
+      "local_download": "data/state_permit_history_2000_2025.csv",
+      "note": "Numeric cells are unit counts despite the workbook's thousands heading."
+    },
+    {
+      "id": "bps_2025_state",
+      "title": "Census state building permits · 2025",
+      "what": "Final 2025 counts and reported construction values.",
+      "used": "Check each state’s 2025 starting number.",
+      "source_url": "https://www.census.gov/construction/bps/",
+      "download_url": "https://www2.census.gov/econ/bps/State/st2025a.txt",
+      "note": "State valuation columns use thousands of dollars; counts use units."
+    },
+    {
+      "id": "bps_2025_county",
+      "title": "Census county building permits · 2025",
+      "what": "Permits and construction values for each county.",
+      "used": "Work out county starting points and compare parking or fee savings with building values.",
+      "source_url": "https://www.census.gov/construction/bps/",
+      "download_url": "https://www2.census.gov/econ/bps/County/co2025a.txt",
+      "local_download": "data/policy_county_inputs.csv",
+      "note": "Local CSV includes inherited stock, transit and modeled cost inputs."
+    },
+    {
+      "id": "bps_county_history",
+      "title": "Census past county permits · 1990–2025",
+      "what": "Yearly county permit counts for buildings with 1, 2, 3–4 or 5+ homes.",
+      "used": "Draw the past-permit and building-type graphs.",
+      "source_url": "https://www.census.gov/construction/bps/annual.html",
+      "download_url": "https://www2.census.gov/econ/bps/County/",
+      "download_label": "Original annual files ↗",
+      "local_download": "data/county_permits_history_1990_2025.csv",
+      "note": "County codes and coverage change over time; historical boundaries are not harmonized. State/U.S. graph history sums the attached county series and may differ from the state baseline source."
+    },
+    {
+      "id": "acs_b25024",
+      "title": "Census homes by building size · B25024",
+      "what": "Detached houses, attached houses and homes in larger buildings.",
+      "used": "Provide the detached-home count used for ADUs and small-building examples.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B25024.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25024.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": "Housing units are not verified eligible parcels."
+    },
+    {
+      "id": "acs_b01001",
+      "title": "Census population by age · B01001",
+      "what": "How many people are in each age group.",
+      "used": "Describe who lives in the area and support household calculations.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B01001.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b01001.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": "Population denominators include group-quarter residents."
+    },
+    {
+      "id": "acs_b01002",
+      "title": "Census middle age · B01002",
+      "what": "The median age: half the people are younger and half are older.",
+      "used": "Describe the area’s age profile.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B01002.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b01002.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": ""
+    },
+    {
+      "id": "acs_b11016",
+      "title": "Census household sizes · B11016",
+      "what": "How many households have one, two or more people.",
+      "used": "Show how many people live together.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B11016.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b11016.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": ""
+    },
+    {
+      "id": "acs_b19013",
+      "title": "Census household income · B19013",
+      "what": "The middle household income, in 2024 dollars.",
+      "used": "Describe income alongside housing costs.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B19013.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b19013.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": ""
+    },
+    {
+      "id": "acs_b25002",
+      "title": "Census occupied and empty homes · B25002",
+      "what": "Homes with residents and homes without residents.",
+      "used": "Describe the existing housing supply.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B25002.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25002.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": ""
+    },
+    {
+      "id": "acs_b25003",
+      "title": "Census owners and renters · B25003",
+      "what": "Homes occupied by their owners or by renters.",
+      "used": "Count owner and renter households.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B25003.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25003.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": ""
+    },
+    {
+      "id": "acs_b25004",
+      "title": "Census reasons homes are empty · B25004",
+      "what": "Homes for rent, for sale, used seasonally or empty for other reasons.",
+      "used": "Keep different kinds of empty homes separate.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B25004.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25004.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": "Vacant units are not all usable excess supply."
+    },
+    {
+      "id": "acs_b25007",
+      "title": "Census householders by age · B25007",
+      "what": "Owner and renter households grouped by the main householder’s age.",
+      "used": "Describe age differences among households.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B25007.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25007.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": ""
+    },
+    {
+      "id": "acs_b25010",
+      "title": "Census people per household · B25010",
+      "what": "Average number of people living in an occupied home.",
+      "used": "Turn population examples into possible household changes.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B25010.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25010.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": ""
+    },
+    {
+      "id": "acs_b25014",
+      "title": "Census people per room · B25014",
+      "what": "Owner and renter homes grouped by how many people share each room.",
+      "used": "Count homes with more than one person per room.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B25014.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25014.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": "Crowding means more than one person per room, not per bedroom."
+    },
+    {
+      "id": "acs_b25031",
+      "title": "Census rent by bedroom count · B25031",
+      "what": "Typical monthly rent for homes with different numbers of bedrooms.",
+      "used": "Describe rents for smaller and larger homes.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B25031.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25031.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": "Some county/bedroom rent estimates are unavailable."
+    },
+    {
+      "id": "acs_b25034",
+      "title": "Census age of buildings · B25034",
+      "what": "Homes grouped by when their building was built.",
+      "used": "Describe the age of existing homes.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B25034.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25034.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": "Building age does not establish condition or replacement losses."
+    },
+    {
+      "id": "acs_b25042",
+      "title": "Census bedrooms in owner and renter homes · B25042",
+      "what": "Occupied homes grouped by bedroom count.",
+      "used": "Describe the bedrooms in existing homes.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B25042.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25042.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": ""
+    },
+    {
+      "id": "acs_b25064",
+      "title": "Census typical monthly rent · B25064",
+      "what": "The middle monthly rent among homes where rent is paid.",
+      "used": "Keep rent information in the housing data download.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B25064.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25064.dat",
+      "note": "Not used in production or household forecast equations."
+    },
+    {
+      "id": "acs_b25070",
+      "title": "Census rent compared with income · B25070",
+      "what": "Rent as a share of renter household income.",
+      "used": "Count renters spending 30% or 50% or more of their income on housing.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B25070.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25070.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": "Displayed percentages exclude uncomputed rent-to-income ratios."
+    },
+    {
+      "id": "acs_b25077",
+      "title": "Census typical home value · B25077",
+      "what": "The middle value of homes lived in by their owners.",
+      "used": "Keep home-value information in the housing data download.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B25077.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25077.dat",
+      "note": "Not used in production or household forecast equations."
+    },
+    {
+      "id": "acs_b25124",
+      "title": "Census household size and building size · B25124",
+      "what": "Household size, owner or renter status, and homes in the building.",
+      "used": "Describe which households live in different building sizes.",
+      "source_url": "https://api.census.gov/data/2024/acs/acs5/groups/B25124.html",
+      "download_url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25124.dat",
+      "local_download": "data/acs_housing_evidence.csv",
+      "note": ""
+    },
+    {
+      "id": "population_components",
+      "title": "Census population changes · 2020–2025",
+      "what": "Population, births, deaths and people moving in or out.",
+      "used": "Explore how many households there might be in 2030.",
+      "source_url": "https://www.census.gov/programs-surveys/popest.html",
+      "download_url": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/counties/totals/co-est2025-alldata.csv",
+      "local_download": "data/population_household_scenarios.csv",
+      "note": "One revised vintage; local continuations are not official projections."
+    },
+    {
+      "id": "hud_chas",
+      "title": "HUD housing problems · 2018–2022",
+      "what": "Housing costs and other problems faced by lower-income renters.",
+      "used": "Show existing housing problems, not a count of missing homes.",
+      "source_url": "https://www.huduser.gov/portal/datasets/cp.html",
+      "download_url": "https://www.huduser.gov/portal/datasets/cp/2018thru2022-050-csv.zip",
+      "local_download": "data/chas_housing_problems.csv",
+      "note": "Rounded county estimates; state/national sums are approximate."
+    },
+    {
+      "id": "transit_stops",
+      "title": "BTS transit stop map",
+      "what": "The qualifying transit locations used in the supplied data.",
+      "used": "Estimate the share of housing near qualifying transit.",
+      "source_url": "https://www.bts.gov/national-transit-map",
+      "download_url": null,
+      "local_download": "data/policy_county_inputs.csv",
+      "note": "Original stop-selection vintage and source archive were not recovered."
+    },
+    {
+      "id": "tract_geometry",
+      "title": "Census boundaries for small areas",
+      "what": "Map shapes used with housing counts and transit locations.",
+      "used": "Estimate how much housing is within half a mile of qualifying transit.",
+      "source_url": "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html",
+      "download_url": null,
+      "local_download": "data/policy_county_inputs.csv",
+      "note": "Original tract archive and exact overlay workflow were not recovered."
+    },
+    {
+      "id": "display_boundaries",
+      "title": "State and county map shapes",
+      "what": "The outlines displayed on the map.",
+      "used": "Let people find and choose a place.",
+      "source_url": "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html",
+      "download_url": null,
+      "note": "Original display-boundary archive and vintage were not recovered."
+    },
+    {
+      "id": "ca_population_benchmark",
+      "title": "California population projections · 2026 edition",
+      "what": "Official projections for California and its counties.",
+      "used": "Compare our population examples with another projection.",
+      "source_url": "https://dof.ca.gov/Forecasting/Demographics/Projections/",
+      "download_url": "https://dof.ca.gov/media/docs/forecasting/Demographics/projections/P2A_County_Total.xlsx",
+      "local_download": "data/independent_population_benchmarks.csv",
+      "note": ""
+    },
+    {
+      "id": "nc_population_benchmark",
+      "title": "North Carolina population projections · 2025 edition",
+      "what": "Official projections for North Carolina and its counties.",
+      "used": "Compare our population examples with another projection.",
+      "source_url": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/countystate-population-projections/population-summary",
+      "download_url": null,
+      "local_download": "data/independent_population_benchmarks.csv",
+      "note": "Extracted from the official summary table."
+    },
+    {
+      "id": "challenge_and_assumptions",
+      "title": "Policy definitions and chosen assumptions",
+      "what": "The five policy examples and their Low, Default and High settings.",
+      "used": "Define the rules being tested and the numbers we assume.",
+      "source_url": "https://housingchallenge.turnout.rocks/handbook.html",
+      "download_url": null,
+      "local_download": "data/policy_parameter_assumptions.csv",
+      "note": "The handbook defines benchmarks; national response rates remain model assumptions."
+    }
+  ],
+  "research": [
+    {
+      "title": "Seattle 2024 ADU Annual Report",
+      "url": "https://www.seattle.gov/documents/departments/opcd/ongoinginitiatives/encouragingbackyardcottages/opcd-aduannualreport2024.pdf",
+      "used": "Shows changes in Seattle ADU permits. It does not measure a national take-up rate.",
+      "download_url": "https://www.seattle.gov/documents/departments/opcd/ongoinginitiatives/encouragingbackyardcottages/opcd-aduannualreport2024.pdf"
+    },
+    {
+      "title": "Massachusetts ADU rules and reported outcomes",
+      "url": "https://www.mass.gov/info-details/accessory-dwelling-units",
+      "used": "Explains ADU rules and reported results in Massachusetts.",
+      "download_url": null
+    },
+    {
+      "title": "Land-Use Reforms and Housing Costs · 2023",
+      "url": "https://www.urban.org/research/publication/land-use-reforms-and-housing-costs",
+      "used": "Studies housing-rule changes across cities. It does not measure this exact 2–6-home example.",
+      "download_url": null
+    },
+    {
+      "title": "The Financial Feasibility of Transit-Oriented Development · 2025",
+      "url": "https://www.urban.org/research/publication/financial-feasibility-transit-oriented-development",
+      "used": "Shows how rents and costs affect building projects near transit.",
+      "download_url": null
+    },
+    {
+      "title": "Residential minimum parking requirements in Seattle · 2020",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0264837718312870",
+      "used": "Studies how Seattle builders changed the parking they provided.",
+      "download_url": null
+    },
+    {
+      "title": "Seattle parking reform policy background · 2012",
+      "url": "https://council.seattle.gov/2012/05/10/removing-minimum-parking-requirements-where-unneeded/",
+      "used": "Explains Seattle’s parking-rule changes.",
+      "download_url": null
+    },
+    {
+      "title": "Burge and Ihlanfeldt: Impact fees and single-family home construction · 2006",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0094119006000222",
+      "used": "Studies how development fees, infrastructure and construction may affect each other.",
+      "download_url": "https://cosspp.fsu.edu/wp-content/uploads/sites/8/2020/09/06.2006-Impact-Fees-and-Single%E2%80%93Family-Home-Construction1.pdf"
+    },
+    {
+      "title": "Census BPS methodology",
+      "url": "https://www.census.gov/construction/bps/methodology.html",
+      "used": "Explains what Census permit counts and construction values mean.",
+      "download_url": null
+    },
+    {
+      "title": "Census: Homeowner and Rental Vacancies in the ACS · 2026",
+      "url": "https://www2.census.gov/library/publications/2026/demo/acs-64.pdf",
+      "used": "Explains how Census calculates the share of homes available to rent or buy.",
+      "download_url": "https://www2.census.gov/library/publications/2026/demo/acs-64.pdf"
+    },
+    {
+      "title": "HUD CHAS definitions",
+      "url": "https://www.huduser.gov/portal/datasets/cp/CHAS/bg_chas.html",
+      "used": "Explains HUD housing-problem and income measures.",
+      "download_url": null
+    }
+  ]
+}

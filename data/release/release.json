@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "mode": "official",
+  "sources_verified": 117,
+  "spatial_version": "turnout.fixed-guideway-area.v3.f0c6338765739d7e",
+  "historical_rows": 108768,
+  "source_snapshot_preserved": true,
+  "interpretation": "Separately versioned official reconstruction. Transit and display results can differ from the approved frozen release.",
+  "display_version": "turnout.display-cartographic20m.v1.0c63e44504f36e87",
+  "files": {
+    "analytical_inputs.json.gz": "2317496bb43eb3d0d27d329208e97959da64e8e6786aa12f32d4c7fb881dcf49",
+    "county_permits_history_1990_2025.csv.gz": "2614f6897de09428641f52fe1c6fbbc3c00c8dac741cd1930b0592c5f9d87404",
+    "independent_benchmarks.csv": "9bb5b04fd0fecbd88db999d903cda7f20125f5f68ca2c0a1605d4ae36e647171",
+    "maps.json.gz": "e09e11018eb6482bb831367f8fa2ace8a047061cf8c34918470f482ce88696c7",
+    "policy_changes.csv": "e0657360e81d2cb9b431d18762a79ac542cb46b31fd0f5406532edac146c9cf2",
+    "policy_inputs.json": "ad1b90e6b350881ead0eb5ffc26849a6e751e72ae9dbc6e5aed0d438487ca3a8",
+    "production_history.csv": "de5fbf63ab00e53da4691e6afbb96abe42afb03e9b7870e810ee1a96850138b6",
+    "spatial/display_boundaries_manifest.json": "06d2212cf565e4bf6fff0d5c22c2c4dd349102a62dadd970528fc1058017806e",
+    "spatial/spatial_manifest.json": "b202148e4271af851c08cd99a82cd8fd20f31f6c3697dab9324b7bfb1479114e",
+    "spatial/transit_exposure.csv": "70703893f749e6e325e5b2c756cdc558d69837b2a3a7508a0fe2546f49661892",
+    "spatial/transit_exposure_delta.csv": "7321e20a96b99c625b74d9c190c2b6535c6d70de426d96b7d8b4a8afed51e640"
+  }
+}

@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "turnout-housing-policy-simulator"
+version = "1.0.0"
+description = "Reproducible public-data housing policy scenarios"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["turnout*"]

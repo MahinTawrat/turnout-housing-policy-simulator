@@ -1,0 +1,9 @@
+The Turnout Housing Policy Impact Simulator
+Copyright 2026 Mahin R. Tawrat and project contributors.
+
+First-party code is licensed under Apache License 2.0, selected by the owner.
+D3 7.9.0 is ISC licensed. Its notice is retained in
+src/web/licenses/D3_LICENSE.txt and in the bundled library.
+
+Data terms are separate from the code license; see config/sources.json and
+docs/DATA.md. Codex assisted research, programming, documentation and tests.

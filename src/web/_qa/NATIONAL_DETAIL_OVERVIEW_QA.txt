@@ -1,0 +1,4 @@
+National county overview: 3144 official county geometries from existing package.
+Tract overview: 84122 mapped tract records (U.S. and D.C.), split into 51 state assets.
+Geometry is simplified for fast national/state overview displays; county-by-county detailed shapes are unchanged.
+Added homes are ORIGINAL modeled tract allocations, no recomputation.

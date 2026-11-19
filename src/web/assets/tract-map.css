@@ -1,0 +1,10 @@
+
+#tractSelectWrap{min-width:150px;flex:1 1 150px}#tractSelectWrap[hidden],#tractGraph[hidden]{display:none!important}
+.tract-select-status{display:block;color:#735f57;font-size:10px;line-height:1.25}.tract-shape{cursor:pointer;transition:stroke-width .12s}
+.tract-summary{padding:14px 12px}.tract-summary h3{font-family:Georgia,serif;font-size:21px;margin:0 0 10px}
+.tract-eyebrow{font-size:10px;letter-spacing:.09em;font-weight:700;color:#854442}.tract-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+.tract-kpis>div{border:1px solid #e5d3c8;background:#fffaf5;padding:9px 8px}.tract-kpis span{display:block;font-size:11px;color:#705f55}.tract-kpis strong{font-size:21px;color:#4b2925}
+.tract-stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}.tract-stat-grid span{padding:8px;border-bottom:1px solid #e6d6cd;font-size:12px}.tract-note{color:#735f57;font-size:12px;line-height:1.5}
+.tract-graph{border:1px solid #eaded4;border-radius:5px;padding:13px;background:#fffcf8;margin-bottom:12px}.tract-graph h3{margin:0 0 3px;font-size:16px}.tract-graph p{font-size:12px;color:#705c53}
+.tract-bars{display:grid;gap:12px;margin:13px 0}.tract-bars span{font-size:12px}.tract-bar-track{height:13px;background:#eee0d8;margin-top:4px}.tract-bar-track span{display:block;height:100%}
+@media(max-width:700px){.tract-kpis{gap:5px}.tract-kpis strong{font-size:17px}.tract-stat-grid{grid-template-columns:1fr}}

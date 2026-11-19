@@ -1,3 +1,19 @@
+# Local source caches and generated releases
+/data/raw/
+/data/generated/
+/data/tooling/
+/data/derived/
+/data/reconstructed/
+/data/acquisition_live_*.json
+/build/
+/dist/
+/node_modules/
+*.zip
+.env
+.env.*
+!.env.example
+*.log
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

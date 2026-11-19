@@ -1,0 +1,42 @@
+/* The Turnout 2026–2030 — unified national, county and tract control layout */
+body.decision-card .controls{grid-template-columns:minmax(180px,1fr) minmax(230px,1.45fr) minmax(250px,1.15fr);gap:10px;align-items:start;padding:9px 12px}
+body.decision-card #tractSelectWrap{display:block;min-width:0;min-height:0}
+body.decision-card .assumption-field{grid-column:auto;min-width:0}
+body.decision-card .field select{min-width:0;height:35px}
+body.decision-card .segment{height:35px}
+body.decision-card .map-card{grid-template-rows:auto minmax(0,1fr) auto auto}
+body.decision-card .map-policy-bar{background:#f5ece5;padding:8px 10px;border-top:1px solid #dfcfc0}
+body.decision-card .map-policy-picker{margin:0;min-width:0}
+body.decision-card .map-policy-picker .policy-picker-lead{font-size:11px;margin:0 0 6px;font-weight:700;letter-spacing:.025em;color:#64443b}
+body.decision-card .map-policy-picker .policy-options{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
+body.decision-card .map-policy-picker .policy-pick{height:34px;white-space:normal;line-height:1.14;font-size:12px}
+body.decision-card .impact-legend{padding:7px 10px}
+body.decision-card .tract-color-legend[hidden],body.decision-card #percentLegend[hidden]{display:none!important}
+body.decision-card .tract-color-legend{display:flex;align-items:center;gap:8px 13px;flex-wrap:wrap;grid-column:1 / -1;font-size:10.5px;color:#665049}
+.tract-color-legend span{display:inline-flex;gap:4px;align-items:center}.tract-color-legend i{display:inline-block;width:19px;height:10px;border:1px solid #d3bdb0}
+.tract-color-legend small{flex-basis:100%;color:#725e57;line-height:1.25}
+body.decision-card .map-stage{position:relative}
+#nationalTractCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:2;cursor:crosshair;touch-action:none;transform-origin:0 0}
+#nationalTractCanvas[hidden]{display:none!important}
+.map-loader{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);max-width:80%;background:#fffdf9;border:1px solid #d6bbae;padding:12px 19px;box-shadow:0 8px 22px #5a403d22;z-index:3;font-size:13px;text-align:center;color:#60443a;pointer-events:none}
+.map-loader[hidden]{display:none!important}
+body.decision-card .map-stage .tooltip{z-index:12}
+body.decision-card .graph-pane .tract-graph[hidden]{display:none!important}
+body.decision-card.is-tract-view #graphPane .graph-heading,body.decision-card.is-tract-view #graphPane .graph-toolbar,body.decision-card.is-tract-view #graphPane .graph-forecast-controls,body.decision-card.is-tract-view #graphPane .graph-selection-note,body.decision-card.is-tract-view #graphPane .graph-series-header,body.decision-card.is-tract-view #graphPane .graph-series,body.decision-card.is-tract-view #graphPane .graph-plot,body.decision-card.is-tract-view #graphPane .graph-slider-row,body.decision-card.is-tract-view #graphPane .graph-readout,body.decision-card.is-tract-view #graphPane .graph-caveat{display:none!important}
+.tract-focus-header h3{font-size:21px;color:#3c2f2f;margin:0 0 6px}.tract-focus-header p{font-size:12px;color:#725e57;margin:0 0 14px}
+.tract-graph-section{margin-top:16px}.tract-graph-section h4{margin:0 0 9px;font-size:13px;color:#4e3630}
+.tract-data-bar{display:grid;grid-template-columns:minmax(150px,.95fr) minmax(0,2fr) auto;gap:8px;align-items:center;margin:8px 0;font-size:12px}
+.tract-data-track{height:14px;background:#efe2da;border-radius:3px;overflow:hidden}
+.tract-data-track > i{display:block;height:100%;min-width:2px;background:#854442;border-radius:2px}
+.tract-data-bar strong{min-width:48px;text-align:right;font-variant-numeric:tabular-nums}
+.tract-graph-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:13px}
+.tract-graph-grid span{font-size:10px;color:#75675c}.tract-graph-grid strong{display:block;font-size:17px;color:#3c2f2f}
+.tract-graph-box{background:#f9f3ed;border:1px solid #e8d9cb;border-radius:5px;padding:10px}
+.tract-graph-description{padding-top:12px;font-size:11.5px;color:#79665c;line-height:1.5;border-top:1px solid #e5d6cd;margin-top:15px}
+@media (max-width:980px){body.decision-card .controls{grid-template-columns:repeat(2,minmax(0,1fr))}body.decision-card .map-policy-picker .policy-pick{font-size:11px;padding:6px 3px}}
+@media (max-width:700px){body.decision-card .controls{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}body.decision-card .map-card{height:500px!important;min-height:500px}body.decision-card .map-policy-bar{padding:6px 7px}body.decision-card .map-policy-picker .policy-options{gap:2px}body.decision-card .map-policy-picker .policy-pick{font-size:10.5px}body.decision-card .tract-color-legend{gap:4px 9px}.tract-data-bar{grid-template-columns:100px minmax(0,1fr) 50px;gap:5px;font-size:11px}.tract-graph-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* County-only release: the state/county policy control row has three equal-height fields. */
+body.decision-card .controls{grid-template-columns:minmax(180px,1fr) minmax(220px,1.35fr) minmax(230px,1.1fr)}
+@media(max-width:780px){body.decision-card .controls{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){body.decision-card .controls{grid-template-columns:minmax(0,1fr)}}
