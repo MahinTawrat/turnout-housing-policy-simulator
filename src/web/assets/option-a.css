@@ -1,0 +1,364 @@
+/* Adapted from preview-refinements.css; presentation only. */
+/* Option A presentation: two editorial tabs, original The Turnout palette/typography. */
+body.decision-card .tabs .tab{min-width:0;white-space:normal;font-size:11.5px;line-height:1.18;padding:9px 5px}
+body.decision-card #resultPane{padding:9px 11px;overflow:auto;overscroll-behavior:contain}
+body.decision-card .pv-results{display:flex;flex-direction:column;gap:10px;color:#3c2f2f;font-family:var(--sans);font-size:12px;line-height:1.35}
+body.decision-card .pv-results p,body.decision-card .pv-how p{margin:0;line-height:1.39}
+.pv-overline{color:#7e6057;font-size:10px;letter-spacing:.025em;font-weight:650;text-transform:uppercase}
+.pv-policy-intro{display:flex;flex-direction:column;gap:3px;padding-bottom:7px;border-bottom:1px solid #e5d6c8}
+.pv-policy-intro h3{font:26px/1.08 var(--serif);letter-spacing:-.015em;color:#3c2f2f;margin:1px 0 3px}
+.pv-policy-intro h4{font:700 12px/1.2 var(--sans);color:#854442;margin:0}
+.pv-policy-intro p:last-child{font-size:12.4px;color:#574942}
+.pv-results .pv-section{min-width:0}
+.pv-results .pv-stephead,.pv-how .pv-stephead{display:flex;align-items:center;gap:8px;margin-bottom:6px;min-width:0}
+.pv-results .pv-stephead h4,.pv-how .pv-stephead h4{color:#3c2f2f;font:700 13px/1.2 var(--sans);margin:0}
+.pv-results .dc-step-number,.pv-how .dc-step-number{flex:none}
+.pv-results .dc-effect-main{grid-template-columns:minmax(0,.63fr) minmax(0,1.4fr);gap:10px}
+.pv-results .dc-impact>strong{font:43px/.98 var(--serif);color:#854442}
+.pv-results .dc-impact>span{font-size:11.5px;line-height:1.17;font-weight:600}
+.pv-results .dc-impact>span small{display:block;margin-top:2px;font-size:10px;color:#775e55;font-weight:400}
+.pv-results .dc-comparison{gap:6px;padding:8px 9px;background:#faf6f1}
+.pv-results .dc-comparison>div+div{padding-left:7px}
+.pv-results .dc-comparison span{font-size:10.8px;line-height:1.2;min-height:0}
+.pv-results .dc-comparison span small{font-size:9.5px;display:block;line-height:1.16;margin:2px 0 5px;color:#7b675a}
+.pv-results .dc-comparison b{font-size:24px}
+.pv-results .pv-small{font-size:11px;color:#766358;margin-top:5px}
+.pv-results .pv-percent{font-size:11.5px;color:#4d3831;margin-top:4px}
+.pv-results .pv-note{font-size:10.8px;color:#78665b;margin-top:3px}
+.pv-results .pv-burgundy{background:#854442;color:#fff;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.pv-results .pv-burgundy .pv-stephead{margin-bottom:0}
+.pv-results .pv-burgundy .pv-stephead h4{color:#fff}
+.pv-results .pv-burgundy .dc-step-number{border-color:#d8aea0;color:#fff;background:transparent}
+.pv-results .pv-burgundy p{color:#fff8f2;font-size:11.5px}
+.pv-focus-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid #b88279;border-bottom:1px solid #b88279}
+.pv-focus-pair .pv-local-fact{border:0;padding:6px 8px 6px 0;display:block}
+.pv-focus-pair .pv-local-fact:nth-child(2){border-left:1px solid #b88279;padding-left:11px}
+.pv-focus-pair .pv-local-fact strong{color:#fff;font-size:24px}
+.pv-focus-pair .pv-local-fact b{color:#fff;font-size:10.6px}
+.pv-focus-pair .pv-local-fact small{color:#f5e3db;font-size:9.8px}
+.pv-focus-pair .pv-local-fact em{display:none}
+.pv-results .pv-burgundy .pv-focus-math{font-size:10.5px;line-height:1.31;color:#f3dfd3}
+.pv-results .pv-burgundy .pv-housing-type{font-size:10.7px;color:#fff}
+.pv-results .pv-section:not(.pv-burgundy)>p{margin-top:4px}
+.pv-results .pv-local-check{font-size:11.5px;color:#6e5146}
+.pv-results .pv-details-hint{font-size:10.6px;color:#826d60}
+.pv-results .pv-context{border-top:1px solid #e5d6c8;padding-top:9px}
+.pv-context-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px;background:#faf7f3;border:1px solid #eadfd6;padding:4px 8px}
+.pv-local-fact{display:flex;align-items:start;gap:6px;min-width:0;padding:5px 1px;border-bottom:1px solid #eadecf}
+.pv-context-grid .pv-local-fact:nth-last-child(-n+2){border-bottom:0}
+.pv-local-fact strong{color:#704b40;font:22px/1 var(--serif);white-space:nowrap;flex:none}
+.pv-local-fact>div{min-width:0}
+.pv-local-fact b{font-size:10.6px;display:block;line-height:1.13;color:#513c35}
+.pv-local-fact small{font-size:9.6px;line-height:1.16;color:#756358;display:block;margin-top:2px}
+.pv-local-fact em{display:block;font-size:9px;color:#95695a;font-style:normal;font-weight:600;margin-top:2px}
+.pv-results .pv-households{font-size:10.8px;color:#705c50}
+.pv-results .pv-bottom-note{border-top:1px solid #e8dcd0;padding-top:7px;font-size:10px;color:#876f63}
+/* How It Works: five visible numbered stages; trace sources in dense accessible tables. */
+body.decision-card #calculationPane{padding:11px 14px;overflow:auto;overscroll-behavior:contain}
+.pv-how{font:12.3px/1.46 var(--sans);color:#3c2f2f;display:flex;flex-direction:column;gap:0}
+.pv-how-header{border-bottom:1px solid #e5d6c8;padding-bottom:11px;margin-bottom:8px}
+.pv-how-header h3{font:26px/1.08 var(--serif);margin:5px 0;color:#3c2f2f}
+.pv-how-header p:last-child{color:#6a594f}
+.pv-how-step{padding:11px 0 14px;border-bottom:1px solid #e7dcd3}
+.pv-how-step:last-child{border-bottom:0}
+.pv-how .pv-stephead h4{font-size:15px;color:#854442}
+.pv-how-step>p{margin:6px 0!important}
+.pv-how-step h5{font:700 12px/1.3 var(--sans);color:#6b443a;margin:13px 0 5px}
+.pv-how .pv-small{font-size:11px;color:#786558}
+.pv-baseline-banner{display:flex;align-items:baseline;gap:15px;background:#faf6f1;border-left:3px solid #854442;padding:11px 13px;margin:8px 0 10px}
+.pv-baseline-banner strong{font:24px/1.04 var(--serif);color:#854442;white-space:nowrap}
+.pv-baseline-banner small{color:#756054;font-size:11px;line-height:1.35}
+.pv-table-scroll{overflow-x:auto;border:1px solid #e6d8cd;margin:6px 0 8px}
+.pv-data-table,.pv-selected-table,.pv-alternative-table{border-collapse:collapse;width:100%;font-size:11.5px;line-height:1.3}
+.pv-data-table th,.pv-data-table td,.pv-selected-table th,.pv-selected-table td,.pv-alternative-table th,.pv-alternative-table td{text-align:left;padding:7px 8px;border-bottom:1px solid #e7dbd1;vertical-align:top}
+.pv-data-table thead th,.pv-selected-table thead th,.pv-alternative-table thead th{font-size:10px;text-transform:uppercase;letter-spacing:.03em;color:#72594d;background:#f8f1e9}
+.pv-data-table tbody th{width:27%;font-weight:650;color:#594238}
+.pv-data-table tbody td:nth-child(2){width:36%}
+.pv-data-table td b{color:#70443d}
+.pv-data-table td small{font-size:10px;color:#776458;display:block;margin-top:2px}
+.pv-data-table tr:last-child>* ,.pv-selected-table tr:last-child>* ,.pv-alternative-table tr:last-child>*{border-bottom:0}
+.pv-assumptions{background:#854442;color:white;padding:12px 13px;margin:7px 0 10px}
+.pv-assumptions p{color:#fff5f0;margin:5px 0!important}
+.pv-selected-table{color:#fff}
+.pv-selected-table th,.pv-selected-table td{color:#fff;border-bottom-color:#ad7972}
+.pv-selected-table thead th{background:#70403c;color:#ffece2}
+.pv-selected-table small{color:#f2ded3;font-size:10px}
+.pv-selected-table td:nth-child(2){font:20px/1.15 var(--serif);white-space:nowrap}
+.pv-selected-assumption{background:#f4e6da;color:#723e39;font-weight:700}
+.pv-math-panel{border:1px solid #e4d5c9;background:#faf6f1;padding:12px 14px;margin:9px 0}
+.pv-calc-list{margin:0 0 12px;padding-left:20px;display:grid;gap:9px}
+.pv-calc-list li{line-height:1.41;padding-left:4px}
+.pv-calc-list li::marker{color:#854442;font-weight:750}
+.pv-calculation-answer{border-top:1px solid #dfcbbd;padding-top:10px;display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:end}
+.pv-calculation-answer>span{font-weight:700;color:#594138}
+.pv-calculation-answer>strong{font:32px/1 var(--serif);color:#854442}
+.pv-calculation-answer>small{grid-column:1/-1;color:#6e5d50;font-size:11px}
+.pv-clarifier{font-size:11px;color:#736052;margin-top:9px!important}
+.pv-limit-note{background:#faf6f1;border-left:3px solid #b99a82;padding:9px 10px;margin:8px 0;font-size:11.5px;line-height:1.42}
+.pv-unavailable{color:#7b4e44;font-weight:650}
+@media(min-width:1000px) and (max-height:820px){
+ body.decision-card #resultPane{padding:7px 10px}
+ body.decision-card .pv-results{gap:7px}
+ .pv-policy-intro{padding-bottom:5px;gap:2px}
+ .pv-policy-intro h3{font-size:23px}
+ .pv-policy-intro p:last-child{font-size:11.7px}
+ .pv-results .dc-impact>strong{font-size:37px}
+ .pv-results .pv-burgundy{padding:8px 10px;gap:4px}
+ .pv-local-fact strong{font-size:19px}
+}
+@media(max-width:680px){
+ .pv-results .dc-effect-main{grid-template-columns:1fr;gap:8px}
+ .pv-context-grid{grid-template-columns:1fr}
+ .pv-context-grid .pv-local-fact{border-bottom:1px solid #eadecf}
+ .pv-results .pv-burgundy .pv-focus-pair .pv-local-fact{flex-direction:column}
+ .pv-baseline-banner{flex-wrap:wrap;gap:5px}
+ .pv-baseline-banner strong{font-size:22px}
+ .pv-data-table,.pv-selected-table,.pv-alternative-table{min-width:420px}
+}
+.pv-results .pv-stephead .dc-step-number,.pv-how .pv-stephead .dc-step-number{width:22px;min-width:22px;height:22px;box-sizing:border-box;display:inline-grid;place-items:center;border-radius:50%;line-height:1}
+
+/* Adapted from preview-readable-results.css; presentation only. */
+/*
+ * Option A presentation: comfortable-type four-tab Results presentation.
+ * Based on the user's preferred 2026-11-19 preview. No text, datasets,
+ * computations, policy outcomes, or map behavior have been modified.
+ * Preserve the original The Turnout cream, burgundy and editorial typography.
+ */
+body.decision-card .tabs .tab {
+  font-size: 12.6px;
+  line-height: 1.22;
+  padding: 8px 7px;
+}
+body.decision-card #resultPane {
+  padding: 12px 14px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+}
+body.decision-card .pv-results {
+  font-size: 13.4px;
+  line-height: 1.34;
+  gap: 10px 14px;
+}
+body.decision-card .pv-results p {line-height: 1.34}
+.pv-results .pv-policy-intro h3 {font-size: 28px;line-height: 1.06;margin: 2px 0 3px}
+.pv-results .pv-policy-intro h4 {font-size: 13px;line-height: 1.2}
+.pv-results .pv-policy-intro p:last-child {font-size: 13.3px;line-height: 1.35}
+.pv-results .pv-overline {font-size: 11px;line-height: 1.2}
+.pv-results .pv-stephead h4 {font-size: 14.2px;line-height: 1.25}
+.pv-results .pv-stephead {margin-bottom: 7px}
+.pv-results .dc-impact>strong {font-size: clamp(36px, 2.9vw, 48px);line-height: 1.03;letter-spacing: -.015em;overflow-wrap:anywhere;white-space:normal}
+.pv-results .dc-impact>span {font-size: 12.5px;line-height:1.25}
+.pv-results .dc-impact>span small {font-size: 11.2px;line-height:1.2}
+.pv-results .dc-comparison {padding: 10px 12px;gap: 9px}
+.pv-results .dc-comparison span {font-size: 12px;line-height: 1.24}
+.pv-results .dc-comparison span small {font-size: 10.9px;line-height: 1.23;margin-bottom:5px}
+.pv-results .dc-comparison b {font-size: 26px;line-height: 1.08}
+.pv-results .pv-small {font-size: 12.1px;line-height:1.34}
+.pv-results .pv-percent {font-size: 12.6px;line-height:1.32}
+.pv-results .pv-note {font-size: 11.9px;line-height:1.33}
+.pv-results .pv-burgundy {padding: 12px 14px;gap: 7px}
+.pv-results .pv-burgundy p {font-size: 12.6px;line-height:1.34}
+.pv-results .pv-burgundy .pv-focus-math {font-size: 11.8px;line-height:1.36}
+.pv-results .pv-burgundy .pv-housing-type {font-size: 12.1px;line-height:1.35}
+.pv-results .pv-local-check {font-size: 12.6px;line-height:1.35}
+.pv-results .pv-details-hint {font-size: 11.7px;line-height:1.3}
+.pv-results .pv-households {font-size: 11.9px;line-height:1.35}
+.pv-results .pv-bottom-note {font-size: 11.1px;line-height:1.3}
+.pv-results .pv-focus-pair .pv-local-fact {padding: 9px 8px 9px 0}
+.pv-results .pv-focus-pair .pv-local-fact strong {font-size: 27px;line-height: 1.08}
+.pv-results .pv-focus-pair .pv-local-fact b {font-size: 11.6px;line-height:1.2}
+.pv-results .pv-focus-pair .pv-local-fact small {font-size: 11px;line-height:1.23}
+.pv-results .pv-context {padding-top: 10px}
+.pv-results .pv-context-grid {padding: 7px 10px;gap: 3px 13px}
+.pv-results .pv-context-grid .pv-local-fact {padding: 8px 1px}
+.pv-results .pv-context-grid .pv-local-fact strong {font-size: 23px;line-height: 1.12}
+.pv-results .pv-context-grid .pv-local-fact b {font-size: 12px;line-height:1.23}
+.pv-results .pv-context-grid .pv-local-fact small {font-size: 10.9px;line-height: 1.28}
+.pv-results .pv-context-grid .pv-local-fact em {font-size: 10px;line-height:1.18}
+/* Readable explanation typography without hiding methodology or formulas. */
+body.decision-card #calculationPane {padding: 13px 17px}
+body.decision-card .pv-how {font-size: 13.4px;line-height: 1.46}
+.pv-how-header h3 {font-size: 28px}
+.pv-how .pv-stephead h4 {font-size: 16px}
+.pv-how-step h5 {font-size: 13px}
+.pv-data-table,.pv-selected-table,.pv-alternative-table {font-size: 12.3px;line-height:1.35}
+.pv-data-table th,.pv-data-table td,.pv-selected-table th,.pv-selected-table td,.pv-alternative-table th,.pv-alternative-table td {padding: 8px 9px}
+/* The pane gets a deliberate editorial layout on wide desktops:
+   1) policy introduction, 2) impact, 3) drivers + interpretation alongside,
+   4) local context, 5) caution.  It never hides or removes any text. */
+@media (min-width: 1181px) {
+  body.decision-card .pv-results {
+    display:grid;
+    grid-template-columns: minmax(0,1fr) minmax(0,.94fr);
+    grid-template-rows: repeat(5,auto);
+    column-gap: 15px;
+    row-gap: 11px;
+    align-content: space-between;
+    min-height: 100%;
+  }
+  .pv-results > .pv-policy-intro {grid-column:1/-1;min-width:0}
+  .pv-results > .pv-section[aria-label="Five-year housing impact"] {grid-column:1/-1;min-width:0}
+  .pv-results > .pv-section[aria-label="Why the policy can change housing"] {grid-column:1;min-width:0;align-self:stretch}
+  .pv-results > .pv-section[aria-label="Interpret the modeled result"] {grid-column:2;min-width:0;align-self:stretch}
+  .pv-results > .pv-section[aria-label="Local housing and development context"] {grid-column:1/-1;min-width:0}
+  .pv-results > .pv-bottom-note {grid-column:1/-1;min-width:0}
+  .pv-results .dc-effect-main {grid-template-columns:minmax(0,.7fr) minmax(0,1.32fr);gap:14px}
+  .pv-results .pv-context-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap: 0 14px}
+  .pv-results .pv-context-grid .pv-local-fact {display:block;min-width:0}
+  .pv-results .pv-context-grid .pv-local-fact strong {display:block;margin-bottom:4px}
+  .pv-results .pv-context-grid .pv-local-fact:nth-last-child(-n+2) {border-bottom:1px solid #eadecf}
+  .pv-results .pv-context-grid .pv-local-fact:nth-last-child(-n+3) {border-bottom:0}
+  .pv-results .pv-focus-pair {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pv-results .pv-focus-pair .pv-local-fact strong {font-size:25px}
+  .pv-results .pv-focus-pair .pv-local-fact:nth-child(2) {padding-left:10px}
+  .pv-results .pv-focus-pair .pv-local-fact small {font-size:10.8px}
+  /* A little more air in Step 3 and an independently clear hierarchy. */
+  .pv-results > .pv-section[aria-label="Interpret the modeled result"] {padding: 4px 0 2px 1px}
+  .pv-results > .pv-section[aria-label="Interpret the modeled result"]>p {margin: 8px 0 0}
+  .pv-results > .pv-section[aria-label="Interpret the modeled result"] .pv-stephead {margin-bottom: 9px}
+}
+/* Mid-height laptop: retain readable text, allow pane scrolling rather than
+   shrinking to inaccessible type or silently clipping the final paragraphs. */
+@media (min-width:1181px) and (max-height:830px) {
+  body.decision-card #resultPane {padding: 9px 12px}
+  body.decision-card .pv-results {gap: 8px 12px}
+  .pv-results .pv-policy-intro h3 {font-size:26px}
+  .pv-results .pv-policy-intro p:last-child {font-size:13px}
+  .pv-results .pv-burgundy {padding:10px 12px;gap:5px}
+  .pv-results .pv-context-grid .pv-local-fact {padding: 6px 1px}
+}
+/* Narrow/tablet screens use the original, reading-order stacked layout. */
+@media (max-width:1180px) {
+  body.decision-card .pv-results {display:flex;flex-direction:column;gap:12px}
+  .pv-results .pv-context-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:680px) {
+  body.decision-card #resultPane {padding: 10px 12px}
+  .pv-results .pv-policy-intro h3 {font-size:25px}
+  .pv-results .pv-context-grid {grid-template-columns:1fr}
+  .pv-results .dc-effect-main {grid-template-columns:1fr}
+  .pv-results .pv-focus-pair .pv-local-fact strong {font-size:24px}
+  .pv-results .pv-context-grid .pv-local-fact {display:flex;gap:9px}
+  .pv-results .pv-context-grid .pv-local-fact strong {min-width:104px}
+  .pv-results .pv-context-grid .pv-local-fact:last-child {border-bottom:0}
+  body.decision-card .tabs .tab {font-size:12px;min-width:92px}
+}
+
+/* Adapted from preview-autofit-results.css; presentation only. */
+/* Responsive, four-tab Results card. Uses calculated zoom only on wide displays.
+   Never modifies any underlying datasets or policy formulas. */
+/* 2026-11-19: Four-section compact Results. All previous wording remains in Model Details. */
+body.decision-card .tabs .tab{font-size:12px;line-height:1.12;padding:8px 3px;letter-spacing:-.015em}
+body.decision-card #resultPane{overflow-y:auto;overscroll-behavior:contain;padding:6px 9px!important}
+body.decision-card .pv-results.tv-compact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);grid-template-rows:auto auto auto auto auto;gap:5px 9px;font-size:12px;line-height:1.29;align-content:start}
+body.decision-card .tv-compact>.pv-policy-intro{grid-column:1/-1;padding-bottom:4px;gap:1px}
+body.decision-card .tv-compact>.tv-impact{grid-column:1/-1}
+body.decision-card .tv-compact>.tv-burgundy{grid-column:1;align-self:stretch}
+body.decision-card .tv-compact>.tv-meaning{grid-column:2;align-self:stretch}
+body.decision-card .tv-compact>.tv-context{grid-column:1/-1}
+body.decision-card .tv-compact>.tv-foot{grid-column:1/-1}
+body.decision-card .tv-compact .pv-policy-intro h3{font-size:24px;line-height:1.05;margin:1px 0}
+body.decision-card .tv-compact .pv-policy-intro h4{font-size:11.5px}
+body.decision-card .tv-compact .pv-policy-intro p:last-child{font-size:12px;line-height:1.26}
+body.decision-card .tv-compact .pv-overline{font-size:10px}
+body.decision-card .tv-compact .pv-stephead{gap:5px;margin-bottom:4px}
+body.decision-card .tv-compact .pv-stephead h4{font-size:12.2px;line-height:1.19}
+body.decision-card .tv-compact .dc-step-number{height:18px;width:18px;min-width:18px;font-size:10px}
+body.decision-card .tv-compact .dc-effect-main{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:7px}
+body.decision-card .tv-compact .dc-impact>strong{font-size:36px}
+body.decision-card .tv-compact .dc-impact>span{font-size:11.4px;margin-top:0}
+body.decision-card .tv-compact .dc-impact>span small{font-size:9.9px}
+body.decision-card .tv-compact .dc-comparison{padding:5px 7px;gap:3px}
+body.decision-card .tv-compact .dc-comparison b{font-size:23px;line-height:1}
+body.decision-card .tv-compact .dc-comparison span{font-size:10.6px;line-height:1.18}
+body.decision-card .tv-compact .dc-comparison span small{font-size:9.7px;margin:1px 0 3px}
+body.decision-card .tv-compact p{line-height:1.18!important}
+body.decision-card .tv-compact .pv-small,body.decision-card .tv-compact .pv-percent{font-size:11.4px;margin-top:3px}
+body.decision-card .tv-compact .pv-burgundy{padding:7px 8px;gap:4px}
+body.decision-card .tv-compact .pv-burgundy p{font-size:11.45px;line-height:1.22!important}
+body.decision-card .tv-compact .pv-focus-pair .pv-local-fact{padding:3px 3px 3px 0}
+body.decision-card .tv-compact .pv-focus-pair .pv-local-fact:nth-child(2){padding-left:6px}
+body.decision-card .tv-compact .pv-focus-pair .pv-local-fact strong{font-size:20px}
+body.decision-card .tv-compact .pv-focus-pair .pv-local-fact b{font-size:9.6px}
+body.decision-card .tv-compact .pv-focus-pair .pv-local-fact small{font-size:8.8px}
+body.decision-card .tv-compact .tv-meaning>p{font-size:11.5px;margin:3px 0!important}
+body.decision-card .tv-compact .pv-details-hint{font-size:10.5px;color:#855c50}
+body.decision-card .tv-compact .pv-context{padding-top:4px}
+body.decision-card .tv-compact .pv-context-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 6px;padding:2px 5px}
+body.decision-card .tv-compact .pv-local-fact{display:block;padding:3px 3px;min-width:0}
+body.decision-card .tv-compact .pv-local-fact strong{font-size:19px;line-height:1;display:block}
+body.decision-card .tv-compact .pv-local-fact b{font-size:10.8px;line-height:1.2}
+body.decision-card .tv-compact .pv-local-fact small{font-size:10px;line-height:1.18;margin-top:2px}
+body.decision-card .tv-compact .pv-local-fact em{font-size:9px;margin-top:2px}
+body.decision-card .tv-compact .pv-households{font-size:11px;margin-top:4px}
+body.decision-card .tv-compact .pv-bottom-note{font-size:10.2px;padding-top:4px;line-height:1.2}
+
+@media(min-width:1180px){
+ body.decision-card .tv-compact .pv-policy-intro {margin-bottom:0}
+ body.decision-card .pv-results.tv-compact {gap:5px 10px}
+ body.decision-card .tv-compact .pv-policy-intro p:last-child {line-height:1.25}
+ body.decision-card .tv-compact .pv-burgundy p {font-size:11.25px!important;line-height:1.22!important}
+ body.decision-card .tv-compact .pv-burgundy .pv-focus-pair .pv-local-fact b {font-size:10.6px}
+ body.decision-card .tv-compact .pv-burgundy .pv-focus-pair .pv-local-fact small {font-size:9.8px}
+ body.decision-card .tv-compact .pv-context-grid .pv-local-fact {padding:4px 3px}
+ body.decision-card .tv-compact .pv-context-grid .pv-local-fact strong {font-size:20px}
+ body.decision-card .tv-compact .pv-context-grid .pv-local-fact small {font-size:10px}
+ body.decision-card .tv-compact .pv-context-grid .pv-local-fact em {font-size:9px}
+}
+@media(max-width:1179px){
+ body.decision-card #resultPane{overflow:auto!important}
+ body.decision-card .pv-results.tv-compact{display:flex;flex-direction:column;gap:12px}
+ body.decision-card .pv-results.tv-compact .pv-context-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* Missing-middle has five evidence items; keep them in one row to preserve
+   reading size without doubling the height of the context section. */
+@media(min-width:1180px){
+ body.decision-card .tv-compact .pv-context-grid:has(> .pv-local-fact:nth-child(5)){
+   grid-template-columns:repeat(5,minmax(0,1fr));gap:0 8px;
+ }
+ body.decision-card .tv-compact .pv-context-grid:has(> .pv-local-fact:nth-child(5)) .pv-local-fact{border-bottom:0}
+ body.decision-card .tv-compact .pv-context-grid:has(> .pv-local-fact:nth-child(5)) .pv-local-fact strong{font-size:18px}
+ body.decision-card .tv-compact .pv-context-grid:has(> .pv-local-fact:nth-child(5)) .pv-local-fact b{font-size:10.5px}
+ body.decision-card .tv-compact .pv-context-grid:has(> .pv-local-fact:nth-child(5)) .pv-local-fact small{font-size:9.8px;line-height:1.17}
+}
+
+
+/* Adapted from option-a-selected.css; presentation only. */
+/* Option A — compact typography and spacing, approved sample 2026-11-19. */
+@media(min-width:1180px){
+ body.decision-card #resultPane {padding:5px 10px !important;overflow-y:auto !important}
+ body.decision-card .pv-results.tv-compact {font-size:12.0px !important;line-height:1.18 !important;gap:4px 9px !important;align-content:space-between !important;}
+ body.decision-card .tv-compact .pv-policy-intro h3 {font-size:23px !important;line-height:1.03 !important}
+ body.decision-card .tv-compact .pv-policy-intro h4 {font-size:11.5px!important;line-height:1.12 !important}
+ body.decision-card .tv-compact .pv-policy-intro p:last-child{font-size:11.2px!important;line-height:1.18 !important}
+ body.decision-card .tv-compact .pv-stephead h4{font-size:12.5px!important;line-height:1.12!important}
+ body.decision-card .tv-compact .pv-stephead{margin-bottom:2px!important}
+ body.decision-card .tv-compact .dc-impact>strong{font-size:34px!important;line-height:0.98!important}
+ body.decision-card .tv-compact .dc-impact>span{font-size:11.8px!important;line-height:1.1!important}
+ body.decision-card .tv-compact .dc-impact>span small{font-size:9.9px!important;line-height:1.1!important}
+ body.decision-card .tv-compact .dc-comparison{padding:5px 6px!important;gap:3px!important}
+ body.decision-card .tv-compact .dc-comparison span{font-size:11.3px!important;line-height:1.12!important}
+ body.decision-card .tv-compact .dc-comparison span small{font-size:9.9px!important;line-height:1.10!important}
+ body.decision-card .tv-compact .dc-comparison b{font-size:22px!important;line-height:1!important}
+ body.decision-card .tv-compact .pv-small,body.decision-card .tv-compact .pv-percent{font-size:11.049999999999999px!important;line-height:1.18 !important;margin-top:2px!important}
+ body.decision-card .tv-compact .pv-burgundy{padding:7px 8px!important;gap:3px!important}
+ body.decision-card .tv-compact .pv-burgundy p{font-size:11.0px!important;line-height:1.18!important}
+ body.decision-card .tv-compact .pv-focus-pair .pv-local-fact{padding:2px 2px!important}
+ body.decision-card .tv-compact .pv-focus-pair .pv-local-fact strong{font-size:19px!important;line-height:1!important}
+ body.decision-card .tv-compact .pv-focus-pair .pv-local-fact b{font-size:10.7px!important;line-height:1.1!important}
+ body.decision-card .tv-compact .pv-focus-pair .pv-local-fact small{font-size:9.9px!important;line-height:1.1!important}
+ body.decision-card .tv-compact .tv-meaning>p{font-size:11.2px!important;line-height:1.18!important;margin:2px 0!important}
+ body.decision-card .tv-compact .pv-details-hint{font-size:10.1px!important;line-height:1.12!important}
+ body.decision-card .tv-compact .pv-context{padding-top:3px!important}
+ body.decision-card .tv-compact .pv-context-grid{padding:3px 5px!important;gap:1px 5px!important}
+ body.decision-card .tv-compact .pv-local-fact{padding:3px 1px!important}
+ body.decision-card .tv-compact .pv-local-fact strong{font-size:19px!important;line-height:1.0!important}
+ body.decision-card .tv-compact .pv-local-fact b{font-size:10.7px!important;line-height:1.13!important}
+ body.decision-card .tv-compact .pv-local-fact small{font-size:9.9px!important;line-height:1.17!important;margin-top:1px!important}
+ body.decision-card .tv-compact .pv-local-fact em{font-size:9.200000000000001px!important;line-height:1.06!important;margin-top:1px!important}
+ body.decision-card .tv-compact .pv-households{font-size:10.7px!important;line-height:1.14!important;margin-top:3px!important}
+ body.decision-card .tv-compact .pv-bottom-note{font-size:10.3px!important;line-height:1.13!important;padding-top:3px!important}
+ body.decision-card .tv-compact .pv-overline{font-size:9.9px!important}
+ body.decision-card .tv-compact .tv-meaning>p,.tv-compact .pv-burgundy p{margin-block:2px!important}
+ }

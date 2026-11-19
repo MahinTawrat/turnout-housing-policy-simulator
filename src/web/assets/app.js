@@ -919,17 +919,29 @@ function original_finalSourcesHtml(){
 }
 function renderPolicyRail(){document.querySelectorAll('[data-policy]').forEach(button=>{const active=button.dataset.policy===policyKey;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});}
 function renderPanel(){
+  const previousMethods=$('supportingMethods');
+  if(previousMethods)supportingMethodsExpanded=previousMethods.open;
   if(tractRec()){ $('placeBadge').textContent='Tract scenario allocation';$('detailTitle').textContent=placeName();$('detailSub').textContent=FINAL_NAMES[policyKey]+' · '+capital(level)+' response';$('resultPane').innerHTML=tractResultHtml();$('methodologyPane').innerHTML=tractMethodHtml();$('calculationPane').innerHTML=tractCalculationHtml();$('dataPane').innerHTML=combinedSourcesHtml();return;}
   $('placeBadge').textContent=countyFips?'County supporting estimate':stateAbbr==='US'?'States + DC':'State model result';
   $('detailTitle').textContent=placeName();$('detailSub').textContent=FINAL_NAMES[policyKey]+' · '+capital(level)+' response';
   $('mapSubtitle').textContent=FINAL_NAMES[policyKey]+' · '+capital(level)+' response';
-  $('resultPane').innerHTML=resultHtml();$('methodologyPane').innerHTML=combinedMethodologyHtml();$('calculationPane').innerHTML=finalCalculationHtml();$('dataPane').innerHTML=combinedSourcesHtml();
+  $('resultPane').innerHTML=resultHtml();$('methodologyPane').innerHTML='';$('calculationPane').innerHTML=finalCalculationHtml();$('dataPane').innerHTML=combinedSourcesHtml();
 }
 function initFinalEvents(){
   document.querySelectorAll('[data-policy]').forEach(button=>button.addEventListener('click',()=>{policyKey=button.dataset.policy;$('policySelect').value=policyKey;syncHash();renderAll();}));
   const dialog=$('assumptionDialog');
   $('assumptionHelp').addEventListener('click',()=>{$('assumptionDialogContent').innerHTML=assumptionTableHtml();dialog.showModal();});
   $('closeAssumptions').addEventListener('click',()=>dialog.close());
+  document.addEventListener('click',event=>{
+    const button=event.target.closest?.('[data-open-view]');
+    if(!button)return;
+    const target=button.dataset.openView==='methodology'?'calculation':button.dataset.openView;
+    if(!['result','calculation','methodology','graph','data'].includes(target))return;
+    currentTab=target;renderTabs();
+    const pane=document.querySelector(`[data-pane="${target}"]`);
+    if(pane)pane.scrollTop=0;
+    document.querySelector(`[data-tab="${target}"]`)?.focus();
+  });
 }
 
 function renderTabs(){document.querySelectorAll('.tab').forEach(b=>{const a=b.dataset.tab===currentTab;b.classList.toggle('active',a);b.setAttribute('aria-selected',a?'true':'false');});document.querySelectorAll('.tab-pane').forEach(p=>p.classList.toggle('active',p.dataset.pane===currentTab));}
@@ -1191,7 +1203,12 @@ const challengeOriginalRenderTabs=renderTabs;
 renderTabs=function(){
   challengeOriginalRenderTabs();
   document.querySelectorAll('.tab').forEach(tab=>tab.setAttribute('tabindex',tab.dataset.tab===currentTab?'0':'-1'));
-  document.querySelectorAll('.tab-pane').forEach(pane=>pane.setAttribute('aria-hidden',String(pane.dataset.pane!==currentTab)));
+  document.querySelectorAll('.tab-pane').forEach(pane=>{
+    const active=pane.dataset.pane===currentTab;
+    pane.setAttribute('aria-hidden',String(!active));
+    pane.setAttribute('tabindex',active?'0':'-1');
+  });
+  if(currentTab==='result')scheduleOptionAFit();
 };
 document.querySelectorAll('.tab').forEach((tab,index,all)=>tab.addEventListener('keydown',event=>{
   let next;
@@ -1269,10 +1286,6 @@ finalResultView=function(){
   const originals=[...(v.observations||[]),...(v.evidenceCards||[])];
   v.moreFacts=originals.map(simplifiedResultFact);
   v.observations=(policyKey==='fee'?[v.observations[0],v.evidenceCards[0]]:v.observations).filter(Boolean).map(simplifiedResultFact);
-  if(policyKey==='missing_middle')for(const fact of v.observations)if(fact.label==='Renter homes with crowding'){
-    fact.value=String(fact.value).split(' ±')[0];
-    fact.note='Survey estimate; more than one person per room.';
-  }
   v.evidenceCards=[];
   const settings={
     adu:{focusTitle:'Check space and owner interest',mechanism:'Let an owner add one small home to an existing property.',forms:'A small home beside an existing house, such as a backyard cottage.',check:'Is there space? Check water, sewers, building costs and owner interest.'},
@@ -1283,7 +1296,7 @@ finalResultView=function(){
   };
   const chosen=settings[policyKey];Object.assign(v,chosen);
   v.baselineLabel='Five-year starting point';
-  v.totalLabel='Starting point + extra';
+  v.totalLabel='Starting point + possible extra';
   const annual=countyFips?n(countyRec()?.baseline_annual_units):n(selectedProductionForecast()?.annual?.[0]?.total);
   v.baselineHelp=m.baseline===null?'The starting point is unavailable here. Missing data does not mean zero.':`${fmt(annual)} homes permitted in 2025 × 5 years = ${fmt(m.baseline)}. A permit is permission to build.`;
   v.percentExplanation=m.pct===null?(m.baseline===null?'The starting point is missing, so no percentage can be shown.':m.baseline===0?'The starting point is zero, so no percentage can be shown.':'The extra-home estimate is unavailable, so no percentage can be shown.'):`${pct(m.pct)} more than the five-year starting point${m.pct>100?'; a small starting point can make this percentage large':''}.`;
@@ -1419,10 +1432,16 @@ function simplePolicyAnswer(){
   const kind=['adu','missing_middle'].includes(policyKey)?'<p>The extra number describes homes added on existing properties. The starting point counts new-building permits, so their sum is a comparison, not a forecast of total completed or existing homes.</p>':'<p>The extra number describes possible permit authorizations if the assumptions hold. It does not prove the homes will be completed or that rents will fall.</p>';
   return `<p>The model gives <b>${fmt(m.added)} possible extra homes over five years</b> under this example.</p>${reference}${ratio}${kind}`;
 }
-finalCalculationHtml=function(){
-  const e=POLICY_EVIDENCE[policyKey];
-  return `<section class="final-explain simple-calculation">${baselineExplanationHtml()}<div class="simple-policy-chain"><h3>How we get the extra homes</h3><p>${uiEscape(placeName())} · ${uiEscape(FINAL_NAMES[policyKey])} · ${capital(level)} example</p><section data-simple-step="source"><h4>1. The data we use</h4>${simplePolicyInputs()}</section><section data-simple-step="purpose"><h4>2. Why we use it</h4><p>${uiEscape(simplePolicyPurpose())}</p></section><section data-simple-step="assumption"><h4>3. What we assume</h4><p>${uiEscape(assumptionMeaning())}</p><p>We choose this response to test an idea. Census did not measure this future response.</p></section><section data-simple-step="math"><h4>4. The calculation</h4>${simplePolicyCalculation()}</section><section data-simple-step="answer"><h4>5. What the answer means</h4>${simplePolicyAnswer()}</section><details class="simple-details"><summary>See Low, Default and High inputs</summary>${assumptionTableHtml()}</details><details class="simple-details"><summary>See source details and the full calculation</summary><p><b>Exact input sources:</b> ${uiEscape(e.source)}</p>${simpleDetailedPolicyMath()}<p><b>Why these response choices:</b> ${uiEscape(e.assumption_basis)}</p><p><b>What research supports:</b> ${uiEscape(e.evidence)}</p><p><b>What still needs checking:</b> ${uiEscape(e.eligibility)}</p></details><details class="simple-details"><summary>See how the starting point and policy response can change separately</summary>${simpleDetailedSensitivity()}</details></div></section>`;
-};
+function explanationContext(){
+  return {policy:policyKey,policyName:FINAL_NAMES[policyKey],level,place:placeName(),
+    scope:countyFips?'county':stateAbbr==='US'?'national':'state',
+    metric:metric(),assessment:decisionAssessment(),record:decisionRecord(),policyRecord:policyRecord(),
+    forecast:selectedPolicyForecast(),production:selectedProductionForecast(),assumptions:ASSUMPTIONS,
+    stateName:stateRec()?.state_name,stateCode:stateAbbr,stateForecasts:FORECAST_POLICY.states,
+    result:finalResultView(),dataRelease:window.DATA_RELEASE};
+}
+resultHtml=function(){return window.TurnoutOptionA.render(explanationContext());};
+finalCalculationHtml=function(){return window.TurnoutHowItWorks.render(explanationContext())+supportingMethodsHtml();};
 challengePolicyComparisonHtml=function(){
   return simpleDetailedPolicyComparison()
     .replace('Compare all five policies and assumptions','Compare the five what-if examples')
@@ -1436,6 +1455,16 @@ combinedMethodologyHtml=function(){
   const definitions=POLICY_KEYS.map(key=>`<details class="simple-details simple-benchmark"><summary>${uiEscape(POLICIES[key].name)}</summary><p>${uiEscape(simpleRuleText(key))}</p><p><b>Full policy definition:</b> ${uiEscape(CHALLENGE_BENCHMARKS[key])}</p><p><b>What the model counts:</b> ${uiEscape(POLICY_EVIDENCE[key].formula)}</p><p><b>Where the assumptions came from:</b> ${uiEscape(POLICY_EVIDENCE[key].assumption_basis)}</p><p><b>What remains unverified:</b> ${uiEscape(POLICY_EVIDENCE[key].eligibility)}</p></details>`).join('');
   return `<section class="final-explain simple-methodology"><h3>How the tool works</h3><p>We ask: if one housing rule changes, how many extra homes might be possible over five years?</p><section class="simple-method-step"><h4>1. Start with real numbers</h4><p>Census counts building permits and estimates existing homes and households. A permit means permission to build, not a finished home.</p></section><section class="simple-method-step"><h4>2. Choose a what-if example</h4><p>${uiEscape(simpleRuleText())} Low, Default and High test smaller or larger responses. They change our assumptions, while the Census observations stay fixed.</p><p><b>Your choice:</b> ${uiEscape(assumptionMeaning())}</p></section><section class="simple-method-step"><h4>3. Do the math</h4><p>We combine the real numbers with the chosen assumptions. <b>How calculated</b> shows each step for ${uiEscape(placeName())}.</p></section><section class="simple-method-step"><h4>4. Decide what to check locally</h4><p>Check the actual rules, suitable land, willing owners, construction costs and infrastructure. More possible homes do not automatically mean affordable homes.</p><p>These are examples for comparing choices, not promises. Several policies may affect the same project; their answers must not be added.</p></section>${challengePolicyComparisonHtml()}<details class="simple-details"><summary>Understand the five policy definitions</summary>${definitions}</details><details class="simple-details"><summary>Why we use the 2025 building pace</summary><p>We compared four methods using state permit history from 2000–2025. Repeating the latest year did best under our selected state-by-state test. We use that same pace in every future year, which produces a flat line.</p><p>In the reserved 2021–2025 test, the average state error was <b>${pct(FORECAST_VALIDATION.final_test.mean_state_APE)}</b>. That test checks the starting point. It does not show that the assumed policy responses will happen.</p>${countyFips?'<p>The county gets a share of its state’s result from its 2025 permit share. That county forecast has not been tested separately.</p>':''}<details class="simple-details"><summary>See all historical tests and technical limits</summary>${simpleDetailedBaselineMethod()}</details></details>${challengeCoverageHtml().replace('Data coverage for','Available data for')}<details class="simple-details"><summary>Understand the uncertainty and housing needs</summary><p>Low, Default and High are what-if choices, not probabilities. The actual extra housing could be zero. The starting point also has a range based on past errors. The first range covered 35 of 51 states in the reserved test; the updated displayed range has not had a separate test and is not a confidence interval.</p><p>Household, rent and crowding numbers describe people’s existing housing conditions. The 2030 household examples continue past population changes while holding household size and the group-quarters share fixed. They do not count how many new buildings or bedrooms must be built.</p><p>ADU and Missing middle count possible additions to existing properties, while the starting point counts new-building permits. Their sum is a comparison, not a forecast of completed homes or future total housing stock.</p><p>State results add to the U.S. result. ADU and Missing middle add rounded county results. Transit is calculated directly for states. Parking and Fees adjust county sums for state permit coverage. Missing data stays missing; a measured zero stays zero.</p><p>${uiEscape(POLICY_EVIDENCE[policyKey].eligibility)}</p></details></section>`;
 };
+
+
+/* Supporting methods follow the five open steps without repeating Results. */
+let supportingMethodsExpanded=false;
+function supportingMethodsHtml(){
+  const e=POLICY_EVIDENCE[policyKey];
+  const definitions=POLICY_KEYS.map(key=>`<details class="simple-details simple-benchmark"><summary>${uiEscape(POLICIES[key].name)}</summary><p><b>Full policy definition:</b> ${uiEscape(CHALLENGE_BENCHMARKS[key])}</p><p><b>What the model counts:</b> ${uiEscape(POLICY_EVIDENCE[key].formula)}</p><p><b>Why these assumptions:</b> ${uiEscape(POLICY_EVIDENCE[key].assumption_basis)}</p><p><b>What remains unverified:</b> ${uiEscape(POLICY_EVIDENCE[key].eligibility)}</p></details>`).join('');
+  return `<section class="extended-methods" aria-label="Additional methodology and validation"><details class="simple-details" id="supportingMethods"${supportingMethodsExpanded?' open':''}><summary>More methodology, assumptions and validation</summary><p>The five open steps explain the selected result. These supporting references preserve the full comparisons, tests and technical evidence.</p><h4>Compare policies and assumptions</h4>${challengePolicyComparisonHtml()}<h4>All Low, Default and High inputs</h4>${assumptionTableHtml()}<details class="simple-details"><summary>Technical equations and rounding</summary>${simpleDetailedPolicyMath()}<p><b>Input sources:</b> ${uiEscape(e.source)}</p><p><b>Evidence status:</b> ${uiEscape(e.status)}</p><p><b>Data and purpose:</b> ${uiEscape(e.why)}</p><p><b>Research and its limits:</b> ${uiEscape(e.evidence)}</p><p><b>Outcome limits:</b> ${uiEscape(e.outcome_limit)}</p></details><details class="simple-details"><summary>Historical baseline methods and validation</summary>${simpleDetailedBaselineMethod()}</details>${challengeCoverageHtml().replace('Data coverage for','Available data for')}<details class="simple-details"><summary>Baseline uncertainty and policy response</summary>${simpleDetailedSensitivity()}<p>Low, Default and High are response assumptions. They are not probabilities or confidence intervals, and actual additional production could be zero. The original baseline range covered 35 of 51 states in the reserved test; the displayed updated range has not had an independent coverage test.</p></details><details class="simple-details"><summary>Complete policy definitions and assumption rationale</summary>${definitions}</details><details class="simple-details"><summary>Housing needs, survey uncertainty and geographic limits</summary><p>ACS housing and household counts are survey estimates. Combined survey margins are approximate because the relationships between the source categories are not provided. HUD housing-problem counts have a different reference period and are approximate sums of rounded county values.</p><p>Population and household scenarios continue historical demographic changes; they do not count required new buildings or bedrooms. Changes in vacancy reserves, usable vacant homes, completions, losses, conversions and independent suppressed household formation are not fully established.</p><p>County production references are allocations of state baselines and have no separate county forecast validation. ADU and Missing middle sum rounded county additions; Transit uses direct state exposure. Fees and Parking reconcile county responses with state permit coverage. National outputs sum states and DC. Missing observations remain unavailable.</p><p>${uiEscape(e.eligibility)}</p></details><p class="detail-reference-links"><a href="docs/METHODOLOGY.html" target="_blank" rel="noopener noreferrer">Full model documentation ↗</a><a href="docs/VALIDATION_REPORT.html" target="_blank" rel="noopener noreferrer">Validation report ↗</a></p></details></section>`;
+}
+combinedMethodologyHtml=supportingMethodsHtml;
 
 
 /* Keep every source and download; explain their jobs in everyday words. */
@@ -1490,6 +1519,40 @@ updateGeographyLegend=function(tractMode){
   simpleOriginalGeographyLegend(tractMode);
   if(!tractMode){const title=document.querySelector('.legend-title');if(title)title.innerHTML='EXTRA HOMES (%) <span>compared with the five-year starting point</span>';}
 };
+
+
+/* Option A's bounded desktop fit affects presentation only. */
+let optionAFitTicket=0;
+function fitOptionAResults(){
+  const pane=$('resultPane'),card=pane?.querySelector?.('.tv-compact');
+  if(!pane||!card||currentTab!=='result'||pane.clientHeight<=0)return;
+  card.style.zoom='1';card.style.minHeight='0';card.style.alignContent='start';pane.style.setProperty('overflow-y','auto','important');
+  if(window.innerWidth<1180)return;
+  const paneStyle=getComputedStyle(pane);
+  const available=pane.clientHeight-parseFloat(paneStyle.paddingTop)-parseFloat(paneStyle.paddingBottom)-2;
+  let best=1;
+  for(let size=1.02;size>=.78;size-=.01){
+    const rounded=Math.round(size*100)/100;
+    card.style.zoom=String(rounded);
+    if(card.getBoundingClientRect().height<=available){best=rounded;break;}
+  }
+  card.style.zoom=String(best);
+  if(card.getBoundingClientRect().height<=available){
+    card.style.minHeight=Math.max(0,available/best-2)+'px';
+    card.style.alignContent='space-between';
+    const excess=card.getBoundingClientRect().height-available;
+    if(excess>0)card.style.minHeight=Math.max(0,parseFloat(card.style.minHeight)-(excess+2)/best)+'px';
+    if(card.getBoundingClientRect().height>available){card.style.minHeight='0';card.style.alignContent='start';}
+    pane.style.setProperty('overflow-y','hidden','important');
+  }else{card.style.zoom='1';card.style.minHeight='0';card.style.alignContent='start';pane.style.setProperty('overflow-y','auto','important');}
+}
+function scheduleOptionAFit(){
+  if(typeof requestAnimationFrame!=='function')return;
+  if(typeof cancelAnimationFrame==='function')cancelAnimationFrame(optionAFitTicket);
+  optionAFitTicket=requestAnimationFrame(fitOptionAResults);
+}
+if(typeof window.addEventListener==='function')window.addEventListener('resize',scheduleOptionAFit);
+document.fonts?.ready?.then(scheduleOptionAFit);
 
 
 document.addEventListener('DOMContentLoaded',init);

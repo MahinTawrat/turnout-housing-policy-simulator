@@ -1,0 +1,33 @@
+/* Accessibility and responsive bridges around the imported Option A design. */
+body.decision-card .tabs{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+body.decision-card .tab-pane:focus-visible{outline:2px solid #854442;outline-offset:-3px}
+.pv-view-link{font:inherit;color:#854442;background:none;border:0;border-bottom:1px solid currentColor;padding:0;cursor:pointer;font-weight:700}
+.pv-view-link:focus-visible{outline:2px solid #854442;outline-offset:2px}
+.hiw-value,.hiw-label,.hiw-classification{display:block}
+.hiw-value{font-weight:750}
+.hiw-label{margin-top:3px}
+.hiw-classification,.hiw-source,.hiw-footer,.hiw-rounding{font-size:11px;line-height:1.35;color:#786358}
+.how-it-works table caption{text-align:left;padding:6px 8px;font-size:11px;font-weight:650;color:#786358}
+.how-it-works .pv-assumptions caption{color:#fff2e9}
+.hiw-equation{overflow-wrap:anywhere;font-variant-numeric:tabular-nums;font-weight:650}
+.how-it-works .hiw-math .hiw-equation{margin:6px 0}
+.how-it-works .pv-data-table td p{margin-top:5px}
+.hiw-footer{margin:12px 0}
+.extended-methods{margin-top:15px;font:13px/1.45 var(--sans)}
+.extended-methods h4{font-size:14px;color:#854442;margin:15px 0 7px}
+.extended-methods .simple-details{background:#fffaf5}
+.detail-reference-links{display:flex;gap:12px;flex-wrap:wrap}
+.detail-reference-links a{color:#854442;font-size:12px}
+@media(max-width:680px){
+ body.decision-card .tabs .tab{min-width:0!important;flex:1 1 0;padding:8px 3px;white-space:normal}
+ .how-it-works .pv-data-table,.how-it-works .pv-data-table tbody,.how-it-works .pv-data-table tr,.how-it-works .pv-data-table tbody th,.how-it-works .pv-data-table td,.how-it-works .pv-selected-table,.how-it-works .pv-selected-table tbody,.how-it-works .pv-selected-table tr,.how-it-works .pv-selected-table tbody th,.how-it-works .pv-selected-table td{display:block;width:auto;min-width:0!important}
+ .how-it-works .pv-data-table thead,.how-it-works .pv-selected-table thead{display:none}
+ .how-it-works .pv-data-table tbody th,.how-it-works .pv-selected-table tbody th{width:auto;background:#f7efe6;border-bottom:0;padding:9px 10px 5px}
+ .how-it-works .pv-data-table td,.how-it-works .pv-selected-table td{padding:5px 10px 9px;border-bottom:0}
+ .how-it-works .pv-data-table td:last-child,.how-it-works .pv-selected-table td:last-child{border-bottom:1px solid #dfcbbc}
+ .how-it-works .pv-assumptions .pv-selected-table tbody th{background:#75403c}
+ .how-it-works td[data-label]::before{content:attr(data-label) ': ';font-weight:700;display:block;font-size:11px;margin-bottom:3px}
+ .how-it-works .pv-alternative-table{min-width:0;table-layout:fixed;font-size:11px}
+ .how-it-works .pv-alternative-table th,.how-it-works .pv-alternative-table td{padding:6px 5px;overflow-wrap:anywhere}
+ .how-it-works .pv-baseline-banner strong{white-space:normal}
+}
