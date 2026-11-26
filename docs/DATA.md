@@ -1,6 +1,6 @@
 # Data and reconstruction
 
-`config/sources.json` records authoritative URLs, vintages, formats, hashes where available and terms. `config/source_catalog.json` is the shorter catalog shown in the tool. The processing code and generated manifests establish reproducibility; reachable links alone do not.
+`config/sources.json` records authoritative URLs, vintages, formats, hashes where available and terms. `config/source_catalog.json` is the shorter catalog shown in the tool. The [data provenance record](DATA_PROVENANCE.md) and [portable CSV](data-provenance.csv) document the official release's source versions, access dates, terms, processing and limitations. The processing code and generated manifests show how to reproduce the data.
 
 | Source | Use |
 |---|---|

@@ -241,12 +241,12 @@
     {
       "id": "transit_stops",
       "title": "BTS transit stop map",
-      "what": "The qualifying transit locations used in the supplied data.",
+      "what": "The transit stop locations used to estimate nearby housing.",
       "used": "Estimate the share of housing near qualifying transit.",
       "source_url": "https://www.bts.gov/national-transit-map",
-      "download_url": null,
+      "download_url": "https://services.arcgis.com/xOi1kZaI0eWDREZv/arcgis/rest/services/NTAD_National_Transit_Map_Stops/FeatureServer",
       "local_download": "data/policy_county_inputs.csv",
-      "note": "Original stop-selection vintage and source archive were not recovered."
+      "note": "The official release uses the September 23, 2026 National Transit Map compilation with selected fixed-guideway modes. The earlier frozen reference has incomplete stop provenance."
     },
     {
       "id": "tract_geometry",
@@ -254,18 +254,18 @@
       "what": "Map shapes used with housing counts and transit locations.",
       "used": "Estimate how much housing is within half a mile of qualifying transit.",
       "source_url": "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html",
-      "download_url": null,
+      "download_url": "https://www2.census.gov/geo/tiger/TIGER2024/TRACT/",
       "local_download": "data/policy_county_inputs.csv",
-      "note": "Original tract archive and exact overlay workflow were not recovered."
+      "note": "The official release combines full 2024 TIGER/Line tract shapes with ACS 2020–2024 housing counts. The earlier frozen overlay has incomplete provenance."
     },
     {
       "id": "display_boundaries",
       "title": "State and county map shapes",
       "what": "The outlines displayed on the map.",
       "used": "Let people find and choose a place.",
-      "source_url": "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html",
-      "download_url": null,
-      "note": "Original display-boundary archive and vintage were not recovered."
+      "source_url": "https://www.census.gov/geographies/mapping-files/time-series/geo/cartographic-boundary.html",
+      "download_url": "https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_state_20m.zip",
+      "note": "The official release displays Census 2024 boundaries at 1:20,000,000 scale. The earlier frozen display layers have incomplete provenance."
     },
     {
       "id": "ca_population_benchmark",

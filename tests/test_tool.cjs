@@ -64,6 +64,7 @@ app=app.replace(init,`window.__challengeTest={
  renderPanel,renderTabs,initEvents,initFinalEvents,policyMathHtml,
  selectedPolicyForecast,selectedTab(){return currentTab;},selectedPolicy(){return policyKey;},selectedLevel(){return level;},
  selectedPlace(){return {state:stateAbbr,county:countyFips};},
+ ensureCounties,
  beginClickTest(){const saved=renderAll;renderAll=()=>{renderLevels();renderPolicyRail();renderPanel();renderTabs();};return()=>{renderAll=saved;};},
  dispatchGraph(){const v=metric(),r=countyRec()||stateRec();document.dispatchEvent(new CustomEvent('turnout:simulator-changed',{detail:{state:stateAbbr,county:countyFips,policy:policyKey,level,place:placeName(),fiveYearBaseline:v.baseline,fiveYearAdded:v.added,policies:POLICY_KEYS.map(k=>({key:k,added:stateAbbr==='US'?nationalAdded(k,level):added(r,k,level)}))}}));}
 };`);
@@ -117,6 +118,7 @@ function graph(state,county,policy,level,pf){ui.dispatchGraph();const host=nodes
  if(state==='US'){assert(tiles[2].textContent.includes('1,428,446'),'Graph county-assigned history');assert(tiles[2].textContent.includes('3,170'),'Graph discloses missing allocation difference');}
  assert(!/2050|bedroom|population|completions per year/i.test(host.textContent),'No unrelated long-run graphs');report.graphCases++;
 }
+async function main(){
 try{
  assert.strictEqual(states.length,51);assert.strictEqual(counties.length,3144);
  coverage();checkLocal(index);
@@ -126,6 +128,20 @@ try{
  const expectedTabs=['result','calculation','graph','data'];assert.deepStrictEqual(tabs.map(t=>t.dataset.tab),expectedTabs,'Four tabs preserve the full tool');
  assert.deepStrictEqual(tabs.map(t=>t.textContent),['Results','How It Works','Impact Comparison','Data &amp; Sources'].map(s=>s.replace('&amp;','&')),'Option A navigation labels');
  ui.initEvents();ui.initFinalEvents();for(const t of tabs){t.click();assert.strictEqual(ui.selectedTab(),t.dataset.tab);for(const x of tabs){assert.strictEqual(x.attrs['aria-selected'],String(x===t));assert.strictEqual(x.attrs.tabindex,x===t?'0':'-1');}for(const p of panes){assert.strictEqual(p.classList.contains('active'),p.dataset.pane===t.dataset.tab);assert.strictEqual(p.attrs['aria-hidden'],String(p.dataset.pane!==t.dataset.tab));}report.tabClicks++;}
+ testCase='state asset selection';
+ const stateSelect=nodes.get('stateSelect');
+ const initialRequestCount=document.head.children.length;
+ const initialState=ui.selectedPlace().state;
+ stateSelect.dispatch('change',{target:{value:'ZZ'}});
+ assert.strictEqual(ui.selectedPlace().state,initialState,'Unsupported state selections leave the current place intact');
+ assert.strictEqual(document.head.children.length,initialRequestCount,'Unsupported state selections request no scripts');
+ delete w.COUNTY_DATA.MN;
+ assert.strictEqual(await ui.ensureCounties('MN'),true,'Supported county data and geography load');
+ assert.deepStrictEqual(document.head.children.slice(initialRequestCount).map(s=>s.src.split('?')[0]),[
+  'assets/counties/data/MN.js','assets/counties/geo/MN.js'
+ ]);
+ assert(w.COUNTY_DATA.MN.length>0&&w.COUNTY_GEO.MN,'Both Minnesota assets are available');
+ report.countyAssetSelection='PASS';
  for(const [key,expected] of [['Home','result'],['ArrowLeft','data'],['ArrowRight','result'],['End','data']]){tabs.find(t=>t.dataset.tab===ui.selectedTab()).dispatch('keydown',{key});assert.strictEqual(ui.selectedTab(),expected);assert.strictEqual(document.activeElement.dataset.tab,expected);report.tabKeys++;}
  for(const tab of tabs){tab.click();for(const pane of panes)assert.strictEqual(pane.attrs.tabindex,pane.dataset.pane===tab.dataset.tab?'0':'-1','Active content can receive keyboard focus for scrolling');}
  for(const target of ['calculation','methodology']){const action=node('button',{'data-open-view':target});document.dispatchEvent({type:'click',target:action});assert.strictEqual(ui.selectedTab(),'calculation','Results action and legacy method links open How It Works');assert.strictEqual(document.activeElement.dataset.tab,'calculation','Results action places keyboard focus on the active tab');}
@@ -194,3 +210,5 @@ try{
  report.renderGeographies=selected.length;report.status='PASS';
 }catch(e){report.issues.push({case:testCase,message:e.message,stack:e.stack});process.exitCode=1;}
 fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));
+}
+main();

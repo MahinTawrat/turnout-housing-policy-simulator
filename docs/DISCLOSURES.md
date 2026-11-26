@@ -6,4 +6,6 @@ The interface optionally requests Source Sans 3 and Libre Caslon Display from Go
 
 Codex assisted research, programming, reviews, explanations and tests. There is no runtime AI service, pretrained model, embedding, paid data service, secret API, database or account system. The team remains responsible for understanding and explaining all code and assumptions.
 
-GitHub Actions, CodeQL, Dependabot, dependency graph and GitHub Pages are hosted development/deployment services. Actual repository settings and remote results must be verified; workflow text alone does not prove scans passed. Export and review GitHub's SBOM for submission. Raw caches, personal documents and unrelated workspace files are excluded.
+GitHub Actions, CodeQL, Dependabot, the dependency graph and GitHub Pages provide hosted verification and deployment. The [dependency review](DEPENDENCIES.md) reconciles the GitHub SPDX export with the pinned packages and workflow actions. It also records the CodeQL service terms and the Unlicense terms of the transitive D3 package `robust-predicates`. GitHub Security records the current alert status.
+
+Census, HUD, BTS and official state projections provide public aggregated inputs. The [data documentation](DATA.md) and [source configuration](../config/sources.json) identify their terms and transformation steps. The code license applies to first-party software. The raw source cache is excluded from distribution.

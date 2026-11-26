@@ -73,4 +73,19 @@ Python ≥3.12 and Node.js ≥22 are required by the project; CI selects Python 
 
 ## Machine-readable record
 
-[components.json](components.json) records package identifiers, dependency edges, integrity values, primary license references, font/data distinctions and services. It is a **supplementary inventory**, not a GitHub-generated SBOM or vulnerability scan. Export the actual GitHub dependency-graph SBOM after publishing and review it alongside vendored code, optional native components and the retained notices.
+[GitHub's SPDX export](github-sbom.spdx.json) contains 49 entries. On November 26, 2026, the exported package identifiers and versions matched all 38 npm lockfile packages, the three pinned spatial Python distributions, and the seven distinct pinned workflow action references. The remaining entry is the repository itself. The export records its creation time and the dependency graph's branch reference. Regenerate it when dependency manifests or workflow action pins change.
+
+[components.json](components.json) supplements that export with dependency edges, integrity values, bundled Clipper, the unresolved setuptools build constraint, fonts, and hosted services. Use both records to identify runtime and optional components. The GitHub export leaves the repository and workflow action licenses blank. The repository license is [Apache-2.0](../LICENSE). The upstream license files at the exact action revisions are listed below.
+
+| Pinned workflow action | License |
+|---|---|
+| `actions/checkout` | [MIT](https://raw.githubusercontent.com/actions/checkout/3d3c42e5aac5ba805825da76410c181273ba90b1/LICENSE) |
+| `actions/setup-node` | [MIT](https://raw.githubusercontent.com/actions/setup-node/949feb2413d6458794dcd2491c4babbbce0c15c1/LICENSE) |
+| `actions/setup-python` | [MIT](https://raw.githubusercontent.com/actions/setup-python/6d4fd22b20465ccc0f7354476588e8df7c9ca0e0/LICENSE) |
+| `github/codeql-action/init` and `github/codeql-action/analyze` | [MIT](https://raw.githubusercontent.com/github/codeql-action/33d7b85da1a04171e211befe2c739303b9a4c066/LICENSE) |
+| `actions/upload-pages-artifact` | [MIT](https://raw.githubusercontent.com/actions/upload-pages-artifact/fc324d3547104276b827a68afc52ff2a11cc49c9/LICENSE) |
+| `actions/deploy-pages` | [MIT](https://raw.githubusercontent.com/actions/deploy-pages/368f82528645a54fb793d4d04e342629a3f51346/LICENSE) |
+
+The GitHub export describes `robust-predicates` as `LicenseRef-scancode-public-domain AND Unlicense`. The pinned upstream [license](https://raw.githubusercontent.com/mourner/robust-predicates/v3.0.3/LICENSE) is the [OSI-approved Unlicense](https://opensource.org/license/unlicense), which permits commercial use and redistribution. It applies to the transitive D3 component. The first-party code retains Apache-2.0. PyClipper's combined MIT and BSL-1.0 entry covers its MIT Python wrapper and bundled Boost-licensed Clipper.
+
+Workflow actions run on GitHub for verification and deployment. The CodeQL analysis binaries have [separate CodeQL terms](https://raw.githubusercontent.com/github/codeql-cli-binaries/main/LICENSE.md). Those binaries are used for hosted scanning and are outside the distributed simulator and its rebuild requirements.
