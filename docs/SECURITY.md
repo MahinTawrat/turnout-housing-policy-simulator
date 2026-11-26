@@ -8,6 +8,8 @@ Export the GitHub-generated SBOM from **Insights → Dependency graph → Export
 
 The published release includes a [GitHub-generated SBOM](github-sbom.spdx.json) and a [dated verification record](RELEASE_CHECKS.md). Regenerate the inventory when dependencies change.
 
+[CodeQL finding 1](https://github.com/MahinTawrat/turnout-housing-policy-simulator/security/code-scanning/1) identified state selector text reaching the county script loader. County and tract asset paths now come from the build's state catalog. Unsupported states are rejected before loading an asset. The interaction check covers an unsupported selection and a valid county load. GitHub Security reports the scan status for the submitted branch.
+
 Use an isolated Python environment for optional spatial processing. Install the pinned requirements from the official package registry. No paid AI scanning is required. Workflow permissions are restricted to their stated checking or public-deployment purposes.
 
 The local check searches a narrow set of recognizable credential patterns and personal machine paths; it is not a replacement for GitHub scanning or a security certification. Invalid sources, unexpected revisions and conflicting duplicate records fail with reports instead of silently producing partial results.

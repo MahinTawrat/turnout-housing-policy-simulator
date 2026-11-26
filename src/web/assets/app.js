@@ -6,6 +6,12 @@ const ASSUMPTIONS=window.ASSUMPTIONS||[];
 const BASE={...(window.NATIONAL_BASELINE||{}),fiveYear:window.PRODUCTION_FORECAST.national.fiveYear};
 const BY_ABBR=new Map(STATES.map(d=>[d.state_abbr,d]));
 const BY_FIPS=new Map(STATES.map(d=>[d.state_fips,d]));
+// Browser controls and shared links select assets from the built state list.
+const STATE_ASSETS=new Map(STATES.map(({state_abbr:abbr})=>[abbr,{
+  countyData:`assets/counties/data/${abbr}.js`,
+  countyMap:`assets/counties/geo/${abbr}.js`,
+  tractOverview:`assets/tracts/overview/${abbr}.js`
+}]));
 const MAP_CLASSES=[
   {max:0,color:"#F7F2EE",label:"0%",meaning:"No modeled added production"},
   {max:1,color:"#DEC8B4",label:">0–1%",meaning:"Very small modeled impact"},
@@ -92,9 +98,25 @@ function assumptionText(){
 
 function loadScript(src){return new Promise((resolve,reject)=>{const s=document.createElement("script");s.src=src;s.async=true;s.onload=resolve;s.onerror=()=>reject(new Error("Could not load "+src));document.head.appendChild(s);});}
 async function ensureCounties(abbr){
+  const assets=STATE_ASSETS.get(abbr);
+  if(!assets)return false;
   if(window.COUNTY_DATA[abbr]&&window.COUNTY_GEO[abbr])return true;
   if(countyLoading.has(abbr))return countyLoading.get(abbr);
-  const p=(async()=>{try{const v=window.APP_VERSION||"1";$('mapStatus').textContent=`Loading ${BY_ABBR.get(abbr).state_name} county evidence…`;await Promise.all([window.COUNTY_DATA[abbr]?Promise.resolve():loadScript(`assets/counties/data/${abbr}.js?v=${v}`),window.COUNTY_GEO[abbr]?Promise.resolve():loadScript(`assets/counties/geo/${abbr}.js?v=${v}`)]);return true;}catch(e){console.error(e);$('mapStatus').textContent="County detail could not load. State result is unaffected.";return false;}finally{countyLoading.delete(abbr);}})();
+  const p=(async()=>{
+    try{
+      const v=encodeURIComponent(window.APP_VERSION||"1");
+      $('mapStatus').textContent=`Loading ${BY_ABBR.get(abbr).state_name} county evidence…`;
+      await Promise.all([
+        window.COUNTY_DATA[abbr]?Promise.resolve():loadScript(`${assets.countyData}?v=${v}`),
+        window.COUNTY_GEO[abbr]?Promise.resolve():loadScript(`${assets.countyMap}?v=${v}`)
+      ]);
+      return true;
+    }catch(e){
+      console.error(e);
+      $('mapStatus').textContent="County detail could not load. State result is unaffected.";
+      return false;
+    }finally{countyLoading.delete(abbr);}
+  })();
   countyLoading.set(abbr,p);return p;
 }
 
@@ -107,9 +129,11 @@ async function ensureCountryCounties(){
  return countryCountyLoad;
 }
 async function ensureTractOverview(abbr){
+ const assets=STATE_ASSETS.get(abbr);
+ if(!assets)return false;
  if(window.TRACT_OVERVIEW[abbr])return true;
  if(overviewLoads.has(abbr))return overviewLoads.get(abbr);
- const p=loadScript(`assets/tracts/overview/${abbr}.js?v=20261117-b4`).then(()=>true,()=>false);
+ const p=loadScript(`${assets.tractOverview}?v=20261117-b4`).then(()=>true,()=>false);
  overviewLoads.set(abbr,p);return p;
 }
 async function ensureAllTractOverviews(){
@@ -148,6 +172,7 @@ function fillCountySelect(){
  sel.disabled=false;sel.value=countyFips||'';
 }
 async function chooseState(abbr){
+ if(abbr!=='US'&&!BY_ABBR.has(abbr))return;
  stateAbbr=abbr;countyFips=null;tractGeoid=null;stateMapMode='counties';nationalMapMode='states';
  $('stateSelect').value=abbr;fillCountySelect();fillTractSelect();syncHash();renderAll();
  if(abbr!=='US'&&await ensureCounties(abbr)){fillCountySelect();fillTractSelect();renderAll();}

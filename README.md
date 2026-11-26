@@ -52,6 +52,8 @@ Verified cached files are reused. `--refresh-sources` explicitly permits revised
 
 ## Repository guide
 
+The [data provenance record](docs/DATA_PROVENANCE.md) and [source inventory CSV](docs/data-provenance.csv) document the official release inputs. See the [dependency review](docs/DEPENDENCIES.md) and [GitHub SPDX inventory](docs/github-sbom.spdx.json) for software components and licenses.
+
 | Path | Purpose |
 |---|---|
 | `src/turnout/` | Acquisition, cleaning, evidence, baseline, policies and browser adapters |
